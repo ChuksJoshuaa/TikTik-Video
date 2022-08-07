@@ -46,7 +46,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                   width={62}
                   height={62}
                   className="rounded-full"
-                  src={post.postedBy.image}
+                  src={post.postedBy?.image}
                   layout="responsive"
                   alt="profile photo"
                 />
@@ -57,12 +57,12 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
             <Link href={`/profile/${post.postedBy?._id}`}>
               <a>
                 <p className="flex gap-2 items-center md:text-md font-bold text-primary">
-                  {post.postedBy.userName}
+                  {post.postedBy?.userName}
                   {` `}
                   <GoVerified className="text-blue-400 text-md" />
                 </p>
                 <p className="capitalize font-medium text-xs text-gray-500 hidden md:block">
-                  {post.postedBy.userName}
+                  {post.postedBy?.userName}
                 </p>
               </a>
             </Link>

@@ -38,10 +38,10 @@ const Comments = ({
             return (
               <>
                 {allUsers.map(
-                  (user: IUser, idxx) =>
-                    user._id === item.postedBy._ref && (
+                  (user: IUser) =>
+                    user?._id === item.postedBy?._ref && (
                       <div className="p-2 items-center" key={idx}>
-                        <Link href={`/profile/${user._id}`} key={idxx}>
+                        <Link href={`/profile/${user._id}`} key={user?._id}>
                           <a>
                             <div className="flex items-start gap-3">
                               <div className="w-8 h-8">
