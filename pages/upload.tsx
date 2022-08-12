@@ -29,6 +29,9 @@ const Upload = () => {
     const fileTypes = ["video/mp4", "video/webm", "video/ogg"];
 
     if (fileTypes.includes(selectedFile.type)) {
+      setWrongFileType(false);
+      setIsLoading(true);
+
       client.assets
         .upload("file", selectedFile, {
           contentType: selectedFile.type,
@@ -73,6 +76,13 @@ const Upload = () => {
     }
   };
 
+  const handleDiscard = () => {
+    setSavingPost(false);
+    setVideoAsset(undefined);
+    setCaption("");
+    setCategory("");
+  };
+
   return (
     <div className="flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
       <div className="bg-white rounded-lg xl:h-[80vh] justify-between flex gap-6 flex-wrap justify-center items-center p-14 pt-6">
@@ -90,7 +100,9 @@ const Upload = () => {
                       p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100"
           >
             {isLoading ? (
-              <p>Uploading...</p>
+              <p className="text-center lg:text-2xl text-lg text-gray-400 font-semibold">
+                Uploading...
+              </p>
             ) : (
               <div>
                 {videoAsset ? (
@@ -146,11 +158,13 @@ const Upload = () => {
             onChange={(e) => setCaption(e.target.value)}
             className="rounded outline-none text-md border-2 border-gray-200 p-2"
           />
-          <label className="text-md font-medium">Choose a Category</label>
           <select
             onChange={(e) => setCategory(e.target.value)}
             className="outline-none border-2 border-gray-200 text-md capitalize p-2 rounded cursor-pointer"
           >
+            <option className="outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300">
+              Select Category
+            </option>
             {topics.map((topic, index) => (
               <option
                 key={index}
@@ -163,7 +177,7 @@ const Upload = () => {
           </select>
           <div className="flex gap-6 mt-10 ">
             <button
-              onClick={() => {}}
+              onClick={handleDiscard}
               type="button"
               className="border-gray-300 hover:bg-[#222] hover:border-0 hover:text-gray-100 border-2 text-md capitalize font-medium p-2 rounded w-28 lg:w-44 outline-none"
             >
@@ -171,10 +185,11 @@ const Upload = () => {
             </button>
             <button
               onClick={handlePost}
+              disabled={videoAsset?.url ? false : true}
               type="button"
               className="border-gray-300 border-2 hover:border-0 hover:bg-[#F51997] hover:text-gray-100  text-md capitalize font-medium p-2 rounded w-28 lg:w-44 outline-none"
             >
-              upload
+              {savingPost ? "Posting..." : "Post"}
             </button>
           </div>
         </div>
