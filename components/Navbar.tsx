@@ -38,6 +38,7 @@ const Navbar = () => {
               src={logo}
               alt="tiktik"
               layout="responsive"
+              onClick={() => setSearchTerm("")}
             />
           </div>
         </a>

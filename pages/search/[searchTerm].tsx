@@ -12,10 +12,14 @@ import useAuthStore from "../../store/authStore";
 const Search = ({ videos }: { videos: Video[] }) => {
   const Router = useRouter();
   const [isAccounts, setIsAccounts] = useState(false);
-  const { userProfile } = useAuthStore();
+  const { allUsers } = useAuthStore();
 
   //To get the word that was searched
-  const { searchTerm } = Router.query;
+  const { searchTerm }: any = Router.query;
+
+  const searchAccounts = allUsers.filter((user: IUser) =>
+    user.userName.toLowerCase().includes(searchTerm?.toLowerCase())
+  );
 
   const accounts = isAccounts ? "border-b-2 border-black" : "text-gray-400";
   const isVideos = !isAccounts ? "border-b-2 border-black" : "text-gray-400";
@@ -38,12 +42,49 @@ const Search = ({ videos }: { videos: Video[] }) => {
           </p>
         </div>
         {isAccounts ? (
-          <div>Accounts</div>
+          <div className="md:mt-16">
+            {searchAccounts.length > 0 ? (
+              searchAccounts.map((user: IUser) => (
+                <Link href={`/profile/${user._id}`} key={user?._id}>
+                  <a>
+                    <div className="flex p-2 cursor-pointer font-semibold rounded border-b-2 border-gray-200 gap-3">
+                      <div>
+                        <Image
+                          src={user?.image}
+                          width={50}
+                          height={50}
+                          className="rounded-full"
+                          alt="user profile"
+                        />
+                      </div>
+
+                      <div className="hidden xl:block mb-4">
+                        <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
+                          {user.userName.replaceAll(" ", "")}
+                          <GoVerified className="text-blue-400" />
+                        </p>
+                        <p className="capitalize text-gray-400 text-xs">
+                          {user.userName}
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              ))
+            ) : (
+              <NoResults text={`No account associated with ${searchTerm}`} />
+            )}
+          </div>
         ) : (
           <div className="md:mt-16 flex flex-wrap gap-6 md:justify-start">
             {videos.length ? (
               videos.map((video: Video, idx) => (
-                <VideoCard post={video} key={idx} />
+                <div>
+                  <h1 className="text-center text-gray-500 lg:text-2xl text-lg font-semibold mb-5">
+                    Search Video Result for {searchTerm}{" "}
+                  </h1>
+                  <VideoCard post={video} key={idx} />
+                </div>
               ))
             ) : (
               <NoResults text={`No video results for ${searchTerm}`} />
