@@ -14,8 +14,11 @@ const Search = ({ videos }: { videos: Video[] }) => {
   const [isAccounts, setIsAccounts] = useState(false);
   const { userProfile } = useAuthStore();
 
+  //To get the word that was searched
+  const { searchTerm } = Router.query;
+
   const accounts = isAccounts ? "border-b-2 border-black" : "text-gray-400";
-  const video = !isAccounts ? "border-b-2 border-black" : "text-gray-400";
+  const isVideos = !isAccounts ? "border-b-2 border-black" : "text-gray-400";
 
   return (
     <div className="w-full">
@@ -28,13 +31,25 @@ const Search = ({ videos }: { videos: Video[] }) => {
             Accounts
           </p>
           <p
-            className={`text-xl font-semibold cursor-pointer mt-2 ${video}`}
+            className={`text-xl font-semibold cursor-pointer mt-2 ${isVideos}`}
             onClick={() => setIsAccounts(false)}
           >
             Videos
           </p>
         </div>
-        {!isAccounts ? <div>Accounts</div> : <div>Videos</div>}
+        {isAccounts ? (
+          <div>Accounts</div>
+        ) : (
+          <div className="md:mt-16 flex flex-wrap gap-6 md:justify-start">
+            {videos.length ? (
+              videos.map((video: Video, idx) => (
+                <VideoCard post={video} key={idx} />
+              ))
+            ) : (
+              <NoResults text={`No video results for ${searchTerm}`} />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
