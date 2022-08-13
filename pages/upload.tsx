@@ -185,7 +185,6 @@ const Upload = () => {
             </button>
             <button
               onClick={handlePost}
-              disabled={videoAsset?.url ? false : true}
               type="button"
               className="border-gray-300 border-2 hover:border-0 hover:bg-[#F51997] hover:text-gray-100  text-md capitalize font-medium p-2 rounded w-28 lg:w-44 outline-none"
             >
