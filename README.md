@@ -1,6 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+
+# TIK-TIK PROJECT
+
+<img src="https://res.cloudinary.com/chuksmbanaso/image/upload/v1660437038/Screenshot_220_shmd25.png" title="icon" alt="icon">
 
 First, run the development server:
 
