@@ -43,7 +43,7 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
     if (post && videoRef?.current) {
       videoRef.current.muted = isVideoMuted;
     }
-  }, [isVideoMuted]);
+  }, [isVideoMuted, post]);
 
   const handleLike = async (like: boolean) => {
     if (userProfile) {

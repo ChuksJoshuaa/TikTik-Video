@@ -79,7 +79,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
           <div className="md:mt-16 flex flex-wrap gap-6 md:justify-start">
             {videos.length ? (
               videos.map((video: Video, idx) => (
-                <div>
+                <div key={idx}>
                   <h1 className="text-center text-gray-500 lg:text-2xl text-lg font-semibold mb-5">
                     Search Video Result for {searchTerm}{" "}
                   </h1>
