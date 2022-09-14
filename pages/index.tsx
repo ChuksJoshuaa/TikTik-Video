@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import axios from "axios";
 import { Video } from "../types";
-import { VideoCard, NoResults } from "../components";
+import { VideoCard, NoResults, MainFooter } from "../components";
 import { BASE_URL } from "../utils";
 import { useRouter } from "next/router";
 
@@ -21,11 +21,16 @@ const Home = ({ videos }: IProps) => {
     return <NoResults text={`No video posted yet`} />;
   }
   return (
-    <div className="flex flex-col gap-10 videos h-full">
-      {videos.map((video: Video) => {
-        return <VideoCard post={video} key={video._id} />;
-      })}
-    </div>
+    <>
+      <div className="flex flex-col gap-10 videos h-full">
+        {videos.map((video: Video) => {
+          return <VideoCard post={video} key={video._id} />;
+        })}
+      </div>
+      <div className="flex md:hidden w-full">
+        <MainFooter />
+      </div>
+    </>
   );
 };
 
