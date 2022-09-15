@@ -5,9 +5,10 @@ import { MainFooter } from "./index";
 
 interface IProps {
   text: string;
+  showUserVideos: boolean;
 }
 
-const NoResults = ({ text }: IProps) => {
+const NoResults = ({ text, showUserVideos }: IProps) => {
   return (
     <>
       <div className="flex flex-col justify-center items-center h-full w-full">
@@ -20,7 +21,11 @@ const NoResults = ({ text }: IProps) => {
         </p>
         <p className="text-2xl text-center">{text}</p>
       </div>
-      <div className="absolute bottom-0 w-full cursor-pointer sm:block md:hidden">
+      <div
+        className={`absolute bottom-0 w-full cursor-pointer sm:block md:hidden ${
+          !showUserVideos ? "hidden" : "hidden"
+        }`}
+      >
         <div className="h-[3rem]  bg-black border-t-2 border-orange-200 text-gray-50">
           <MainFooter />
         </div>
