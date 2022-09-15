@@ -12,7 +12,7 @@ interface IProps {
 }
 
 //Another way of using typescript.
-const VideoCard: NextPage<IProps> = ({ post }) => {
+const ProfileVideoCard: NextPage<IProps> = ({ post }) => {
   const [isHover, setIsHover] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
@@ -82,8 +82,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                 ref={videoRef}
                 loop
                 src={post.video.asset.url}
-                // className="h-full w-full cursor-pointer"
-                className="lg:w-[600px] h-[270px] md:h-[400px] lg:h-[530px] w-[200px] cursor-pointer rounded-2xl bg-gray-100"
+                className="lg:w-[600px] h-[270px] md:h-[400px] lg:h-[530px] w-[380px]  cursor-pointer rounded-2xl bg-gray-100"
               />
             </a>
           </Link>
@@ -115,4 +114,4 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
   );
 };
 
-export default VideoCard;
+export default ProfileVideoCard;
