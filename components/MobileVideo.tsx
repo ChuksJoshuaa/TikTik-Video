@@ -86,12 +86,12 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               )}
             </div>
           )}
-        </div>
-        {/* <div className="relative top-[45%] right-0">
-          <div className="bg-white text-gray-900">
-            <div>Hello</div>
+          <div className="absolute top-[45%] right-2">
+            <div className="text-white">
+              <div>Hello</div>
+            </div>
           </div>
-        </div> */}
+        </div>
 
         <div className="absolute bottom-0 w-full cursor-pointer">
           <div className="h-[3rem]  bg-black text-gray-50">
