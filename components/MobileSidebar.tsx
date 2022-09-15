@@ -11,6 +11,7 @@ interface IProps {
 }
 
 const MobileSidebar = ({ setShowMobileSidebar }: IProps) => {
+  const showUserVideos = false;
   const normalLink =
     "flex items-center gap-3  hover:bg-primary  flex-start p-2 xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded";
 
@@ -54,7 +55,7 @@ const MobileSidebar = ({ setShowMobileSidebar }: IProps) => {
           </Link>
         </div>
         <Discover />
-        <SuggestedAccounts />
+        <SuggestedAccounts showUserVideos={showUserVideos} />
         <Footer />
       </div>
     </div>
