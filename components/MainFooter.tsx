@@ -1,5 +1,5 @@
 import React from "react";
-import { BiCommentX } from "react-icons/bi";
+import { BiCommentMinus } from "react-icons/bi";
 import { AiFillHome } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import { IoMdAdd } from "react-icons/io";
@@ -32,7 +32,7 @@ const MainFooter = () => {
         </Link>
         <Link href="">
           <a>
-            <BiCommentX />
+            <BiCommentMinus />
           </a>
         </Link>
         <Link href={`/profile/${userProfile?._id}`}>
