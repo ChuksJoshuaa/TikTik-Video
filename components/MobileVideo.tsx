@@ -6,7 +6,7 @@ import { GoVerified } from "react-icons/go";
 import { MdOutlineCancel } from "react-icons/md";
 import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 import { FaRegCommentDots } from "react-icons/fa";
-import { IoArrowRedoOutline } from "react-icons/io";
+import { IoArrowRedoOutline } from "react-icons/io5";
 import { MdFavorite } from "react-icons/md";
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 import axios from "axios";
