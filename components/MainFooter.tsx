@@ -20,7 +20,7 @@ const MainFooter = () => {
             <AiFillHome />
           </a>
         </Link>
-        <Link href="">
+        <Link href="/search">
           <a>
             <BiSearch />
           </a>
