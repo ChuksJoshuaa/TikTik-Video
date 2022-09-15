@@ -10,6 +10,8 @@ import LikeButton from "./LikeButton";
 import Comments from "./Comments";
 import MobileVideo from "./MobileVideo";
 import MainFooter from "./MainFooter";
+import SideIcon from "./SideIcon";
+import MobileSidebar from "./MobileSidebar";
 
 export {
   SuggestedAccounts,
@@ -24,4 +26,6 @@ export {
   ProfileVideoCard,
   MobileVideo,
   MainFooter,
+  SideIcon,
+  MobileSidebar,
 };
