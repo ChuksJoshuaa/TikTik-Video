@@ -103,7 +103,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
         </div>
 
         <div className="absolute bottom-0 w-full cursor-pointer">
-          <div className="h-[3rem]  bg-black text-gray-50">
+          <div className="h-[3rem]  bg-black border-t-2 border-orange-200 text-gray-50">
             <MainFooter />
           </div>
         </div>
