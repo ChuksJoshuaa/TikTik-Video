@@ -13,7 +13,7 @@ const SuggestedAccounts = () => {
   }, [fetchAllUsers]);
 
   return (
-    <div className="xl:border-b-2 border-gray-200 pb-4">
+    <div className="border-b-2 md:border-b-0 xl:border-b-2 border-gray-200 pb-4">
       <p className="text-gray-500 font-semibold m-3 mt-4">Suggested Accounts</p>
 
       <div>
@@ -33,7 +33,7 @@ const SuggestedAccounts = () => {
                     />
                   </div>
 
-                  <div className="hidden xl:block">
+                  <div className="sm:block md:hidden xl:block">
                     <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
                       {user.userName.replaceAll(" ", "")}
                       <GoVerified className="text-blue-400" />
