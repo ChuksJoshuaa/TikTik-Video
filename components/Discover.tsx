@@ -34,7 +34,7 @@ const Discover = () => {
                   <span className="font-bold text-2xl xl-text-md">
                     {item.icon}
                   </span>
-                  <span className="font-medium text-md hidden xl:block capitalize">
+                  <span className="font-medium text-md sm:block md:hidden xl:block capitalize">
                     {item.name}
                   </span>
                 </div>
