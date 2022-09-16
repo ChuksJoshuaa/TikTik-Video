@@ -23,18 +23,37 @@ interface IState {
   showMobileSidebar: boolean;
 }
 
+interface IVideo {
+  getUrl: string;
+}
+
+interface IProps {
+  setGetUrl: React.Dispatch<React.SetStateAction<string>>;
+}
+
 const MobileVideo: NextPage<IProps> = ({ post }) => {
   const { userProfile }: { userProfile: any } = useAuthStore();
 
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
   const [isHover, setIsHover] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [showMobileSidebar, setShowMobileSidebar] =
     useState<IState["showMobileSidebar"]>(false);
+    const [getUrl, setGetUrl] = useState<IVideo["getUrl"]>("")
   //   const [comment, setComment] = useState("");
   //   const [isPostingComment, setIsPostingComment] = useState(false);
   const router = useRouter();
+
+  const urlParams: any = () => {
+  
+     let vide = videoRef.current
+     console.log(vide?.src)
+     setGetUrl(vide?.src)
+  }
+
+  console.log(getUrl)
 
   const onVideoClick = () => {
     if (playing) {
@@ -73,7 +92,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <div className=" w-full ">
+          <div className=" w-full " >
             <video
               ref={videoRef}
               src={post.video.asset.url}
@@ -95,8 +114,8 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               )}
             </div>
           )}
-          <div className="absolute top-[47%] right-3">
-            <div className="text-white">
+          <div className="absolute top-[47%] right-3" onClick={urlParams}>
+            <div className="">
               <SideIcon />
             </div>
           </div>

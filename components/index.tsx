@@ -12,6 +12,7 @@ import MobileVideo from "./MobileVideo";
 import MainFooter from "./MainFooter";
 import SideIcon from "./SideIcon";
 import MobileSidebar from "./MobileSidebar";
+import ShareFile from "./ShareFile";
 
 export {
   SuggestedAccounts,
@@ -28,4 +29,5 @@ export {
   MainFooter,
   SideIcon,
   MobileSidebar,
+  ShareFile,
 };
