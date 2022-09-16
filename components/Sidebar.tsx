@@ -13,7 +13,7 @@ const Sidebar = () => {
   const normalLink =
     "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded";
 
-  const userProfile = false;
+  const showUserVideos = false;
   return (
     <div>
       <div
@@ -37,7 +37,7 @@ const Sidebar = () => {
             </Link>
           </div>
           <Discover />
-          <SuggestedAccounts />
+          <SuggestedAccounts showUserVideos={showUserVideos} />
           <Footer />
         </div>
       )}
