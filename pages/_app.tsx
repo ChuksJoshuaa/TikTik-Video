@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
-import { Navbar, Sidebar } from "../components";
+import { Navbar, Sidebar, MainFooter } from "../components";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -19,13 +19,18 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}
       >
         <div className="xl:w-[1200px] m-auto overflow-hidden h-[100vh]">
-          <Navbar />
+          <div className="md:block hidden">
+            <Navbar />
+          </div>
+
           <div className="flex gap-6 md:gap-20">
-            <div className="h-[92vh] overflow-hidden xl:hover:overflow-auto">
+            <div className="h-[92vh] overflow-hidden xl:hover:overflow-auto md:block hidden">
               <Sidebar />
             </div>
-            <div className="mt-4 flex flex-col gap-10 overflow-auto h-[88vh] videos flex-1">
-              <Component {...pageProps} />
+            <div className="mt-4 flex flex-col gap-10 overflow-auto h-[100vh] videos flex-1">
+              <div>
+                <Component {...pageProps} />
+              </div>
             </div>
           </div>
         </div>

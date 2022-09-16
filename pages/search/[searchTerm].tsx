@@ -16,6 +16,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
 
   //To get the word that was searched
   const { searchTerm }: any = Router.query;
+  const showUserVideos = false;
 
   const searchAccounts = allUsers.filter((user: IUser) =>
     user.userName.toLowerCase().includes(searchTerm?.toLowerCase())
@@ -72,7 +73,10 @@ const Search = ({ videos }: { videos: Video[] }) => {
                 </Link>
               ))
             ) : (
-              <NoResults text={`No account associated with ${searchTerm}`} />
+              <NoResults
+                text={`No account associated with ${searchTerm}`}
+                showUserVideos={showUserVideos}
+              />
             )}
           </div>
         ) : (

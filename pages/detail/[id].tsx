@@ -5,7 +5,6 @@ import Link from "next/link";
 import { GoVerified } from "react-icons/go";
 import { MdOutlineCancel } from "react-icons/md";
 import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
-import { FaRegPlayCircle } from "react-icons/fa";
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 import axios from "axios";
 import { BASE_URL } from "../../utils";
