@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BiCommentMinus } from "react-icons/bi";
 import { AiFillHome } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
@@ -9,6 +9,23 @@ import useAuthStore from "../store/authStore";
 
 const MainFooter = () => {
   const { userProfile }: { userProfile: any } = useAuthStore();
+  const [confirmRegister, setConfirmRegister] = useState(false);
+
+  const checkIfRegister = () => {
+    if (
+      userProfile?._id === null ||
+      userProfile?._id === undefined ||
+      !userProfile?._id
+    ) {
+      setConfirmRegister(true);
+    } else {
+      setConfirmRegister(false);
+    }
+  };
+
+  useEffect(() => {
+    checkIfRegister();
+  }, [checkIfRegister]);
   return (
     <div>
       <div
@@ -35,11 +52,19 @@ const MainFooter = () => {
             <BiCommentMinus />
           </a>
         </Link>
-        <Link href={`/profile/${userProfile?._id}`}>
-          <a>
-            <FaUser />
-          </a>
-        </Link>
+        {confirmRegister ? (
+          <Link href="/register">
+            <a>
+              <FaUser />
+            </a>
+          </Link>
+        ) : (
+          <Link href={`/profile/${userProfile?._id}`}>
+            <a>
+              <FaUser />
+            </a>
+          </Link>
+        )}
       </div>
     </div>
   );
