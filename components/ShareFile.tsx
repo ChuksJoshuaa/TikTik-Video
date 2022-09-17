@@ -18,16 +18,10 @@ import {
 interface IProps {
   setShowShare: React.Dispatch<React.SetStateAction<boolean>>;
   getUrl: string;
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ShareFile = ({ setShowShare, getUrl, setCount, count }: IProps) => {
+const ShareFile = ({ setShowShare, getUrl }: IProps) => {
   let result = `${BASE_URL}/detail/${getUrl}`;
-
-  const increment = () => {
-    setCount(count + 1);
-  };
 
   const urlDecoded = (info: string) => {
     const data = decodeURI(info);
@@ -55,10 +49,7 @@ const ShareFile = ({ setShowShare, getUrl, setCount, count }: IProps) => {
         </button>
         <div className="p-6 text-center mt-5">
           <p>Share to</p>
-          <div
-            className="border-t-2 border-gray-900 pt-3 flex m-2 flex-wrap"
-            onClick={increment}
-          >
+          <div className="border-t-2 border-gray-900 pt-3 flex m-2 flex-wrap">
             <div className="pr-3">
               <FacebookShareButton
                 url={` ${urlDecoded(result)}`}

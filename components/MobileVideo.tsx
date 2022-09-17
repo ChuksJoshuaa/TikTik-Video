@@ -4,7 +4,9 @@ import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 import { Video } from "../types";
 import { NextPage } from "next";
 import { MobileSidebar } from "./index";
-
+import useAuthStore from "../store/authStore";
+import { BASE_URL } from "../utils";
+import axios from "axios";
 import { MainFooter, SideIcon } from "./index";
 
 interface IProps {
@@ -16,6 +18,7 @@ interface IState {
 }
 
 const MobileVideo: NextPage<IProps> = ({ post }) => {
+  const { userProfile }: { userProfile: any } = useAuthStore();
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -25,6 +28,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   const [showMobileSidebar, setShowMobileSidebar] =
     useState<IState["showMobileSidebar"]>(false);
   const [getUrl, setGetUrl] = useState<any | undefined>("");
+  const [posts, setPosts] = useState(post);
 
   const urlParams: any = () => {
     let vided = videoRef.current?.getAttribute("data-prefix");
@@ -33,6 +37,30 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
       setGetUrl(vided);
     } else {
       return;
+    }
+  };
+
+  const handleCount = async (share: boolean) => {
+    if (userProfile) {
+      const { data } = await axios.put(`${BASE_URL}/api/share`, {
+        userId: userProfile._id,
+        postId: posts._id,
+        share,
+      });
+
+      setPosts({ ...posts, likes: data.likes });
+    }
+  };
+
+  const handleLike = async (like: boolean) => {
+    if (userProfile) {
+      const { data } = await axios.put(`${BASE_URL}/api/like`, {
+        userId: userProfile._id,
+        postId: posts._id,
+        like,
+      });
+
+      setPosts({ ...posts, likes: data.likes });
     }
   };
 
@@ -54,7 +82,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
     }
   }, [isVideoMuted]);
 
-  if (!post) {
+  if (!posts) {
     <div className="text-center">
       <div role="status">
         <svg
@@ -104,11 +132,11 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
           <div className={`w-full ${isDark ? "opacity-25" : ""}`}>
             <video
               ref={videoRef}
-              src={post.video.asset.url}
+              src={posts.video.asset.url}
               className="w-full cursor-pointer object-none h-[550px]"
               onClick={() => {}}
-              key={post._id}
-              data-prefix={post._id}
+              key={posts._id}
+              data-prefix={posts._id}
             />
           </div>
           {isHover && (
@@ -126,7 +154,12 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
           )}
           <div className="absolute top-[47%] right-3" onClick={urlParams}>
             <div className={` ${isDark ? "opacity-100" : ""}`}>
-              <SideIcon getUrl={getUrl} />
+              <SideIcon
+                getUrl={getUrl}
+                handleLike={handleLike}
+                handleCount={handleCount}
+                post={posts}
+              />
             </div>
           </div>
         </div>

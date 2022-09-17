@@ -13,6 +13,8 @@ import MainFooter from "./MainFooter";
 import SideIcon from "./SideIcon";
 import MobileSidebar from "./MobileSidebar";
 import ShareFile from "./ShareFile";
+import MobileComments from "./MobileComments";
+import CountButton from "./CountButton";
 
 export {
   SuggestedAccounts,
@@ -30,4 +32,6 @@ export {
   SideIcon,
   MobileSidebar,
   ShareFile,
+  MobileComments,
+  CountButton,
 };
