@@ -81,7 +81,8 @@ const MobileComments = ({
         </button>
         <div className="p-6 text-center mt-5">
           <p className="text-lg text-gray-900 font-semibold">
-            ({comments?.length}) Comments
+            ({comments?.length || 0}){" "}
+            {`${comments?.length > 1 ? "Comments" : "Comment"}`}
           </p>
         </div>
         <div className=" px-3 border-t-2 border-gray-700 h-[450px] overflow-auto w-full">
