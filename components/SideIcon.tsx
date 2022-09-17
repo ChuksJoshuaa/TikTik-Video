@@ -63,7 +63,6 @@ const SideIcon = ({
       <div className="overflow-y-auto overflow-x-hidden fixed top-5 mt-5 right-0 left-0 z-50 md:inset-0 h-modal">
         {showComment && (
           <MobileComments
-            getUrl={getUrl}
             setShowComment={setShowComment}
             comment={comment}
             setComment={setComment}
