@@ -23,13 +23,13 @@ interface IState {
   showMobileSidebar: boolean;
 }
 
-interface IVideo {
-  getUrl: string;
-}
+// interface IVideo {
+//   getUrl: string;
+// }
 
-interface IProps {
-  setGetUrl: React.Dispatch<React.SetStateAction<string>>;
-}
+// interface IProps {
+//   setGetUrl: React.Dispatch<React.SetStateAction<string>>;
+// }
 
 const MobileVideo: NextPage<IProps> = ({ post }) => {
   const { userProfile }: { userProfile: any } = useAuthStore();
@@ -38,19 +38,24 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const [isHover, setIsHover] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [showMobileSidebar, setShowMobileSidebar] =
     useState<IState["showMobileSidebar"]>(false);
-    const [getUrl, setGetUrl] = useState<IVideo["getUrl"]>("")
-  //   const [comment, setComment] = useState("");
-  //   const [isPostingComment, setIsPostingComment] = useState(false);
+    const [getUrl, setGetUrl] = useState<any | undefined>("")
   const router = useRouter();
 
   const urlParams: any = () => {
   
+     let vided = videoRef.current?.getAttribute('data-prefix')
      let vide = videoRef.current
-     console.log(vide?.src)
-     setGetUrl(vide?.src)
+
+     if(vide !== undefined || vide !== null){
+        setGetUrl(vide?.src)
+     }
+     else {
+      return
+     }
   }
 
   console.log(getUrl)
@@ -58,9 +63,11 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   const onVideoClick = () => {
     if (playing) {
       videoRef?.current?.pause();
+      setIsDark(true);
       setPlaying(false);
     } else {
       videoRef?.current?.play();
+      setIsDark(false);
       setPlaying(true);
     }
   };
@@ -89,16 +96,17 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
         )}
         <div
           className="relative"
-          onMouseEnter={() => setIsHover(true)}
-          onMouseLeave={() => setIsHover(false)}
+          onMouseEnter={() => {setIsHover(true); setIsDark(true)}}
+          onMouseLeave={() => {setIsHover(false)}}
         >
-          <div className=" w-full " >
+          <div className={`w-full ${isDark ? 'opacity-25': ''}`} >
             <video
               ref={videoRef}
               src={post.video.asset.url}
               className="w-full cursor-pointer object-none h-[550px]"
               onClick={() => {}}
               key={post._id}
+              data-prefix={post._id}
             />
           </div>
           {isHover && (
@@ -115,8 +123,8 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             </div>
           )}
           <div className="absolute top-[47%] right-3" onClick={urlParams}>
-            <div className="">
-              <SideIcon />
+            <div className={` ${isDark ? 'opacity-100': ''}`}>
+              <SideIcon getUrl={getUrl} />
             </div>
           </div>
         </div>
