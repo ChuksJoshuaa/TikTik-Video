@@ -25,7 +25,7 @@ interface IProps {
 const ShareFile = ({setShowShare, getUrl, setCount, count}: IProps) => {
 
     let result = `${BASE_URL}`
-    let info = getUrl
+   
 
 const increment = () => {
     setCount(count + 1)
