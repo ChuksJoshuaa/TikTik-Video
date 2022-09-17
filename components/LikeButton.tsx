@@ -31,7 +31,7 @@ const LikeButton: NextPage<IProps> = ({ handleLike, handleDislike, likes }) => {
             className="bg-primary rounded-full p-2 md:p-4 text-[#F51997]"
             onClick={handleDislike}
           >
-            <MdFavorite className="text-lg md:text-2xl" />
+            <MdFavorite className="text-lg md:text-2xl font-semibold" />
           </div>
         ) : (
           <div
@@ -41,7 +41,9 @@ const LikeButton: NextPage<IProps> = ({ handleLike, handleDislike, likes }) => {
             <MdFavorite className="text-lg md:text-2xl" />
           </div>
         )}
-        <p className="text-md font-semibold">{likes?.length || 0}</p>
+        <p className="text-lg sm:text-white md:text-black font-semibold">
+          {likes?.length || 0}
+        </p>
       </div>
     </div>
   );

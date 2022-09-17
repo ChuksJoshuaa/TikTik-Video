@@ -21,6 +21,13 @@ export interface Video {
       image: string;
     };
   }[];
+  shares: {
+    postedBy: {
+      _id: string;
+      userName: string;
+      image: string;
+    };
+  }[];
   comments: {
     comment: string;
     _key: string;
@@ -38,11 +45,10 @@ export interface IUser {
   image: string;
 }
 
-
 export interface IUserProfile {
   userProfile: {
-    image: string,
-    userName: string,
-    _id: string,
-  }
+    image: string;
+    userName: string;
+    _id: string;
+  };
 }
