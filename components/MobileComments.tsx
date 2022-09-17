@@ -96,7 +96,10 @@ const MobileComments = ({
                           <div className="p-2 items-center" key={idx}>
                             <Link href={`/profile/${user._id}`} key={user?._id}>
                               <a>
-                                <div className="flex items-start gap-3">
+                                <div
+                                  className="flex items-start gap-3"
+                                  key={idx}
+                                >
                                   <div className="w-8 h-8">
                                     <Image
                                       src={user.image}
