@@ -135,7 +135,6 @@ const MobileComments = ({
               <MobileNoResults text="No comments yet" />
             )}
           </div>
-          <div className="border-t-2 border-gray-400"></div>
           {userProfile && (
             <div className="absolute bottom-0 left-0 px-2 pb-1 border-t-2 border-gray-400 bg-white ">
               <div className="pb-2"></div>
