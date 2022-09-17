@@ -22,8 +22,6 @@ const CountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
 
   const [showShare, setShowShare] = useState<IState["showShare"]>(false);
 
-  const lengthy = shares?.length;
-
   useEffect(() => {
     if (filterCount?.length > 0) {
       setAlreadyCount(true);
@@ -51,7 +49,9 @@ const CountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
             <IoArrowRedoOutline className="text-lg md:text-2xl" />
           </div>
         )}
-        <p className="text-lg text-white font-semibold">{lengthy || 0}</p>
+        <p className="text-lg text-white font-semibold">
+          {shares?.length || 0}
+        </p>
       </div>
       <div className="overflow-y-auto overflow-x-hidden fixed top-20 mt-20 right-0 left-0 z-50 md:inset-0 h-modal">
         {showShare && (
