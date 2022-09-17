@@ -1,12 +1,11 @@
-import React from "react";
-import { BASE_URL } from "../utils";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { GoVerified } from "react-icons/go";
 import useAuthStore from "../store/authStore";
 import { IUser } from "../types";
-import { NoResults } from "./index";
+import { MobileNoResults } from "./index";
 
 interface IProps {
   setShowComment: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,13 +31,13 @@ const MobileComments = ({
   addComment,
   comments,
 }: IProps) => {
+  console.log(comments);
   const Router = useRouter();
   const { userProfile, allUsers } = useAuthStore();
-
-  const showUserVideos = false;
+  const [isEnter, setIsEnter] = useState(false);
 
   return (
-    <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+    <div className="relative p-4 w-full h-full overflow-auto">
       <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
         <button
           type="button"
@@ -59,10 +58,12 @@ const MobileComments = ({
           </span>
         </button>
         <div className="p-6 text-center mt-5">
-          <p className="text-lg text-gray-900 font-semibold">Comments</p>
+          <p className="text-lg text-gray-900 font-semibold">
+            ({comments?.length}) Comments
+          </p>
         </div>
-        <div className="border-t-2 border-gray-200 pt-4 mt-4 px-10 bg-[#F8F8F8] border-b-2 lg:pb-0 pb-[100px]">
-          <div className="overflow-scroll h-[475px]">
+        <div className=" px-3 border-t-2 border-gray-700 h-[450px] overflow-auto w-full">
+          <div className="">
             {comments?.length ? (
               comments.map((item, idx) => {
                 return (
@@ -85,20 +86,22 @@ const MobileComments = ({
                                     />
                                   </div>
 
-                                  <div className="hidden xl:block">
+                                  <div className="block">
                                     <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
-                                      {user.userName.replaceAll(" ", "")}
+                                      {user?.userName.replaceAll(" ", "")}
                                       <GoVerified className="text-blue-400" />
                                     </p>
                                     <p className="capitalize text-gray-400 text-xs">
-                                      {user.userName}
+                                      {user?.userName}
                                     </p>
                                   </div>
                                 </div>
                               </a>
                             </Link>
                             <div>
-                              <p>- {item.comment}</p>
+                              <p className="text-sm font-medium text-gray-700">
+                                - {item.comment}
+                              </p>
                             </div>
                           </div>
                         )
@@ -107,27 +110,34 @@ const MobileComments = ({
                 );
               })
             ) : (
-              <NoResults
-                text="No comments yet"
-                showUserVideos={showUserVideos}
-              />
+              <MobileNoResults text="No comments yet" />
             )}
           </div>
+          <div className="border-t-2 border-gray-400"></div>
           {userProfile && (
-            <div className="absolute bottom-0 left-0 pb-6 px-2 md:px-10">
-              <form onSubmit={addComment} className="flex gap-4">
+            <div className="absolute bottom-0 left-0 px-2 pb-1 border-t-2 border-gray-400 bg-white ">
+              <div className="pb-2"></div>
+              <form onSubmit={addComment} className="flex gap-1 flex-wrap">
                 <input
                   value={comment}
-                  onChange={(e) => setComment(e.target.value)}
+                  onChange={(e) => {
+                    setComment(e.target.value);
+                    setIsEnter(true);
+                  }}
                   placeholder="Add Comment..."
-                  className="bg-primary px-6 py-4 text-md 
-                  font-medium border-2 w-[250px] md:w-[700px] 
-                  lg:w-[350px] border-gray-100 focus:outline-none 
+                  className="bg-primary px-6 py-2 text-md 
+                  font-medium border-2 w-full  
+                  border-gray-100 focus:outline-none 
                   focus:border-2 focus:border-gray-300 flex-1 rounded-lg"
                 />
-                <button className="text-md text-gray-400" onClick={addComment}>
-                  {isPostingComment ? "Commenting..." : "Comment"}
-                </button>
+                {isEnter && (
+                  <button
+                    className="text-md text-gray-900"
+                    onClick={addComment}
+                  >
+                    {isPostingComment ? "Commenting..." : "Comment"}
+                  </button>
+                )}
               </form>
             </div>
           )}
