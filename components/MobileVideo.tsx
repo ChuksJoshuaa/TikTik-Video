@@ -29,6 +29,8 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
     useState<IState["showMobileSidebar"]>(false);
   const [getUrl, setGetUrl] = useState<any | undefined>("");
   const [posts, setPosts] = useState(post);
+  const [comment, setComment] = useState("");
+  const [isPostingComment, setIsPostingComment] = useState(false);
 
   const urlParams: any = () => {
     let vided = videoRef.current?.getAttribute("data-prefix");
@@ -48,7 +50,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
         share,
       });
 
-      setPosts({ ...posts, likes: data.likes });
+      setPosts({ ...posts, shares: data.shares });
     }
   };
 
@@ -73,6 +75,23 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
       videoRef?.current?.play();
       setIsDark(false);
       setPlaying(true);
+    }
+  };
+
+  const addComment = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (userProfile && comment) {
+      setIsPostingComment(true);
+
+      const { data } = await axios.put(`${BASE_URL}/api/post/${posts._id}`, {
+        userId: userProfile._id,
+        comment,
+      });
+
+      setPosts({ ...posts, comments: data.comments });
+      setComment("");
+      setIsPostingComment(false);
     }
   };
 
@@ -159,6 +178,11 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
                 handleLike={handleLike}
                 handleCount={handleCount}
                 post={posts}
+                comment={comment}
+                setComment={setComment}
+                addComment={addComment}
+                isPostingComment={isPostingComment}
+                comments={posts.comments}
               />
             </div>
           </div>

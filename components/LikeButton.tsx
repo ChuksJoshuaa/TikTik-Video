@@ -41,7 +41,9 @@ const LikeButton: NextPage<IProps> = ({ handleLike, handleDislike, likes }) => {
             <MdFavorite className="text-lg md:text-2xl" />
           </div>
         )}
-        <p className="text-lg text-white font-semibold">{likes?.length || 0}</p>
+        <p className="text-lg sm:text-white md:text-black font-semibold">
+          {likes?.length || 0}
+        </p>
       </div>
     </div>
   );

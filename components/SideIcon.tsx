@@ -6,10 +6,19 @@ import { MobileComments, LikeButton, CountButton } from "./index";
 import useAuthStore from "../store/authStore";
 import Link from "next/link";
 
-const SideIcon = ({ getUrl, handleLike, handleCount, post }: any) => {
+const SideIcon = ({
+  getUrl,
+  handleLike,
+  handleCount,
+  post,
+  setComment,
+  addComment,
+  isPostingComment,
+  comments,
+  comment,
+}: any) => {
   const { userProfile }: { userProfile: any } = useAuthStore();
   const [showComment, setShowComment] = useState<boolean>(false);
-  const [count, setCount] = useState<number>(0);
 
   return (
     <div className="flex flex-col gap-5 aligns-center font-bold">
@@ -29,7 +38,7 @@ const SideIcon = ({ getUrl, handleLike, handleCount, post }: any) => {
             </Link>
           )}
         </div>
-        <div className="mb-8">
+        <div className="mb-8" onClick={() => setShowComment(true)}>
           <FaRegCommentDots />
         </div>
         <div className="mb-8">
@@ -55,9 +64,12 @@ const SideIcon = ({ getUrl, handleLike, handleCount, post }: any) => {
         {showComment && (
           <MobileComments
             getUrl={getUrl}
-            setCount={setCount}
-            count={count}
             setShowComment={setShowComment}
+            comment={comment}
+            setComment={setComment}
+            addComment={addComment}
+            isPostingComment={isPostingComment}
+            comments={comments}
           />
         )}
       </div>
