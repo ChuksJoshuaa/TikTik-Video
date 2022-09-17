@@ -18,15 +18,20 @@ import {
 interface IProps {
   setShowShare: React.Dispatch<React.SetStateAction<boolean>>;
   getUrl: string;
+  handleCount: any;
 }
 
-const ShareFile = ({ setShowShare, getUrl }: IProps) => {
+import { useRouter } from "next/router";
+
+const ShareFile = ({ setShowShare, getUrl, handleCount }: IProps) => {
   let result = `${BASE_URL}/detail/${getUrl}`;
 
   const urlDecoded = (info: string) => {
     const data = decodeURI(info);
     return data;
   };
+
+  const Router = useRouter();
 
   return (
     <div className="relative p-4 w-full max-w-md h-full md:h-auto">
@@ -45,12 +50,14 @@ const ShareFile = ({ setShowShare, getUrl }: IProps) => {
           >
             <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
           </svg>
-          <span className="sr-only ">Close modal</span>
+          <span className="sr-only " onClickCapture={() => Router.back()}>
+            Close modal
+          </span>
         </button>
         <div className="p-6 text-center mt-5">
-          <p>Share to</p>
+          <p className="text-lg text-gray-900 font-semibold">Share to</p>
           <div className="border-t-2 border-gray-900 pt-3 flex m-2 flex-wrap">
-            <div className="pr-3">
+            <div className="pr-3" onClick={handleCount}>
               <FacebookShareButton
                 url={` ${urlDecoded(result)}`}
                 quote={
@@ -61,7 +68,7 @@ const ShareFile = ({ setShowShare, getUrl }: IProps) => {
                 <FacebookIcon size={32} className="rounded-full" />
               </FacebookShareButton>
             </div>
-            <div className="pr-3">
+            <div className="pr-3" onClick={handleCount}>
               <WhatsappShareButton
                 url={`${urlDecoded(result)}`}
                 title={"Watch video from TikTik by clicking this link"}
@@ -69,7 +76,7 @@ const ShareFile = ({ setShowShare, getUrl }: IProps) => {
                 <WhatsappIcon size={32} className="rounded-full" />
               </WhatsappShareButton>
             </div>
-            <div className="pr-3">
+            <div className="pr-3" onClick={handleCount}>
               <TwitterShareButton
                 url={` ${urlDecoded(result)}`}
                 title={"Watch video from TikTik by clicking this link."}
@@ -77,7 +84,7 @@ const ShareFile = ({ setShowShare, getUrl }: IProps) => {
                 <TwitterIcon size={32} className="rounded-full" />
               </TwitterShareButton>
             </div>
-            <div className="pr-3">
+            <div className="pr-3" onClick={handleCount}>
               <TelegramShareButton
                 url={`${urlDecoded(result)}`}
                 title={"Watch video from TikTik by clicking this link."}
@@ -85,7 +92,7 @@ const ShareFile = ({ setShowShare, getUrl }: IProps) => {
                 <TelegramIcon size={32} className="rounded-full" />
               </TelegramShareButton>
             </div>
-            <div className="pr-3">
+            <div className="pr-3" onClick={handleCount}>
               <LinkedinShareButton
                 url={`${urlDecoded(result)}`}
                 title={"Watch video from TikTik by clicking this link."}
@@ -93,7 +100,7 @@ const ShareFile = ({ setShowShare, getUrl }: IProps) => {
                 <LinkedinIcon size={32} className="rounded-full" />
               </LinkedinShareButton>
             </div>
-            <div className="pr-3">
+            <div className="pr-3" onClick={handleCount}>
               <PinterestShareButton
                 url={`${urlDecoded(result)}`}
                 media={"Watch video from TikTik by clicking this link."}

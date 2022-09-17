@@ -37,7 +37,7 @@ const SideIcon = ({ getUrl, handleLike, handleCount, post }: any) => {
             <div>
               <CountButton
                 handleCount={() => handleCount(true)}
-                shares={post.shares}
+                shares={post?.shares}
                 getUrl={getUrl}
               />
             </div>
