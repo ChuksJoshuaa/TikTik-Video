@@ -35,7 +35,7 @@ const MobileComments = ({
   const { userProfile, allUsers } = useAuthStore();
   const [isEnter, setIsEnter] = useState(false);
 
-   if (!comments) {
+  if (!comments) {
     <div className="text-center">
       <div role="status">
         <svg
@@ -56,6 +56,7 @@ const MobileComments = ({
         <span className="sr-only">Loading...</span>
       </div>
     </div>;
+  }
 
   return (
     <div className="relative p-4 w-full h-full overflow-auto">
