@@ -60,9 +60,7 @@ const urlDecoded = (info: string) => {
                          <div className="pr-3">
                             <WhatsappShareButton
                                 url={`${result}`}
-                                title={'Watch video from TikTik by clicking this link'}
-                                
-                                
+                                title={'Watch video from TikTik by clicking this link'}    
                                 >
                                 <WhatsappIcon size={32} className="rounded-full" />
                             </WhatsappShareButton>
