@@ -42,23 +42,21 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [showMobileSidebar, setShowMobileSidebar] =
     useState<IState["showMobileSidebar"]>(false);
-    const [getUrl, setGetUrl] = useState<any | undefined>("")
+  const [getUrl, setGetUrl] = useState<any | undefined>("");
   const router = useRouter();
 
   const urlParams: any = () => {
-  
-     let vided = videoRef.current?.getAttribute('data-prefix')
-     let vide = videoRef.current
+    let vided = videoRef.current?.getAttribute("data-prefix");
+    let vide = videoRef.current;
 
-     if(vide !== undefined || vide !== null){
-        setGetUrl(vide?.src)
-     }
-     else {
-      return
-     }
-  }
+    if (vided !== undefined || vided !== null) {
+      setGetUrl(vided);
+    } else {
+      return;
+    }
+  };
 
-  console.log(getUrl)
+  console.log(getUrl);
 
   const onVideoClick = () => {
     if (playing) {
@@ -96,10 +94,15 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
         )}
         <div
           className="relative"
-          onMouseEnter={() => {setIsHover(true); setIsDark(true)}}
-          onMouseLeave={() => {setIsHover(false)}}
+          onMouseEnter={() => {
+            setIsHover(true);
+            setIsDark(true);
+          }}
+          onMouseLeave={() => {
+            setIsHover(false);
+          }}
         >
-          <div className={`w-full ${isDark ? 'opacity-25': ''}`} >
+          <div className={`w-full ${isDark ? "opacity-25" : ""}`}>
             <video
               ref={videoRef}
               src={post.video.asset.url}
@@ -123,7 +126,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             </div>
           )}
           <div className="absolute top-[47%] right-3" onClick={urlParams}>
-            <div className={` ${isDark ? 'opacity-100': ''}`}>
+            <div className={` ${isDark ? "opacity-100" : ""}`}>
               <SideIcon getUrl={getUrl} />
             </div>
           </div>

@@ -23,7 +23,7 @@ interface IProps {
 }
 
 const ShareFile = ({ setShowShare, getUrl, setCount, count }: IProps) => {
-  let result = `${BASE_URL}`;
+  let result = `${BASE_URL}/detail/${getUrl}`;
 
   const increment = () => {
     setCount(count + 1);
@@ -61,7 +61,7 @@ const ShareFile = ({ setShowShare, getUrl, setCount, count }: IProps) => {
           >
             <div className="pr-3">
               <FacebookShareButton
-                url={` ${result}`}
+                url={` ${urlDecoded(result)}`}
                 quote={
                   "next-share is a social share buttons for your next React apps."
                 }
@@ -72,7 +72,7 @@ const ShareFile = ({ setShowShare, getUrl, setCount, count }: IProps) => {
             </div>
             <div className="pr-3">
               <WhatsappShareButton
-                url={`${result}`}
+                url={`${urlDecoded(result)}`}
                 title={"Watch video from TikTik by clicking this link"}
               >
                 <WhatsappIcon size={32} className="rounded-full" />
@@ -80,7 +80,7 @@ const ShareFile = ({ setShowShare, getUrl, setCount, count }: IProps) => {
             </div>
             <div className="pr-3">
               <TwitterShareButton
-                url={` ${result}`}
+                url={` ${urlDecoded(result)}`}
                 title={"Watch video from TikTik by clicking this link."}
               >
                 <TwitterIcon size={32} className="rounded-full" />
@@ -88,7 +88,7 @@ const ShareFile = ({ setShowShare, getUrl, setCount, count }: IProps) => {
             </div>
             <div className="pr-3">
               <TelegramShareButton
-                url={`${result}`}
+                url={`${urlDecoded(result)}`}
                 title={"Watch video from TikTik by clicking this link."}
               >
                 <TelegramIcon size={32} className="rounded-full" />
@@ -96,7 +96,7 @@ const ShareFile = ({ setShowShare, getUrl, setCount, count }: IProps) => {
             </div>
             <div className="pr-3">
               <LinkedinShareButton
-                url={`${result}`}
+                url={`${urlDecoded(result)}`}
                 title={"Watch video from TikTik by clicking this link."}
               >
                 <LinkedinIcon size={32} className="rounded-full" />
@@ -104,7 +104,7 @@ const ShareFile = ({ setShowShare, getUrl, setCount, count }: IProps) => {
             </div>
             <div className="pr-3">
               <PinterestShareButton
-                url={`${result}`}
+                url={`${urlDecoded(result)}`}
                 media={"Watch video from TikTik by clicking this link."}
               >
                 <PinterestIcon size={32} className="rounded-full" />
