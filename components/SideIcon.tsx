@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaRegCommentDots } from "react-icons/fa";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { MdFavorite } from "react-icons/md";
@@ -19,6 +19,15 @@ const SideIcon = ({
 }: any) => {
   const { userProfile }: { userProfile: any } = useAuthStore();
   const [showComment, setShowComment] = useState<boolean>(false);
+  const [alreadyComment, setAlreadyComment] = useState(false);
+
+  useEffect(() => {
+    if (comments?.length > 0) {
+      setAlreadyComment(true);
+    } else {
+      setAlreadyComment(false);
+    }
+  }, [comments]);
 
   return (
     <div className="flex flex-col gap-5 aligns-center font-bold">
@@ -38,8 +47,22 @@ const SideIcon = ({
             </Link>
           )}
         </div>
-        <div className="mb-8" onClick={() => setShowComment(true)}>
-          <FaRegCommentDots />
+        <div
+          className="mt-4 flex flex-col justify-center items-center cursor-pointer"
+          onClick={() => setShowComment(true)}
+        >
+          {alreadyComment ? (
+            <div className="bg-primary rounded-full p-2 md:p-4 text-[#F51997]">
+              <FaRegCommentDots className="text-lg md:text-2xl font-semibold" />
+            </div>
+          ) : (
+            <div className="bg-primary rounded-full p-2 md:p-4 text-gray-900">
+              <FaRegCommentDots className="text-lg md:text-2xl" />
+            </div>
+          )}
+          <p className="text-lg text-white font-semibold">
+            {comments?.length || 0}
+          </p>
         </div>
         <div className="mb-8">
           {userProfile ? (
@@ -60,7 +83,7 @@ const SideIcon = ({
         </div>
       </div>
 
-      <div className="overflow-y-auto overflow-x-hidden fixed top-5 mt-5 right-0 left-0 z-50 md:inset-0 h-modal">
+      <div className="overflow-y-auto overflow-x-hidden fixed top-5 mt-5 right-0 w-full left-0 z-50 md:inset-0 h-modal">
         {showComment && (
           <MobileComments
             setShowComment={setShowComment}

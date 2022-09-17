@@ -34,7 +34,7 @@ const ShareFile = ({ setShowShare, getUrl, handleCount }: IProps) => {
   const Router = useRouter();
 
   return (
-    <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+    <div className="relative p-4 w-full h-full md:h-auto">
       <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
         <button
           type="button"
