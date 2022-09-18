@@ -16,6 +16,7 @@ import ShareFile from "./ShareFile";
 import MobileComments from "./MobileComments";
 import CountButton from "./CountButton";
 import MobileNoResults from "./MobileNoResults";
+import Loading from "./Loading";
 
 export {
   SuggestedAccounts,
@@ -36,4 +37,5 @@ export {
   MobileComments,
   CountButton,
   MobileNoResults,
+  Loading,
 };
