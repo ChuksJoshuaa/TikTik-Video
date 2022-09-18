@@ -134,7 +134,6 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               ref={videoRef}
               src={posts.video.asset.url}
               className="w-full cursor-pointer object-none h-[550px]"
-              onClick={() => {}}
               key={posts._id}
               data-prefix={posts._id}
             />
