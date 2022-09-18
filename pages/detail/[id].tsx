@@ -121,11 +121,11 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
             <div className="absolute top-[45%] left-[45%]">
               {!playing ? (
                 <button onClick={onVideoClick}>
-                  <BsFillPlayFill className="text-white text-2xl" />
+                  <BsFillPlayFill className="text-white text-2xl md:text-4xl" />
                 </button>
               ) : (
                 <button onClick={onVideoClick}>
-                  <BsFillPauseFill className="text-white text-2xl" />
+                  <BsFillPauseFill className="text-white text-2xl md:text-4xl" />
                 </button>
               )}
             </div>
