@@ -3,10 +3,9 @@ import { Video } from "../types";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
-import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
+
 import { GoVerified } from "react-icons/go";
-import { SideIcon } from "./index";
+import { WebIcon } from "./index";
 import { BASE_URL } from "../utils";
 import useAuthStore from "../store/authStore";
 import axios from "axios";
@@ -113,6 +112,20 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
               />
             </a>
           </Link>
+          <div>
+            <div
+              className="absolute top-[45%] right-0 text-orange-800"
+              onClick={urlParams}
+            >
+              <WebIcon
+                comments={posts.comments}
+                getUrl={getUrl}
+                post={posts}
+                handleLike={handleLike}
+                handleCount={handleCount}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
