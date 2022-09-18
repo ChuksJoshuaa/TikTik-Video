@@ -10,15 +10,23 @@ interface IProps {
 }
 
 const Home = ({ videos }: IProps) => {
+  const showUserVideos = false;
   const Router = useRouter();
 
   const { topic } = Router.query;
 
   if (!videos.length && topic) {
-    return <NoResults text={`No video associated with ${topic}`} />;
+    return (
+      <NoResults
+        text={`No video associated with ${topic}`}
+        showUserVideos={showUserVideos}
+      />
+    );
   }
   if (!videos.length && !topic) {
-    return <NoResults text={`No video posted yet`} />;
+    return (
+      <NoResults text={`No video posted yet`} showUserVideos={showUserVideos} />
+    );
   }
   return (
     <>

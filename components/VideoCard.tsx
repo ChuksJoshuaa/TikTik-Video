@@ -3,9 +3,12 @@ import { Video } from "../types";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
-import { BsPlay, BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
+
 import { GoVerified } from "react-icons/go";
+import { WebIcon } from "./index";
+import { BASE_URL } from "../utils";
+import useAuthStore from "../store/authStore";
+import axios from "axios";
 
 interface IProps {
   post: Video;
@@ -14,39 +17,58 @@ interface IProps {
 //Another way of using typescript.
 const VideoCard: NextPage<IProps> = ({ post }) => {
   const [isHover, setIsHover] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(false);
+  const [getUrl, setGetUrl] = useState<any | undefined>("");
+  const [posts, setPosts] = useState(post);
+  const { userProfile }: { userProfile: any } = useAuthStore();
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const onVideoPress = () => {
-    if (playing) {
-      videoRef?.current?.pause();
-      setPlaying(false);
+  const urlParams: any = () => {
+    let vided = videoRef.current?.getAttribute("data-prefix");
+
+    if (vided !== undefined || vided !== null) {
+      setGetUrl(vided);
     } else {
-      videoRef?.current?.play();
-      setPlaying(true);
+      return;
     }
   };
 
-  useEffect(() => {
-    if (videoRef?.current) {
-      videoRef.current.muted = isVideoMuted;
+  const handleCount = async (share: boolean) => {
+    if (userProfile) {
+      const { data } = await axios.put(`${BASE_URL}/api/share`, {
+        userId: userProfile._id,
+        postId: posts._id,
+        share,
+      });
+
+      setPosts({ ...posts, shares: data.shares });
     }
-  }, [isVideoMuted]);
+  };
+
+  const handleLike = async (like: boolean) => {
+    if (userProfile) {
+      const { data } = await axios.put(`${BASE_URL}/api/like`, {
+        userId: userProfile._id,
+        postId: posts._id,
+        like,
+      });
+
+      setPosts({ ...posts, likes: data.likes });
+    }
+  };
 
   return (
     <div className="flex flex-col border-b-2 border-gray-200 pb-6">
       <div>
         <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
           <div className="md:w-16 md:h-16 w-10 h-10">
-            <Link href={`/profile/${post.postedBy?._id}`}>
+            <Link href={`/profile/${posts.postedBy?._id}`}>
               <a>
                 <Image
                   width={62}
                   height={62}
                   className="rounded-full"
-                  src={post.postedBy?.image}
+                  src={posts.postedBy?.image}
                   layout="responsive"
                   alt="profile photo"
                 />
@@ -54,15 +76,15 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
             </Link>
           </div>
           <div className="flex items-center gap-2">
-            <Link href={`/profile/${post.postedBy?._id}`}>
+            <Link href={`/profile/${posts.postedBy?._id}`}>
               <a>
                 <p className="flex gap-2 items-center md:text-md font-bold text-primary">
-                  {post.postedBy?.userName}
+                  {posts.postedBy?.userName}
                   {` `}
                   <GoVerified className="text-blue-400 text-md" />
                 </p>
                 <p className="capitalize font-medium text-xs text-gray-500 hidden md:block">
-                  {post.postedBy?.userName}
+                  {posts.postedBy?.userName}
                 </p>
               </a>
             </Link>
@@ -73,42 +95,37 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
       <div className="lg:ml-20 flex gap-4 relative">
         <div
           className="rounded-3xl"
-          onMouseEnter={() => setIsHover(true)}
-          onMouseLeave={() => setIsHover(false)}
+          onMouseEnter={() => {
+            setIsHover(true);
+          }}
+          onMouseLeave={() => {
+            setIsHover(false);
+          }}
         >
-          <Link href={`/detail/${post._id}`}>
+          <Link href={`/detail/${posts._id}`}>
             <a>
               <video
                 ref={videoRef}
-                loop
-                src={post.video.asset.url}
-                // className="h-full w-full cursor-pointer"
-                className="lg:w-[600px] h-[270px] md:h-[400px] lg:h-[530px] w-[200px] cursor-pointer rounded-2xl bg-gray-100"
+                controls={isHover}
+                src={posts.video.asset.url}
+                className="lg:w-[600px] text-[35px]h-[270px] md:h-[400px] lg:h-[530px] w-[550px] cursor-pointer rounded-2xl bg-gray-100"
               />
             </a>
           </Link>
-          {isHover && (
-            <div className="absolute bottom-[6%] cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg: justify-between w-[100px] md:w-[50px] p-3">
-              {playing ? (
-                <button onClick={onVideoPress}>
-                  <BsFillPauseFill className="text-black text-2xl lg:text-4xl" />
-                </button>
-              ) : (
-                <button onClick={onVideoPress}>
-                  <BsFillPlayFill className="text-black text-2xl lg:text-4xl" />
-                </button>
-              )}
-              {isVideoMuted ? (
-                <button onClick={() => setIsVideoMuted(false)}>
-                  <HiVolumeOff className="text-black text-2xl lg:text-4xl" />
-                </button>
-              ) : (
-                <button onClick={() => setIsVideoMuted(true)}>
-                  <HiVolumeUp className="text-black text-2xl lg:text-4xl" />
-                </button>
-              )}
+          <div>
+            <div
+              className="absolute top-[45%] right-0 text-orange-800"
+              onClick={urlParams}
+            >
+              <WebIcon
+                comments={posts.comments}
+                getUrl={getUrl}
+                post={posts}
+                handleLike={handleLike}
+                handleCount={handleCount}
+              />
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

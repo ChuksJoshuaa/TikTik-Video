@@ -30,7 +30,7 @@ const MainFooter = () => {
     <div>
       <div
         className="flex px-2 justify-between align-center pt-3"
-        style={{ fontSize: "2em" }}
+        style={{ fontSize: "1.6em" }}
       >
         <Link href="/">
           <a>

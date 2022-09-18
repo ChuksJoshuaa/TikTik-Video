@@ -38,6 +38,17 @@ export default {
       ],
     },
     {
+      name: "shares",
+      title: "Shares",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "user" }],
+        },
+      ],
+    },
+    {
       name: "comments",
       title: "Comments",
       type: "array",

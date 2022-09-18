@@ -1,6 +1,6 @@
 export const allPostsQuery = () => {
   // this means get all stuffs that has a type post and order by the most recent
-  
+
   const query = `*[_type == "post"] | order(_createdAt desc){
     _id,
      caption,
@@ -17,6 +17,7 @@ export const allPostsQuery = () => {
         image
       },
     likes,
+    shares,
     comments[]{
       comment,
       _key,
@@ -48,6 +49,7 @@ export const postDetailQuery = (postId: string | string[]) => {
       image
     },
      likes,
+     shares,
     comments[]{
       comment,
       _key,
@@ -76,7 +78,8 @@ export const searchPostsQuery = (searchTerm: string | string[]) => {
       userName,
       image
     },
-likes,
+    likes,
+    shares,
     comments[]{
       comment,
       _key,
@@ -118,8 +121,8 @@ export const userCreatedPostsQuery = (userId: string | string[]) => {
       userName,
       image
     },
- likes,
-
+    likes,
+    shares,
     comments[]{
       comment,
       _key,
@@ -150,8 +153,8 @@ export const userLikedPostsQuery = (userId: string | string[]) => {
       userName,
       image
     },
- likes,
-
+    likes,
+    shares,
     comments[]{
       comment,
       _key,
@@ -182,8 +185,8 @@ export const topicPostsQuery = (topic: string | string[]) => {
       userName,
       image
     },
- likes,
-
+    likes,
+    shares,
     comments[]{
       comment,
       _key,

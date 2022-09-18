@@ -86,8 +86,8 @@ const Upload = () => {
 
   return (
     <>
-      <div className="flex w-full h-full left-0 top-0 md:top-[60px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
-        <div className="bg-white rounded-lg xl:h-[80vh] justify-between flex gap-6 flex-wrap justify-center items-center p-14 pt-6">
+      <div className="flex w-full h-full left-0 top-0 md:top-[60px] mb-10 sm:pt-2  md:pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
+        <div className="bg-white rounded-lg xl:h-[80vh] justify-between flex gap-6 flex-wrap justify-center items-center p-14 pt-2 md:pt-6">
           <div>
             <div>
               <p className="text-2xl font-bold">Upload Video</p>
@@ -197,7 +197,7 @@ const Upload = () => {
         </div>
       </div>
       <div className="absolute bottom-0 w-full cursor-pointer md:hidden block">
-        <div className="h-[3rem]  bg-black text-gray-50 border-t-2 border-orange-200">
+        <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-50">
           <MainFooter />
         </div>
       </div>
