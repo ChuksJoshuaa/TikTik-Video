@@ -12,7 +12,7 @@ const NoResults = ({ text, showUserVideos }: IProps) => {
   return (
     <>
       <div className="flex flex-col justify-center items-center h-full w-full">
-        <p className="text-8xl">
+        <p className="text-8xl mt-8 md:mt-0 pt-7 md:pt-0">
           {text === "No comments yet" ? (
             <BiCommentX />
           ) : (
@@ -26,7 +26,7 @@ const NoResults = ({ text, showUserVideos }: IProps) => {
           !showUserVideos ? "" : "hidden"
         }`}
       >
-        <div className="h-[3rem]  bg-black border-t-2 border-orange-200 text-gray-50">
+        <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-50">
           <MainFooter />
         </div>
       </div>

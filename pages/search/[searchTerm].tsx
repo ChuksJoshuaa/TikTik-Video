@@ -91,7 +91,10 @@ const Search = ({ videos }: { videos: Video[] }) => {
                 </div>
               ))
             ) : (
-              <NoResults text={`No video results for ${searchTerm}`} />
+              <NoResults
+                text={`No video results for ${searchTerm}`}
+                showUserVideos={showUserVideos}
+              />
             )}
           </div>
         )}
