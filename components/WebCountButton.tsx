@@ -3,7 +3,7 @@ import { NextPage } from "next";
 
 import useAuthStore from "../store/authStore";
 import { IoArrowRedoOutline } from "react-icons/io5";
-import { ShareFile } from "./index";
+import { WebShareFile } from "./index";
 
 interface IProps {
   handleCount: () => void;
@@ -38,7 +38,6 @@ const WebCountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
     <div className="gap-6">
       <div
         className="mt-4 flex flex-col justify-center items-center cursor-pointer"
-        onMouseEnter={shareButton}
         onClick={shareButton}
       >
         {alreadyCount ? (
@@ -54,15 +53,15 @@ const WebCountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
           {shares?.length || 0}
         </p>
       </div>
-      {/* <div className="overflow-y-auto overflow-x-hidden fixed top-20 mt-20 right-0 left-0 z-50 md:inset-0 h-modal">
+      <div className="fixed top-20 mt-20 right-10 z-50">
         {showShare && (
-          <ShareFile
+          <WebShareFile
             setShowShare={setShowShare}
             getUrl={getUrl}
             handleCount={handleCount}
           />
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
