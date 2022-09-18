@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { GoVerified } from "react-icons/go";
 import useAuthStore from "../store/authStore";
 import { IUser } from "../types";
-import { MobileNoResults, Loading } from "./index";
+import { MobileNoResults } from "./index";
 
 interface IProps {
   setShowComment: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,10 +34,6 @@ const MobileComments = ({
   const Router = useRouter();
   const { userProfile, allUsers } = useAuthStore();
   const [isEnter, setIsEnter] = useState(false);
-
-  if (!comments) {
-    return <Loading />;
-  }
 
   return (
     <div className="relative p-4 w-full h-full overflow-auto">
