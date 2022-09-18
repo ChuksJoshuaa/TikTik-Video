@@ -92,7 +92,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
         </div>
       </div>
 
-      <div className="lg:ml-20 flex gap-4 relative">
+      <div className="lg:ml-20 flex gap-4 ">
         <div
           className="rounded-3xl"
           onMouseEnter={() => {
@@ -112,19 +112,17 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
               />
             </a>
           </Link>
-          <div>
-            <div
-              className="absolute top-[45%] right-0 text-orange-800"
-              onClick={urlParams}
-            >
-              <WebIcon
-                comments={posts.comments}
-                getUrl={getUrl}
-                post={posts}
-                handleLike={handleLike}
-                handleCount={handleCount}
-              />
-            </div>
+        </div>
+        <div className="flex flex-col justify-between">
+          <div></div>
+          <div className="" onClick={urlParams}>
+            <WebIcon
+              comments={posts.comments}
+              getUrl={post._id}
+              post={posts}
+              handleLike={handleLike}
+              handleCount={handleCount}
+            />
           </div>
         </div>
       </div>
