@@ -98,7 +98,6 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
           className="rounded-3xl"
           onMouseEnter={() => {
             setIsHover(true);
-            console.log("enter ooo");
           }}
           onMouseLeave={() => {
             setIsHover(false);
