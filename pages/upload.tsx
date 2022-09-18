@@ -197,7 +197,7 @@ const Upload = () => {
         </div>
       </div>
       <div className="absolute bottom-0 w-full cursor-pointer md:hidden block">
-        <div className="h-[3rem]  bg-black text-gray-50 border-t-2 border-orange-200">
+        <div className="h-[3rem]  bg-black border-t-2 border-[#F51997] text-[#F51997]">
           <MainFooter />
         </div>
       </div>

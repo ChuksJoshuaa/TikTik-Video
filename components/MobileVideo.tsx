@@ -113,7 +113,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             className="cursor-pointer"
             onClick={() => setShowMobileSidebar(true)}
           >
-            <MdViewHeadline className="text-gray-400 text-[35px]" />
+            <MdViewHeadline className="text-[#F51997] text-[35px]" />
           </p>
         </div>
         {showMobileSidebar && (
@@ -127,6 +127,9 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
           }}
           onMouseLeave={() => {
             setIsHover(false);
+          }}
+          onFocus={() => {
+            setIsDark(true);
           }}
         >
           <div className={`w-full ${isDark ? "opacity-25" : ""}`}>
@@ -170,7 +173,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
         </div>
 
         <div className="absolute bottom-0 w-full cursor-pointer">
-          <div className="h-[3rem]  bg-black border-t-2 border-orange-200 text-gray-50">
+          <div className="h-[3rem]  bg-black border-t-2 border-[#F51997] text-[#F51997]">
             <MainFooter />
           </div>
         </div>

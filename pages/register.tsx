@@ -26,7 +26,7 @@ const register = () => {
         </div>
       </div>
       <div className="absolute bottom-0 w-full cursor-pointer block md:hidden">
-        <div className="h-[3rem]  bg-black border-t-2 border-orange-200 text-gray-50">
+        <div className="h-[3rem]  bg-black border-t-2 border-[#F51997] text-[#F51997]">
           <MainFooter />
         </div>
       </div>
