@@ -153,6 +153,18 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               )}
             </div>
           )}
+          <div className="absolute top-[80%] left-3">
+            <Link href={`/profile/${posts.postedBy?._id}`}>
+              <a className="text-md text-gray-50 font-semibold lowercase mb-1">
+                @{posts.postedBy?.userName}
+              </a>
+            </Link>
+            <div className="flex flex-wrap w-50">
+              <p className="text-md text-gray-50 font-semibold lowercase">
+                {posts.caption}
+              </p>
+            </div>
+          </div>
           <div className="absolute top-[37%] right-3" onClick={urlParams}>
             <div className={` ${isDark ? "opacity-100" : ""}`}>
               <Link href={`/profile/${posts.postedBy?._id}`}>
