@@ -31,8 +31,8 @@ const SideIcon = ({
 
   return (
     <div className="flex flex-col gap-5 aligns-center font-bold">
-      <div className="mt-2 mb-2 text-4xl  text-white hover:text-gray-400">
-        <div className="mb-8">
+      <div className="mt-8 mb-2 text-4xl  text-white hover:text-gray-400">
+        <div className="mb-2">
           {userProfile ? (
             <LikeButton
               handleLike={() => handleLike(true)}
@@ -42,29 +42,47 @@ const SideIcon = ({
           ) : (
             <Link href="/register">
               <a>
-                <MdFavorite />
+                <div className="bg-primary rounded-full p-2  text-gray-900">
+                  <MdFavorite className="text-lg md:text-lg font-semibold" />
+                </div>
+                <p className="text-lg text-white font-semibold pl-3">
+                  {post?.likes?.length || 0}
+                </p>
               </a>
             </Link>
           )}
         </div>
-        <div
-          className="mt-4 flex flex-col justify-center items-center cursor-pointer"
-          onClick={() => setShowComment(true)}
-        >
-          {alreadyComment ? (
-            <div className="bg-primary rounded-full p-2 md:p-4 text-[#F51997]">
-              <FaRegCommentDots className="text-lg md:text-2xl font-semibold" />
-            </div>
-          ) : (
-            <div className="bg-primary rounded-full p-2 md:p-4 text-gray-900">
-              <FaRegCommentDots className="text-lg md:text-2xl" />
-            </div>
-          )}
-          <p className="text-lg text-white font-semibold">
-            {comments?.length || 0}
-          </p>
-        </div>
-        <div className="mb-8">
+        {userProfile ? (
+          <div
+            className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2"
+            onClick={() => setShowComment(true)}
+          >
+            {alreadyComment ? (
+              <div className="bg-primary rounded-full p-2 md:p-4 text-[#F51997]">
+                <FaRegCommentDots className="text-lg md:text-2xl font-semibold" />
+              </div>
+            ) : (
+              <div className="bg-primary rounded-full p-2 md:p-4 text-gray-900">
+                <FaRegCommentDots className="text-lg md:text-2xl" />
+              </div>
+            )}
+            <p className="text-lg text-white font-semibold">
+              {comments?.length || 0}
+            </p>
+          </div>
+        ) : (
+          <Link href="/register">
+            <a>
+              <div className="bg-primary rounded-full p-2  text-gray-900">
+                <FaRegCommentDots className="text-lg  font-semibold" />
+              </div>
+              <p className="text-lg text-white font-semibold pl-3 mb-3">
+                {comments?.length || 0}
+              </p>
+            </a>
+          </Link>
+        )}
+        <div className="mb-2">
           {userProfile ? (
             <div>
               <CountButton
@@ -76,7 +94,12 @@ const SideIcon = ({
           ) : (
             <Link href="/register">
               <a>
-                <IoArrowRedoOutline />
+                <div className="bg-primary rounded-full p-2  text-gray-900">
+                  <IoArrowRedoOutline className="text-lg md:text-lg font-semibold" />
+                </div>
+                <p className="text-lg text-white font-semibold pl-3">
+                  {post?.shares?.length || 0}
+                </p>
               </a>
             </Link>
           )}

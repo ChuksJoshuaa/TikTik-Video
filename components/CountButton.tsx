@@ -49,7 +49,7 @@ const CountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
             <IoArrowRedoOutline className="text-lg md:text-lg" />
           </div>
         )}
-        <p className="text-lg text-gray-900 font-semibold">
+        <p className="text-lg text-white font-semibold">
           {shares?.length || 0}
         </p>
       </div>

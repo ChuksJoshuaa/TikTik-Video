@@ -160,7 +160,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
                   <Image
                     width={62}
                     height={62}
-                    className="rounded-full"
+                    className="rounded-full mb-8"
                     src={posts.postedBy?.image}
                     layout="responsive"
                     alt="profile photo"
