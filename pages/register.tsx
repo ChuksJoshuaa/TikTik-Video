@@ -10,7 +10,7 @@ const register = () => {
   return (
     <div>
       <div>
-        <p className="text-center text-xl mb-2">Profile</p>
+        <p className="text-center text-xl mb-2">Register</p>
         <p className="border-b-2 border-gray-500"></p>
 
         <div className="flex flex-col justify-center pt-10 items-center mt-15 ">
