@@ -8,6 +8,8 @@ import useAuthStore from "../store/authStore";
 import { BASE_URL } from "../utils";
 import axios from "axios";
 import { MainFooter, SideIcon, Loading } from "./index";
+import Image from "next/image";
+import Link from "next/link";
 
 interface IProps {
   post: Video;
@@ -151,8 +153,20 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               )}
             </div>
           )}
-          <div className="absolute top-[47%] right-3" onClick={urlParams}>
+          <div className="absolute top-[37%] right-3" onClick={urlParams}>
             <div className={` ${isDark ? "opacity-100" : ""}`}>
+              <Link href={`/profile/${posts.postedBy?._id}`}>
+                <a>
+                  <Image
+                    width={62}
+                    height={62}
+                    className="rounded-full"
+                    src={posts.postedBy?.image}
+                    layout="responsive"
+                    alt="profile photo"
+                  />
+                </a>
+              </Link>
               <SideIcon
                 getUrl={getUrl}
                 handleLike={handleLike}

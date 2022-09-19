@@ -19,6 +19,7 @@ import MobileNoResults from "./MobileNoResults";
 import Loading from "./Loading";
 import WebIcon from "./WebIcon";
 import WebCountButton from "./WebCountButton";
+import WebShareFile from "./WebShareFile";
 
 export {
   SuggestedAccounts,
@@ -42,4 +43,5 @@ export {
   Loading,
   WebIcon,
   WebCountButton,
+  WebShareFile,
 };
