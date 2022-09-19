@@ -113,7 +113,10 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
         </div>
       </div>
       {openModal && (
-        <div className="overflow-y-auto overflow-x-hidden fixed top-5 mt-5 right-0 w-full left-0 z-50 md:inset-0 h-modal">
+        <div
+          className="fixed top-20 mt-20 left-[45%] z-50 bg-gray-50 border border-spacing-2 border-gray-100"
+          style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+        >
           <div className="relative p-4 w-full h-full md:h-auto">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <button
@@ -134,6 +137,23 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
                   Close modal
                 </span>
               </button>
+            </div>
+            <div className="p-6 text-center mt-8">
+              <p className="text-2xl text-gray-900 font-semibold border-b-2 border-gray-800">
+                Log In To TikTik
+              </p>
+              <div className="pt-5">
+                <div className="flex flex-col justify-center pt-10 items-center mt-15 ">
+                  <BiUser className="mb-3 text-gray-900 text-8xl cursor-pointer" />
+                  <GoogleLogin
+                    onSuccess={(response) => {
+                      createOrGetUser(response, addUser);
+                      setOpenModal(false);
+                    }}
+                    onError={() => console.log("Error")}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
