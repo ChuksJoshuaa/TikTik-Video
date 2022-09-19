@@ -106,7 +106,7 @@ const SideIcon = ({
         </div>
       </div>
 
-      <div className="overflow-y-auto overflow-x-hidden fixed top-5 mt-5 right-0 w-full left-0 z-50 md:inset-0 h-modal">
+      <div className="fixed top-20 mt-20 left-[45%] z-50 bg-gray-50 border border-spacing-2 border-gray-100">
         {showComment && (
           <MobileComments
             setShowComment={setShowComment}

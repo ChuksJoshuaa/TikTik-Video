@@ -53,7 +53,10 @@ const CountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
           {shares?.length || 0}
         </p>
       </div>
-      <div className="overflow-y-auto overflow-x-hidden fixed top-20 mt-20 right-0 left-0 z-50 md:inset-0 h-modal">
+      <div
+        className="overflow-y-auto overflow-x-hidden fixed top-20 mt-20 right-0 left-0 z-50 md:inset-0 h-modal"
+        style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+      >
         {showShare && (
           <ShareFile
             setShowShare={setShowShare}

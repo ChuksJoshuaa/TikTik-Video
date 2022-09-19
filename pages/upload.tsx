@@ -84,6 +84,17 @@ const Upload = () => {
     setCategory("");
   };
 
+  const handleCaption = (e: any) => {
+    let value = e.target.value;
+
+    if (value.startsWith("#")) {
+      setCaption(value);
+    } else {
+      let newValue = `#${value}`;
+      setCaption(newValue);
+    }
+  };
+
   return (
     <>
       <div className="flex w-full h-full left-0 top-0 md:top-[60px] mb-10 sm:pt-2  md:pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
@@ -157,21 +168,21 @@ const Upload = () => {
             <input
               type="text"
               value={caption}
-              onChange={(e) => setCaption(e.target.value)}
+              onChange={handleCaption}
               className="rounded outline-none text-md border-2 border-gray-200 p-2"
             />
             <select
               onChange={(e) => setCategory(e.target.value)}
-              className="outline-none border-2 border-gray-200 text-md capitalize p-2 rounded cursor-pointer"
+              className="outline-none border-2 border-gray-200 text-md capitalize p-2 rounded cursor-pointer "
             >
-              <option className="outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300">
+              <option className="outline-none capitalize  bg-white text-gray-700 text-md p-2 hover:bg-slate-300 ">
                 Select Category
               </option>
               {topics.map((topic, index) => (
                 <option
                   key={index}
                   value={topic.name}
-                  className="outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300"
+                  className="outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300 "
                 >
                   {topic.name}
                 </option>
