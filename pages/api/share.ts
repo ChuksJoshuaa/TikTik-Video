@@ -8,12 +8,12 @@ export default async function handler(
 ) {
   try {
     if (req.method === "PUT") {
-      const { userId, postId, like } = req.body;
-      const data = like
+      const { userId, postId, share } = req.body;
+      const data = share
         ? await client
             .patch(postId)
-            .setIfMissing({ likes: [] })
-            .insert("after", "likes[-1]", [
+            .setIfMissing({ shares: [] })
+            .insert("after", "shares[-1]", [
               {
                 _key: uuidv4(),
                 _ref: userId,
@@ -22,7 +22,7 @@ export default async function handler(
             .commit()
         : await client
             .patch(postId)
-            .unset([`likes[_ref=="${userId}"]`])
+            .unset([`shares[_ref=="${userId}"]`])
             .commit();
 
       res.status(200).json(data);
