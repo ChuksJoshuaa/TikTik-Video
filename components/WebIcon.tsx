@@ -9,6 +9,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { createOrGetUser } from "../utils";
 import { useRouter } from "next/router";
 import { BiUser } from "react-icons/bi";
+import { checkNumberValue } from "../utils/numberValidators"
 
 const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
   const { userProfile, addUser }: { userProfile: any; addUser: any } =
@@ -25,10 +26,6 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
     }
   }, [comments]);
 
-  // <GoogleLogin
-  //   onSuccess={(response) => createOrGetUser(response, addUser)}
-  //   onError={() => console.log("Error")}
-  // />;
 
   return (
     <>
@@ -50,7 +47,8 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
                   <MdFavorite className="text-md md:text-lg font-semibold" />
                 </div>
                 <p className="text-lg text-gray-900 font-semibold pl-3">
-                  {post?.likes?.length || 0}
+                
+                  {checkNumberValue(post?.likes?.length || 0)}
                 </p>
               </>
             )}
@@ -69,7 +67,7 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
                     </div>
                   )}
                   <p className="text-lg text-gray-900 font-semibold">
-                    {comments?.length || 0}
+                    {checkNumberValue(comments?.length || 0)}
                   </p>
                 </div>
               </a>
@@ -83,7 +81,7 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
                 <FaRegCommentDots className="text-md md:text-lg" />
               </div>
               <p className="text-lg text-gray-900 font-semibold pl-3 mb-3">
-                {comments?.length || 0}
+                {checkNumberValue(comments?.length || 0)}
               </p>
             </>
           )}
@@ -105,7 +103,7 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
                   <IoArrowRedoOutline className="text-md md:text-lg" />
                 </div>
                 <p className="text-lg text-gray-900 font-semibold pl-3">
-                  {post?.shares?.length || 0}
+                  {checkNumberValue(post?.shares?.length || 0)}
                 </p>
               </>
             )}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MdFavorite } from "react-icons/md";
 import { NextPage } from "next";
+import { checkNumberValue } from "../utils/numberValidators"
 
 import useAuthStore from "../store/authStore";
 
@@ -42,7 +43,7 @@ const LikeButton: NextPage<IProps> = ({ handleLike, handleDislike, likes }) => {
           </div>
         )}
         <p className="text-lg sm:text-white md:text-black font-semibold">
-          {likes?.length || 0}
+          {checkNumberValue(likes?.length || 0)}
         </p>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { MdFavorite } from "react-icons/md";
 import { MobileComments, LikeButton, CountButton } from "./index";
 import useAuthStore from "../store/authStore";
 import Link from "next/link";
+import {checkNumberValue}  from "../utils/numberValidators"
 
 const SideIcon = ({
   getUrl,
@@ -27,7 +28,8 @@ const SideIcon = ({
     } else {
       setAlreadyComment(false);
     }
-  }, [comments]);
+  }, [comments])
+
 
   return (
     <div className="flex flex-col gap-5 aligns-center font-bold">
@@ -46,7 +48,7 @@ const SideIcon = ({
                   <MdFavorite className="text-lg md:text-lg font-medium" />
                 </div>
                 <p className="text-lg text-gray-400 font-medium pl-3">
-                  {post?.likes?.length || 0}
+                  {checkNumberValue(post?.likes?.length || 0)}
                 </p>
               </a>
             </Link>
@@ -66,8 +68,8 @@ const SideIcon = ({
                 <FaRegCommentDots className="text-lg md:text-2xl font-medium" />
               </div>
             )}
-            <p className="text-lg text-gray-400 font-medium">
-              {comments?.length || 0}
+            <p className="text-lg text-white font-medium">
+              {checkNumberValue(comments?.length || 0)}
             </p>
           </div>
         ) : (
@@ -77,7 +79,7 @@ const SideIcon = ({
                 <FaRegCommentDots className="text-lg  font-medium" />
               </div>
               <p className="text-lg text-gray-400 font-medium pl-3 mb-3">
-                {comments?.length || 0}
+                {checkNumberValue(comments?.length || 0)}
               </p>
             </a>
           </Link>
@@ -98,7 +100,7 @@ const SideIcon = ({
                   <IoArrowRedoOutline className="text-lg md:text-lg font-medium" />
                 </div>
                 <p className="text-lg text-gray-400 font-medium pl-3">
-                  {post?.shares?.length || 0}
+                  {checkNumberValue(post?.shares?.length || 0)}
                 </p>
               </a>
             </Link>
