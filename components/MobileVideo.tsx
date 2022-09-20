@@ -141,7 +141,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             />
           </div>
           {isHover && (
-            <div className="absolute top-[45%] left-[45%]">
+            <div className="absolute top-[45%] left-[40%]">
               {!playing ? (
                 <button onClick={onVideoClick}>
                   <BsFillPlayFill className="text-gray-400 text-6xl" />
