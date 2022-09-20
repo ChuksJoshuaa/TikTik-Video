@@ -72,7 +72,7 @@ const search = ({ data }: IProps) => {
           </div>
         )}
         <div className="absolute bottom-0 w-full cursor-pointer block md:hidden">
-          <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-50">
+          <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-400">
             <MainFooter />
           </div>
         </div>

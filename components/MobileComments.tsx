@@ -40,7 +40,7 @@ const MobileComments = ({
       <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
         <button
           type="button"
-          className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white "
+          className="absolute top-0 right-0 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white "
           onClick={() => setShowComment(false)}
         >
           <svg
@@ -56,13 +56,13 @@ const MobileComments = ({
             Close modal
           </span>
         </button>
-        <div className="p-6 text-center mt-5">
+        <div className="p-6 text-center pb-0">
           <p className="text-lg text-gray-900 font-semibold">
             ({comments?.length || 0}){" "}
             {`${comments?.length > 1 ? "Comments" : "Comment"}`}
           </p>
         </div>
-        <div className=" px-3 border-t-2 border-gray-700 h-[450px] overflow-auto w-full">
+        <div className=" px-3 border-t-2 border-gray-700 h-[400px] overflow-auto w-full">
           <div className="">
             {comments?.length ? (
               comments.map((item, idx) => {

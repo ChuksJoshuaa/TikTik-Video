@@ -141,38 +141,38 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             />
           </div>
           {isHover && (
-            <div className="absolute top-[45%] left-[45%]">
+            <div className="absolute top-[45%] left-[40%]">
               {!playing ? (
                 <button onClick={onVideoClick}>
-                  <BsFillPlayFill className="text-white text-6xl" />
+                  <BsFillPlayFill className="text-gray-400 text-6xl" />
                 </button>
               ) : (
                 <button onClick={onVideoClick}>
-                  <BsFillPauseFill className="text-white text-4xl" />
+                  <BsFillPauseFill className="text-gray-400 text-4xl" />
                 </button>
               )}
             </div>
           )}
           <div className="absolute top-[80%] left-3">
             <Link href={`/profile/${posts.postedBy?._id}`}>
-              <a className="text-md text-gray-50 font-semibold lowercase mb-1">
+              <a className="text-md text-gray-400 font-medium lowercase mb-1">
                 @{posts.postedBy?.userName}
               </a>
             </Link>
             <div className="flex flex-wrap w-50">
-              <p className="text-md text-gray-50 font-semibold lowercase">
+              <p className="text-md text-gray-400 font-medium lowercase">
                 {posts.caption}
               </p>
             </div>
           </div>
-          <div className="absolute top-[37%] right-3" onClick={urlParams}>
+          <div className="absolute top-[42%] right-3" onClick={urlParams}>
             <div className={` ${isDark ? "opacity-100" : ""}`}>
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a>
                   <Image
                     width={62}
                     height={62}
-                    className="rounded-full mb-8"
+                    className="rounded-full"
                     src={posts.postedBy?.image}
                     layout="responsive"
                     alt="profile photo"
@@ -195,7 +195,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
         </div>
 
         <div className="absolute bottom-0 w-full cursor-pointer">
-          <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-50">
+          <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-400 font-small">
             <MainFooter />
           </div>
         </div>
