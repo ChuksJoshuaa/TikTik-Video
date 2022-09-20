@@ -4,6 +4,7 @@ import { NextPage } from "next";
 import useAuthStore from "../store/authStore";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { ShareFile } from "./index";
+import { checkNumberValue } from "../utils/numberValidators"
 
 interface IProps {
   handleCount: () => void;
@@ -50,7 +51,7 @@ const CountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
           </div>
         )}
         <p className="text-lg text-white font-semibold">
-          {shares?.length || 0}
+          {checkNumberValue(shares?.length || 0)}
         </p>
       </div>
       <div
