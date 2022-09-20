@@ -4,9 +4,12 @@ import useAuthStore from "../store/authStore";
 import { BiUser } from "react-icons/bi";
 import { GoogleLogin } from "@react-oauth/google";
 import { createOrGetUser } from "../utils";
+import { useRouter } from "next/router"
 
 const register = () => {
   const { addUser }: { addUser: any } = useAuthStore();
+
+  const Router = useRouter()
   return (
     <div>
       <div>
@@ -19,7 +22,7 @@ const register = () => {
           <GoogleLogin
             onSuccess={(response) => {
               createOrGetUser(response, addUser);
-              window.location.href = "/";
+              Router.back()
             }}
             onError={() => console.log("Error")}
           />
