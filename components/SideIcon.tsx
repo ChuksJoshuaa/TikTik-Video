@@ -75,7 +75,7 @@ const SideIcon = ({
         ) : (
           <Link href="/register">
             <a>
-              <div className="bg-gray-400 rounded-full p-2  text-gray-900">
+              <div className="bg-gray-400 rounded-full p-2 text-gray-900">
                 <FaRegCommentDots className="text-lg  font-medium" />
               </div>
               <p className="text-lg text-gray-400 font-medium pl-3 mb-3">
