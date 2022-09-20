@@ -154,7 +154,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               )}
             </div>
           )}
-          <div className="absolute top-[81%] left-3 mb-4">
+          <div className="absolute top-[82%] left-3 mb-4">
             <Link href={`/profile/${posts.postedBy?._id}`}>
               <a className="text-md text-gray-400 font-medium lowercase mb-1">
                 @{posts.postedBy?.userName}
