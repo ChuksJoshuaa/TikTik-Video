@@ -117,11 +117,11 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
           className="fixed top-20 mt-20 left-[45%] z-50 bg-gray-50 border border-spacing-2 border-gray-100"
           style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
         >
-          <div className="relative p-4 w-full h-full md:h-auto">
+          <div className="relative p-2 w-full h-full md:h-auto">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <button
                 type="button"
-                className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white "
+                className="absolute top-0 right-0 text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white "
                 onClick={() => setOpenModal(false)}
               >
                 <svg
@@ -138,7 +138,7 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
                 </span>
               </button>
             </div>
-            <div className="p-6 text-center mt-8">
+            <div className="p-6 text-center mt-4">
               <p className="text-2xl text-gray-900 font-semibold border-b-2 border-gray-800">
                 Log In To TikTik
               </p>
