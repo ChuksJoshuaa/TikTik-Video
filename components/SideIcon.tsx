@@ -31,7 +31,7 @@ const SideIcon = ({
 
   return (
     <div className="flex flex-col gap-5 aligns-center font-bold">
-      <div className="mt-8 mb-2 text-4xl  text-white hover:text-gray-400">
+      <div className=" mb-2 text-4xl text-white hover:text-gray-400">
         <div className="mb-2">
           {userProfile ? (
             <LikeButton
@@ -42,10 +42,10 @@ const SideIcon = ({
           ) : (
             <Link href="/register">
               <a>
-                <div className="bg-primary rounded-full p-2  text-gray-900">
-                  <MdFavorite className="text-lg md:text-lg font-semibold" />
+                <div className="bg-gray-400 rounded-full p-2  text-gray-900 mt-4">
+                  <MdFavorite className="text-lg md:text-lg font-medium" />
                 </div>
-                <p className="text-lg text-white font-semibold pl-3">
+                <p className="text-lg text-gray-400 font-medium pl-3">
                   {post?.likes?.length || 0}
                 </p>
               </a>
@@ -62,21 +62,21 @@ const SideIcon = ({
                 <FaRegCommentDots className="text-lg md:text-2xl font-semibold" />
               </div>
             ) : (
-              <div className="bg-primary rounded-full p-2 md:p-4 text-gray-900">
-                <FaRegCommentDots className="text-lg md:text-2xl" />
+              <div className="bg-gray-400 rounded-full p-2 md:p-4 text-gray-900">
+                <FaRegCommentDots className="text-lg md:text-2xl font-medium" />
               </div>
             )}
-            <p className="text-lg text-white font-semibold">
+            <p className="text-lg text-gray-400 font-medium">
               {comments?.length || 0}
             </p>
           </div>
         ) : (
           <Link href="/register">
             <a>
-              <div className="bg-primary rounded-full p-2  text-gray-900">
-                <FaRegCommentDots className="text-lg  font-semibold" />
+              <div className="bg-gray-400 rounded-full p-2  text-gray-900">
+                <FaRegCommentDots className="text-lg  font-medium" />
               </div>
-              <p className="text-lg text-white font-semibold pl-3 mb-3">
+              <p className="text-lg text-gray-400 font-medium pl-3 mb-3">
                 {comments?.length || 0}
               </p>
             </a>
@@ -94,10 +94,10 @@ const SideIcon = ({
           ) : (
             <Link href="/register">
               <a>
-                <div className="bg-primary rounded-full p-2  text-gray-900">
-                  <IoArrowRedoOutline className="text-lg md:text-lg font-semibold" />
+                <div className="bg-gray-400 rounded-full p-2  text-gray-900">
+                  <IoArrowRedoOutline className="text-lg md:text-lg font-medium" />
                 </div>
-                <p className="text-lg text-white font-semibold pl-3">
+                <p className="text-lg text-gray-400 font-medium pl-3">
                   {post?.shares?.length || 0}
                 </p>
               </a>
@@ -106,7 +106,7 @@ const SideIcon = ({
         </div>
       </div>
 
-      <div className="fixed top-20 mt-20 left-[45%] z-50 bg-gray-50 border border-spacing-2 border-gray-100">
+      <div className="fixed top-3 mt-20 left-0 w-full z-50">
         {showComment && (
           <MobileComments
             setShowComment={setShowComment}
