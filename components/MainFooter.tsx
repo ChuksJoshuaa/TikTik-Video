@@ -44,7 +44,7 @@ const MainFooter = () => {
         </Link>
         <Link href="/upload">
           <a>
-            <IoMdAdd className="text-white" />
+            <IoMdAdd />
           </a>
         </Link>
         <Link href="">
