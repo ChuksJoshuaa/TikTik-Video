@@ -26,7 +26,6 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
     }
   }, [comments]);
 
-
   return (
     <>
       <div className="flex flex-col gap-2 aligns-center font-bold">
