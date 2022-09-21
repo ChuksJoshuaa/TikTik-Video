@@ -7,7 +7,7 @@ import { MobileSidebar } from "./index";
 import useAuthStore from "../store/authStore";
 import { BASE_URL } from "../utils";
 import axios from "axios";
-import { MainFooter, SideIcon, Loading } from "./index";
+import { SideIcon, Loading } from "./index";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -120,10 +120,10 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
       )}
       <div
         className=""
-        onMouseEnter={() => {
+        onMouseOver={() => {
           setIsHover(true);
         }}
-        onMouseLeave={() => {
+        onMouseOut={() => {
           setIsHover(false);
         }}
       >
