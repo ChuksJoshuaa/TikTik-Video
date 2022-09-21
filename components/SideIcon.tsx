@@ -49,7 +49,7 @@ const SideIcon = ({
                       <div className=" rounded-full  text-gray-200 ">
                         <MdFavorite className="text-4xl font-[900]" />
                       </div>
-                      <p className="text-sm text-gray-200 font-[900] pl-4">
+                      <p className="text-sm text-gray-200 font-[900] pl-4 ">
                         {checkNumberValue(post?.likes?.length || 0)}
                       </p>
                     </a>
