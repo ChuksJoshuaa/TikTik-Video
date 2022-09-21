@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import useAuthStore from "../store/authStore";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { ShareFile } from "./index";
-import { checkNumberValue } from "../utils/numberValidators"
+import { checkNumberValue } from "../utils/numberValidators";
 
 interface IProps {
   handleCount: () => void;
@@ -42,17 +42,24 @@ const CountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
         onClickCapture={shareButton}
       >
         {alreadyCount ? (
-          <div className="bg-primary rounded-full p-2  text-[#F51997]">
-            <IoArrowRedoOutline className="text-lg md:text-lg font-semibold" />
-          </div>
+          <>
+            <div className=" rounded-full  text-[#F51997]">
+              <IoArrowRedoOutline className="text-4xl font-[900]" />
+            </div>
+            <p className="text-sm text-white font-[900]">
+              {checkNumberValue(shares?.length || 0)}
+            </p>
+          </>
         ) : (
-          <div className="bg-primary rounded-full p-2  text-gray-900">
-            <IoArrowRedoOutline className="text-lg md:text-lg" />
-          </div>
+          <>
+            <div className="rounded-full  text-gray-200">
+              <IoArrowRedoOutline className="text-4xl font-[900]" />
+            </div>
+            <p className="text-sm text-gray-200 font-[900]">
+              {checkNumberValue(shares?.length || 0)}
+            </p>
+          </>
         )}
-        <p className="text-lg text-white font-semibold">
-          {checkNumberValue(shares?.length || 0)}
-        </p>
       </div>
       <div
         className="overflow-y-auto overflow-x-hidden fixed top-20 mt-20 right-0 left-0 z-50 md:inset-0 h-modal"
