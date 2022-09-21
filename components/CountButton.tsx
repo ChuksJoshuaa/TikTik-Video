@@ -44,18 +44,18 @@ const CountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
         {alreadyCount ? (
           <>
             <div className=" rounded-full  text-[#F51997]">
-              <IoArrowRedoOutline className="text-4xl font-semibold" />
+              <IoArrowRedoOutline className="text-4xl font-[900]" />
             </div>
-            <p className="text-sm text-white font-semibold">
+            <p className="text-sm text-white font-[900]">
               {checkNumberValue(shares?.length || 0)}
             </p>
           </>
         ) : (
           <>
-            <div className="rounded-full  text-gray-400">
-              <IoArrowRedoOutline className="text-4xl" />
+            <div className="rounded-full  text-gray-200">
+              <IoArrowRedoOutline className="text-4xl font-[900]" />
             </div>
-            <p className="text-sm text-gray-400 font-semibold">
+            <p className="text-sm text-gray-200 font-[900]">
               {checkNumberValue(shares?.length || 0)}
             </p>
           </>

@@ -115,7 +115,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             className="cursor-pointer"
             onClick={() => setShowMobileSidebar(true)}
           >
-            <MdViewHeadline className="text-gray-400 hover:text-[#F51997] text-[35px]" />
+            <MdViewHeadline className="text-gray-200 hover:text-[#F51997] text-[35px]" />
           </p>
         </div>
         {showMobileSidebar && (
@@ -142,31 +142,31 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
           </div>
           <div className="py-4 mb-5"></div>
           {isHover && (
-            <div className="absolute top-[40%] left-[40%]">
+            <div className="absolute top-[30%] left-[40%]">
               {!playing ? (
                 <button onClick={onVideoClick}>
-                  <BsFillPlayFill className="text-gray-400 text-6xl" />
+                  <BsFillPlayFill className="text-gray-200 text-6xl" />
                 </button>
               ) : (
                 <button onClick={onVideoClick}>
-                  <BsFillPauseFill className="text-gray-400 text-4xl" />
+                  <BsFillPauseFill className="text-gray-200 text-4xl" />
                 </button>
               )}
             </div>
           )}
-          <div className="absolute top-[85%] left-3 mb-4">
+          <div className="absolute top-[72%] left-3 mb-4">
             <Link href={`/profile/${posts.postedBy?._id}`}>
-              <a className="text-md text-gray-400 font-medium lowercase mb-1">
+              <a className="text-md text-gray-200 font-medium lowercase mb-1">
                 @{posts.postedBy?.userName}
               </a>
             </Link>
             <div className="flex flex-wrap w-50">
-              <p className="text-md text-gray-400 font-medium lowercase">
+              <p className="text-md text-gray-200 font-medium lowercase">
                 {posts.caption}
               </p>
             </div>
           </div>
-          <div className="absolute top-[42%] right-3" onClick={urlParams}>
+          <div className="absolute top-[32%] right-3" onClick={urlParams}>
             <div className="font-extralight">
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a>
@@ -192,12 +192,6 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
                 comments={posts.comments}
               />
             </div>
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 w-full cursor-pointer">
-          <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-400 font-small">
-            <MainFooter />
           </div>
         </div>
       </div>
