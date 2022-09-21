@@ -46,10 +46,10 @@ const SideIcon = ({
                 <div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
                   <Link href="/register">
                     <a>
-                      <div className=" rounded-full  text-gray-400 ">
-                        <MdFavorite className="text-4xl font-semibold" />
+                      <div className=" rounded-full  text-gray-200 ">
+                        <MdFavorite className="text-4xl font-[900]" />
                       </div>
-                      <p className="text-sm text-gray-400 font-semibold pl-4">
+                      <p className="text-sm text-gray-200 font-[900] pl-4">
                         {checkNumberValue(post?.likes?.length || 0)}
                       </p>
                     </a>
@@ -67,18 +67,18 @@ const SideIcon = ({
             {alreadyComment ? (
               <>
                 <div className=" rounded-full text-[#F51997]">
-                  <FaRegCommentDots className="text-4xl font-semibold" />
+                  <FaRegCommentDots className="text-4xl font-[900]" />
                 </div>
-                <p className="text-sm text-white font-semibold pl-0">
+                <p className="text-sm text-white font-[900] pl-0">
                   {checkNumberValue(comments?.length || 0)}
                 </p>
               </>
             ) : (
               <>
-                <div className=" rounded-full text-gray-400">
-                  <FaRegCommentDots className="text-4xl font-semibold" />
+                <div className=" rounded-full text-gray-200">
+                  <FaRegCommentDots className="text-4xl font-[900]" />
                 </div>
-                <p className="text-sm text-gray-400 font-semibold pl-0">
+                <p className="text-sm text-gray-200 font-[900] pl-0">
                   {checkNumberValue(comments?.length || 0)}
                 </p>
               </>
@@ -90,10 +90,10 @@ const SideIcon = ({
               <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
                 <Link href="/register">
                   <a>
-                    <div className="rounded-full text-gray-400">
-                      <FaRegCommentDots className="text-4xl  font-semibold" />
+                    <div className="rounded-full text-gray-200">
+                      <FaRegCommentDots className="text-4xl  font-[900]" />
                     </div>
-                    <p className="text-sm text-gray-400 font-semibold pl-4">
+                    <p className="text-sm text-gray-200 font-[900] pl-4">
                       {checkNumberValue(comments?.length || 0)}
                     </p>
                   </a>
@@ -117,10 +117,10 @@ const SideIcon = ({
                 <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
                   <Link href="/register">
                     <a>
-                      <div className="rounded-full text-gray-400">
-                        <IoArrowRedoOutline className="text-4xl font-semibold" />
+                      <div className="rounded-full text-gray-200">
+                        <IoArrowRedoOutline className="text-4xl font-[900]" />
                       </div>
-                      <p className="text-sm text-gray-400 font-semibold pl-3">
+                      <p className="text-sm text-gray-200 font-[900] pl-3">
                         {checkNumberValue(post?.shares?.length || 0)}
                       </p>
                     </a>
