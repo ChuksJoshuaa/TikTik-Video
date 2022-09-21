@@ -17,7 +17,7 @@ interface IProps {
   data: Video[];
 }
 
-const search = ({ data }: IProps) => {
+const Search = ({ data }: IProps) => {
   const [showUserVideos, setShowUserVideos] =
     useState<IState["showUserVideos"]>(true);
   const [showAccount, setShowAccount] = useState(false);
@@ -106,4 +106,4 @@ export const getServerSideProps = async ({
   };
 };
 
-export default search;
+export default Search;

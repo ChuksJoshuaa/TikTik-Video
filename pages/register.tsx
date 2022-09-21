@@ -4,12 +4,12 @@ import useAuthStore from "../store/authStore";
 import { BiUser } from "react-icons/bi";
 import { GoogleLogin } from "@react-oauth/google";
 import { createOrGetUser } from "../utils";
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
 
-const register = () => {
+const Register = () => {
   const { addUser }: { addUser: any } = useAuthStore();
 
-  const Router = useRouter()
+  const Router = useRouter();
   return (
     <div>
       <div>
@@ -22,7 +22,7 @@ const register = () => {
           <GoogleLogin
             onSuccess={(response) => {
               createOrGetUser(response, addUser);
-              Router.back()
+              Router.back();
             }}
             onError={() => console.log("Error")}
           />
@@ -37,4 +37,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;
