@@ -142,7 +142,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
           </div>
           <div className="py-4 mb-5"></div>
           {isHover && (
-            <div className="absolute top-[30%] left-[40%]">
+            <div className="absolute top-[28%] left-[40%]">
               {!playing ? (
                 <button onClick={onVideoClick}>
                   <BsFillPlayFill className="text-gray-200 text-6xl" />
@@ -154,7 +154,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               )}
             </div>
           )}
-          <div className="absolute top-[72%] left-3 mb-4">
+          <div className="absolute top-[70%] left-3 mb-4">
             <Link href={`/profile/${posts.postedBy?._id}`}>
               <a className="text-md text-gray-200 font-medium lowercase mb-1">
                 @{posts.postedBy?.userName}
@@ -166,7 +166,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               </p>
             </div>
           </div>
-          <div className="absolute top-[32%] right-3" onClick={urlParams}>
+          <div className="absolute top-[30%] right-3" onClick={urlParams}>
             <div className="font-extralight">
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a>
