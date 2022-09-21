@@ -115,7 +115,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             className="cursor-pointer"
             onClick={() => setShowMobileSidebar(true)}
           >
-            <MdViewHeadline className="text-gray-200 hover:text-[#F51997] text-[35px]" />
+            <MdViewHeadline className="text-gray-200 hover:text-[#F51997] text-[35px] cursor-pointer" />
           </p>
         </div>
         {showMobileSidebar && (
@@ -131,11 +131,11 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             setIsHover(false);
           }}
         >
-          <div className={` ${isDark ? "opacity-20" : ""}`}>
+          <div>
             <video
               ref={videoRef}
               src={posts.video.asset.url}
-              className="cursor-pointer object-cover h-[100vh]"
+              className=" object-cover h-[100vh]"
               key={posts._id}
               data-prefix={posts._id}
             />
