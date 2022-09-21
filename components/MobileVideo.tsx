@@ -108,8 +108,8 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   }
 
   return (
-    <div className="flex w-full h-full flex-wrap">
-      <div className="h-full w-[1000px] flex justify-center items-center">
+    <div className=" w-full h-full bg-white">
+      <div className="">
         <div className="absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
           <p
             className="cursor-pointer"
@@ -135,7 +135,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             <video
               ref={videoRef}
               src={posts.video.asset.url}
-              className=" object-cover h-[100vh]"
+              className="object-cover h-[100vh]"
               key={posts._id}
               data-prefix={posts._id}
             />
@@ -145,23 +145,23 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             <div className="absolute top-[28%] left-[40%]">
               {!playing ? (
                 <button onClick={onVideoClick}>
-                  <BsFillPlayFill className="text-gray-200 text-6xl" />
+                  <BsFillPlayFill className="text-gray-200 text-6xl cursor-pointer" />
                 </button>
               ) : (
                 <button onClick={onVideoClick}>
-                  <BsFillPauseFill className="text-gray-200 text-4xl" />
+                  <BsFillPauseFill className="cursor-pointer text-gray-200 text-4xl" />
                 </button>
               )}
             </div>
           )}
-          <div className="absolute top-[70%] left-3 mb-4">
+          <div className="relative bottom-[135px] left-3 mb-4">
             <Link href={`/profile/${posts.postedBy?._id}`}>
-              <a className="text-md text-gray-200 font-medium lowercase mb-1">
+              <a className="text-md text-gray-200 font-medium lowercase mb-1 cursor-pointer">
                 @{posts.postedBy?.userName}
               </a>
             </Link>
             <div className="flex flex-wrap w-50">
-              <p className="text-md text-gray-200 font-medium lowercase">
+              <p className="text-md text-gray-200 font-medium lowercase cursor-pointer">
                 {posts.caption}
               </p>
             </div>
