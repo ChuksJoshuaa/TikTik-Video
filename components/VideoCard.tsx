@@ -92,7 +92,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
         </div>
       </div>
 
-      <div className="lg:ml-20 flex gap-4 ">
+      <div className="lg:ml-20 flex gap-4 relative">
         <div
           className="rounded-3xl"
           onMouseEnter={() => {
@@ -113,7 +113,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
             </a>
           </Link>
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col items-center justify-between">
           <div></div>
           <div className="" onClick={urlParams}>
             <WebIcon
@@ -126,6 +126,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
           </div>
         </div>
       </div>
+      <div></div>
     </div>
   );
 };

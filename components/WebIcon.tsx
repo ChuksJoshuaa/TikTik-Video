@@ -9,7 +9,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { createOrGetUser } from "../utils";
 import { useRouter } from "next/router";
 import { BiUser } from "react-icons/bi";
-import { checkNumberValue } from "../utils/numberValidators"
+import { checkNumberValue } from "../utils/numberValidators";
 
 const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
   const { userProfile, addUser }: { userProfile: any; addUser: any } =
@@ -39,52 +39,73 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
               />
             ) : (
               <>
-                <div
-                  className="bg-primary rounded-full p-2  text-gray-900"
-                  onClick={() => setOpenModal(true)}
-                >
-                  <MdFavorite className="text-md md:text-lg font-semibold" />
+                <div className="gap-6">
+                  <div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
+                    <div
+                      className="bg-primary rounded-full p-2 text-gray-900"
+                      onClick={() => setOpenModal(true)}
+                    >
+                      <MdFavorite className="text-md md:text-2xl font-semibold" />
+                    </div>
+                    <p
+                      className={`text-lg text-gray-900 font-semibold ${
+                        post?.likes?.length >= 10 ? "pl-0" : "pl-1"
+                      }`}
+                    >
+                      {checkNumberValue(post?.likes?.length || 0)}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-lg text-gray-900 font-semibold pl-3">
-                
-                  {checkNumberValue(post?.likes?.length || 0)}
-                </p>
               </>
             )}
           </div>
-          {userProfile ? (
-            <Link href={`/detail/${post._id}`}>
-              <a>
-                <div className="flex flex-col justify-center items-center cursor-pointer">
-                  {alreadyComment ? (
-                    <div className="bg-primary rounded-full p-2 md:p-2 text-[#F51997]">
-                      <FaRegCommentDots className="text-md md:text-lg font-semibold" />
+          <div className="">
+            {userProfile ? (
+              <Link href={`/detail/${post._id}`}>
+                <a>
+                  <div className="flex flex-col justify-center items-center cursor-pointer">
+                    {alreadyComment ? (
+                      <div className="bg-primary rounded-full p-2 md:p-2 text-[#F51997]">
+                        <FaRegCommentDots className="text-md md:text-2xl font-semibold" />
+                      </div>
+                    ) : (
+                      <div className="bg-primary rounded-full p-2  text-gray-900">
+                        <FaRegCommentDots className="text-md md:text-2xl font-semibold" />
+                      </div>
+                    )}
+                    <p
+                      className={`text-lg text-gray-900 font-semibold ${
+                        comments?.likes?.length >= 10 ? "pl-0" : "pl-1"
+                      }`}
+                    >
+                      {checkNumberValue(comments?.length || 0)}
+                    </p>
+                  </div>
+                </a>
+              </Link>
+            ) : (
+              <>
+                <div className="gap-6">
+                  <div className="flex flex-col justify-center items-center cursor-pointer">
+                    <div
+                      className="bg-primary rounded-full p-2  text-gray-900"
+                      onClick={() => setOpenModal(true)}
+                    >
+                      <FaRegCommentDots className="text-md md:text-2xl font-semibold" />
                     </div>
-                  ) : (
-                    <div className="bg-primary rounded-full p-2  text-gray-900">
-                      <FaRegCommentDots className="text-md md:text-lg" />
-                    </div>
-                  )}
-                  <p className="text-lg text-gray-900 font-semibold">
-                    {checkNumberValue(comments?.length || 0)}
-                  </p>
+                    <p
+                      className={`text-lg text-gray-900 mb-3 font-semibold ${
+                        comments?.likes?.length >= 10 ? "pl-0" : "pl-1"
+                      }`}
+                    >
+                      {checkNumberValue(comments?.length || 0)}
+                    </p>
+                  </div>
                 </div>
-              </a>
-            </Link>
-          ) : (
-            <>
-              <div
-                className="bg-primary rounded-full p-2  text-gray-900"
-                onClick={() => setOpenModal(true)}
-              >
-                <FaRegCommentDots className="text-md md:text-lg" />
-              </div>
-              <p className="text-lg text-gray-900 font-semibold pl-3 mb-3">
-                {checkNumberValue(comments?.length || 0)}
-              </p>
-            </>
-          )}
-          <div className="mb-8">
+              </>
+            )}
+          </div>
+          <div className="">
             {userProfile ? (
               <div>
                 <WebCountButton
@@ -95,15 +116,23 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
               </div>
             ) : (
               <>
-                <div
-                  className="bg-primary rounded-full p-2  text-gray-900"
-                  onClick={() => setOpenModal(true)}
-                >
-                  <IoArrowRedoOutline className="text-md md:text-lg" />
+                <div className="gap-6">
+                  <div className="flex flex-col justify-center items-center cursor-pointer">
+                    <div
+                      className="bg-primary rounded-full p-2  text-gray-900"
+                      onClick={() => setOpenModal(true)}
+                    >
+                      <IoArrowRedoOutline className="text-md md:text-2xl font-semibold" />
+                    </div>
+                    <p
+                      className={`text-lg text-gray-900 mb-3 font-semibold ${
+                        post?.likes?.length >= 100 ? "pl-1" : "pl-1"
+                      }`}
+                    >
+                      {checkNumberValue(post?.shares?.length || 0)}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-lg text-gray-900 font-semibold pl-3">
-                  {checkNumberValue(post?.shares?.length || 0)}
-                </p>
               </>
             )}
           </div>
