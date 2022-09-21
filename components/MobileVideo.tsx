@@ -166,7 +166,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               </p>
             </div>
           </div>
-          <div className="absolute top-[51%] right-3" onClick={urlParams}>
+          <div className="absolute top-[30%] right-3" onClick={urlParams}>
             <div className={` ${isDark ? "opacity-100" : ""}`}>
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a>

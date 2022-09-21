@@ -42,14 +42,18 @@ const WebCountButton: NextPage<IProps> = ({ handleCount, shares, getUrl }) => {
       >
         {alreadyCount ? (
           <div className="bg-primary rounded-full p-2  text-[#F51997]">
-            <IoArrowRedoOutline className="text-lg md:text-lg font-semibold" />
+            <IoArrowRedoOutline className="text-md md:text-2xl font-semibold" />
           </div>
         ) : (
           <div className="bg-primary rounded-full p-2  text-gray-900">
-            <IoArrowRedoOutline className="text-lg md:text-lg" />
+            <IoArrowRedoOutline className="text-md md:text-2xl font-semibold" />
           </div>
         )}
-        <p className="text-lg text-gray-900 font-semibold">
+        <p
+          className={`text-lg text-gray-900 font-semibold ${
+            shares?.length >= 10 ? "pl-0" : "pl-1"
+          }`}
+        >
           {shares?.length || 0}
         </p>
       </div>

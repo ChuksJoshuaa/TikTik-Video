@@ -11,7 +11,11 @@ interface IProps {
   likes: any[];
 }
 
-const LikeButton: NextPage<IProps> = ({ handleLike, handleDislike, likes }) => {
+const MobileLikeButton: NextPage<IProps> = ({
+  handleLike,
+  handleDislike,
+  likes,
+}) => {
   const [alreadyLiked, setAlreadyLiked] = useState(false);
   const { userProfile }: { userProfile: any } = useAuthStore();
   const filterLikes = likes?.filter((item) => item._ref === userProfile?._id);
@@ -28,30 +32,30 @@ const LikeButton: NextPage<IProps> = ({ handleLike, handleDislike, likes }) => {
     <div className="gap-6">
       <div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
         {alreadyLiked ? (
-          <div
-            className="bg-primary rounded-full p-2  text-[#F51997]"
-            onClick={handleDislike}
-          >
-            <MdFavorite className="sm:text-md text-2xl font-semibold" />
-          </div>
+          <>
+            <div
+              className="rounded-full text-[#F51997]"
+              onClick={handleDislike}
+            >
+              <MdFavorite className="text-4xl font-semibold" />
+            </div>
+            <p className={`text-sm text-white font-semibold pl-0`}>
+              {checkNumberValue(likes?.length || 0)}
+            </p>
+          </>
         ) : (
-          <div
-            className="bg-primary rounded-full p-2  text-gray-900"
-            onClick={handleLike}
-          >
-            <MdFavorite className="sm:text-md text-2xl font-semibold" />
-          </div>
+          <>
+            <div className="rounded-full text-gray-400" onClick={handleLike}>
+              <MdFavorite className="text-4xl font-semibold" />
+            </div>
+            <p className={`text-sm text-gray-400 font-semibold pl-0`}>
+              {checkNumberValue(likes?.length || 0)}
+            </p>
+          </>
         )}
-        <p
-          className={`text-lg text-gray-900 font-semibold ${
-            likes?.length >= 10 ? "pl-0" : "pl-1"
-          }`}
-        >
-          {checkNumberValue(likes?.length || 0)}
-        </p>
       </div>
     </div>
   );
 };
 
-export default LikeButton;
+export default MobileLikeButton;
