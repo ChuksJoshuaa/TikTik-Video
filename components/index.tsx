@@ -7,6 +7,7 @@ import VideoCard from "./VideoCard";
 import ProfileVideoCard from "./ProfileVideoCard";
 import NoResults from "./NoResults";
 import LikeButton from "./LikeButton";
+import MobileLikeButton from "./MobileLikeButton";
 import Comments from "./Comments";
 import MobileVideo from "./MobileVideo";
 import MainFooter from "./MainFooter";
@@ -44,4 +45,5 @@ export {
   WebIcon,
   WebCountButton,
   WebShareFile,
+  MobileLikeButton,
 };

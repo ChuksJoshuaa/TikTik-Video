@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { FaRegCommentDots } from "react-icons/fa";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { MdFavorite } from "react-icons/md";
-import { MobileComments, LikeButton, CountButton } from "./index";
+import { MobileComments, MobileLikeButton, CountButton } from "./index";
 import useAuthStore from "../store/authStore";
 import Link from "next/link";
-import {checkNumberValue}  from "../utils/numberValidators"
+import { checkNumberValue } from "../utils/numberValidators";
 
 const SideIcon = ({
   getUrl,
@@ -28,30 +28,35 @@ const SideIcon = ({
     } else {
       setAlreadyComment(false);
     }
-  }, [comments])
-
+  }, [comments]);
 
   return (
     <div className="flex flex-col gap-5 aligns-center font-bold">
       <div className=" mb-2 text-4xl text-white hover:text-gray-400">
         <div className="mb-2">
           {userProfile ? (
-            <LikeButton
+            <MobileLikeButton
               handleLike={() => handleLike(true)}
               handleDislike={() => handleLike(false)}
               likes={post.likes}
             />
           ) : (
-            <Link href="/register">
-              <a>
-                <div className="bg-gray-400 rounded-full p-2  text-gray-900 mt-4">
-                  <MdFavorite className="text-lg md:text-lg font-medium" />
+            <>
+              <div className="gap-6">
+                <div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
+                  <Link href="/register">
+                    <a>
+                      <div className=" rounded-full  text-gray-400 ">
+                        <MdFavorite className="text-4xl font-semibold" />
+                      </div>
+                      <p className="text-sm text-gray-400 font-semibold pl-4">
+                        {checkNumberValue(post?.likes?.length || 0)}
+                      </p>
+                    </a>
+                  </Link>
                 </div>
-                <p className="text-lg text-gray-400 font-medium pl-3">
-                  {checkNumberValue(post?.likes?.length || 0)}
-                </p>
-              </a>
-            </Link>
+              </div>
+            </>
           )}
         </div>
         {userProfile ? (
@@ -60,29 +65,42 @@ const SideIcon = ({
             onClick={() => setShowComment(true)}
           >
             {alreadyComment ? (
-              <div className="bg-primary rounded-full p-2 md:p-4 text-[#F51997]">
-                <FaRegCommentDots className="text-lg md:text-2xl font-semibold" />
-              </div>
+              <>
+                <div className=" rounded-full text-[#F51997]">
+                  <FaRegCommentDots className="text-4xl font-semibold" />
+                </div>
+                <p className="text-sm text-white font-semibold pl-0">
+                  {checkNumberValue(comments?.length || 0)}
+                </p>
+              </>
             ) : (
-              <div className="bg-gray-400 rounded-full p-2 md:p-4 text-gray-900">
-                <FaRegCommentDots className="text-lg md:text-2xl font-medium" />
-              </div>
+              <>
+                <div className=" rounded-full text-gray-400">
+                  <FaRegCommentDots className="text-4xl font-semibold" />
+                </div>
+                <p className="text-sm text-gray-400 font-semibold pl-0">
+                  {checkNumberValue(comments?.length || 0)}
+                </p>
+              </>
             )}
-            <p className="text-lg text-white font-medium">
-              {checkNumberValue(comments?.length || 0)}
-            </p>
           </div>
         ) : (
-          <Link href="/register">
-            <a>
-              <div className="bg-gray-400 rounded-full p-2 text-gray-900">
-                <FaRegCommentDots className="text-lg  font-medium" />
+          <>
+            <div>
+              <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
+                <Link href="/register">
+                  <a>
+                    <div className="rounded-full text-gray-400">
+                      <FaRegCommentDots className="text-4xl  font-semibold" />
+                    </div>
+                    <p className="text-sm text-gray-400 font-semibold pl-4">
+                      {checkNumberValue(comments?.length || 0)}
+                    </p>
+                  </a>
+                </Link>
               </div>
-              <p className="text-lg text-gray-400 font-medium pl-3 mb-3">
-                {checkNumberValue(comments?.length || 0)}
-              </p>
-            </a>
-          </Link>
+            </div>
+          </>
         )}
         <div className="mb-2">
           {userProfile ? (
@@ -94,16 +112,22 @@ const SideIcon = ({
               />
             </div>
           ) : (
-            <Link href="/register">
-              <a>
-                <div className="bg-gray-400 rounded-full p-2  text-gray-900">
-                  <IoArrowRedoOutline className="text-lg md:text-lg font-medium" />
+            <>
+              <div>
+                <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
+                  <Link href="/register">
+                    <a>
+                      <div className="rounded-full text-gray-400">
+                        <IoArrowRedoOutline className="text-4xl font-semibold" />
+                      </div>
+                      <p className="text-sm text-gray-400 font-semibold pl-3">
+                        {checkNumberValue(post?.shares?.length || 0)}
+                      </p>
+                    </a>
+                  </Link>
                 </div>
-                <p className="text-lg text-gray-400 font-medium pl-3">
-                  {checkNumberValue(post?.shares?.length || 0)}
-                </p>
-              </a>
-            </Link>
+              </div>
+            </>
           )}
         </div>
       </div>

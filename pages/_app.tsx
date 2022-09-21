@@ -27,10 +27,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             <div className="h-[92vh] overflow-hidden xl:hover:overflow-auto md:block hidden">
               <Sidebar />
             </div>
-            <div className="mt-4 flex flex-col gap-10 overflow-auto h-[100vh] videos flex-1">
-              <div>
+            <div className="mt-4 flex flex-col gap-10 overflow-auto h-[100vh] videos">
+              <div className="mb-4">
                 <Component {...pageProps} />
               </div>
+              <div className="mt-9"></div>
             </div>
           </div>
         </div>

@@ -71,7 +71,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   const onVideoClick = () => {
     if (playing) {
       videoRef?.current?.pause();
-      setIsDark(true);
+      // setIsDark(true);
       setPlaying(false);
     } else {
       videoRef?.current?.play();
@@ -108,8 +108,8 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   }
 
   return (
-    <div className="flex w-full h-full bg-black flex-wrap mb-[1em] mb-8">
-      <div className="h-[600px] w-[1000px] flex justify-center items-center bg-black">
+    <div className="flex w-full h-full flex-wrap">
+      <div className="h-full w-[1000px] flex justify-center items-center">
         <div className="absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
           <p
             className="cursor-pointer"
@@ -131,18 +131,18 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             setIsHover(false);
           }}
         >
-          <div className={`w-full ${isDark ? "opacity-25" : ""}`}>
+          <div className={` ${isDark ? "opacity-20" : ""}`}>
             <video
               ref={videoRef}
               src={posts.video.asset.url}
-              className="w-full cursor-pointer object-cover h-[600px] mb-8"
+              className="cursor-pointer object-cover h-[100vh]"
               key={posts._id}
               data-prefix={posts._id}
             />
           </div>
           <div className="py-4 mb-5"></div>
           {isHover && (
-            <div className="absolute top-[45%] left-[40%]">
+            <div className="absolute top-[40%] left-[40%]">
               {!playing ? (
                 <button onClick={onVideoClick}>
                   <BsFillPlayFill className="text-gray-400 text-6xl" />
@@ -154,7 +154,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               )}
             </div>
           )}
-          <div className="absolute top-[82%] left-3 mb-4">
+          <div className="absolute top-[85%] left-3 mb-4">
             <Link href={`/profile/${posts.postedBy?._id}`}>
               <a className="text-md text-gray-400 font-medium lowercase mb-1">
                 @{posts.postedBy?.userName}
@@ -166,8 +166,8 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               </p>
             </div>
           </div>
-          <div className="absolute top-[51%] right-3" onClick={urlParams}>
-            <div className={` ${isDark ? "opacity-100" : ""}`}>
+          <div className="absolute top-[42%] right-3" onClick={urlParams}>
+            <div className="font-extralight">
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a>
                   <Image
