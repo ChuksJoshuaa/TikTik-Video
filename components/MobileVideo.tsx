@@ -25,7 +25,6 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const [isHover, setIsHover] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [showMobileSidebar, setShowMobileSidebar] =
     useState<IState["showMobileSidebar"]>(false);
