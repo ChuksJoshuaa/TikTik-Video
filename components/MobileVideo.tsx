@@ -159,7 +159,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               </div>
             )}
           </div>
-          <div className="absolute bottom-10 left-0">
+          <div className="absolute bottom-0 left-0" style={{ zIndex: "5" }}>
             <div className="w-full h-full">
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a className="text-md text-gray-200 font-semibold lowercase mb-1 cursor-pointer px-3">
@@ -175,7 +175,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             </div>
           </div>
           <div className="absolute bottom-0 pt-5"></div>
-          <div className="absolute top-[46%] right-3" onClick={urlParams}>
+          <div className="absolute top-[48%] right-3" onClick={urlParams}>
             <div className="font-extralight overflow-visible relative">
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a>
