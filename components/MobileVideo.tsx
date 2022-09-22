@@ -105,7 +105,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   }
 
   return (
-    <div className="flex flex-col w-full h-full relative left-0 top-0 bg-white">
+    <div className="flex flex-col w-full h-full absolute left-0 top-0 bg-white">
       <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
         <p
           className="cursor-pointer"
@@ -126,7 +126,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
           setIsHover(false);
         }}
       >
-        <div className=" mb-0">
+        <div className="mb-0">
           <video
             ref={videoRef}
             src={posts.video.asset.url}
