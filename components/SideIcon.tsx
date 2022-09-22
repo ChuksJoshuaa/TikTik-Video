@@ -33,7 +33,7 @@ const SideIcon = ({
   return (
     <div className="flex flex-col gap-5 aligns-center font-bold">
       <div className=" mb-2 text-4xl text-white hover:text-gray-400">
-        <div className="mb-2">
+        <div className="mb-2" style={{ zIndex: "3", pointerEvents: "auto" }}>
           {userProfile ? (
             <MobileLikeButton
               handleLike={() => handleLike(true)}
@@ -62,6 +62,7 @@ const SideIcon = ({
         {userProfile ? (
           <div
             className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2"
+            style={{ zIndex: "3", pointerEvents: "auto" }}
             onClick={() => setShowComment(true)}
           >
             {alreadyComment ? (
@@ -87,7 +88,10 @@ const SideIcon = ({
         ) : (
           <>
             <div>
-              <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
+              <div
+                className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2"
+                style={{ zIndex: "3", pointerEvents: "auto" }}
+              >
                 <Link href="/register">
                   <a>
                     <div className="rounded-full text-gray-200">
@@ -104,7 +108,7 @@ const SideIcon = ({
         )}
         <div className="mb-2">
           {userProfile ? (
-            <div>
+            <div style={{ zIndex: "3" }}>
               <CountButton
                 handleCount={() => handleCount(true)}
                 shares={post?.shares}
@@ -113,7 +117,7 @@ const SideIcon = ({
             </div>
           ) : (
             <>
-              <div>
+              <div style={{ zIndex: "3", pointerEvents: "auto" }}>
                 <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
                   <Link href="/register">
                     <a>
