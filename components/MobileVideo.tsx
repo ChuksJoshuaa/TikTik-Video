@@ -140,16 +140,13 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               <video
                 ref={videoRef}
                 src={posts.video.asset.url}
-                className="object-cover h-[100vh] pointer-events-none"
+                className="object-cover h-[100vh]"
                 key={posts._id}
                 data-prefix={posts._id}
               />
             </div>
             {isHover && (
-              <div
-                className="absolute top-[38%] left-[40%] cursor-pointer"
-                style={{ zIndex: "3" }}
-              >
+              <div className="absolute top-[38%] left-[40%] cursor-pointer">
                 {!playing ? (
                   <button onClick={onVideoClick}>
                     <BsFillPlayFill className="text-gray-200 text-4xl font-semibold" />
@@ -162,10 +159,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               </div>
             )}
           </div>
-          <div
-            className="absolute bottom-10 left-0 pointer-events-auto"
-            style={{ zIndex: "100000" }}
-          >
+          <div className="absolute bottom-10 left-0">
             <div className="w-full h-full">
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a className="text-md text-gray-200 font-semibold lowercase mb-1 cursor-pointer px-3">
