@@ -130,7 +130,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
           <video
             ref={videoRef}
             src={posts.video.asset.url}
-            className="w-full object-cover h-[auto]"
+            className="w-full object-cover h-full"
             key={posts._id}
             data-prefix={posts._id}
           />
