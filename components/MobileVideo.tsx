@@ -159,7 +159,10 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               </div>
             )}
           </div>
-          <div className="absolute bottom-0 left-0" style={{ zIndex: "5" }}>
+          <div
+            className="absolute bottom-[9.375rem] left-0"
+            style={{ zIndex: "5" }}
+          >
             <div className="w-full h-full">
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a className="text-md text-gray-200 font-semibold lowercase mb-1 cursor-pointer px-3">
