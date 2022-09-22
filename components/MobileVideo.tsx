@@ -105,7 +105,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   }
 
   return (
-    <div className="flex flex-col w-full h-[100vh] absolute left-0 top-0 bg-white overflow-auto">
+    <div className="flex flex-col w-full h-[100vh] left-0 top-0 bg-white overflow-auto">
       <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
         <p
           className="cursor-pointer"
