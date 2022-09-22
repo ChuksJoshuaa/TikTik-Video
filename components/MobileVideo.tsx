@@ -178,7 +178,7 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
             </div>
           </div>
           <div className="absolute bottom-0 pt-5"></div>
-          <div className="absolute top-[48%] right-3" onClick={urlParams}>
+          <div className="absolute top-[40%] right-3" onClick={urlParams}>
             <div className="font-extralight overflow-visible relative">
               <Link href={`/profile/${posts.postedBy?._id}`}>
                 <a>
