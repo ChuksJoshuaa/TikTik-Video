@@ -5,12 +5,18 @@ import { MdFavorite } from "react-icons/md";
 import { WebCountButton, LikeButton } from "./index";
 import useAuthStore from "../store/authStore";
 import Link from "next/link";
-import { googleLogout, GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import { createOrGetUser } from "../utils";
+import { useRouter } from "next/router";
+import { BiUser } from "react-icons/bi";
+import { checkNumberValue } from "../utils/numberValidators";
 
 const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
-  const { userProfile }: { userProfile: any } = useAuthStore();
+  const { userProfile, addUser }: { userProfile: any; addUser: any } =
+    useAuthStore();
   const [alreadyComment, setAlreadyComment] = useState(false);
+  const Router = useRouter();
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     if (comments?.length > 0) {
@@ -32,32 +38,74 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
                 likes={post.likes}
               />
             ) : (
-              <Link href="">
-                <a>
-                  <MdFavorite className="text-md md:text-lg font-semibold" />
-                </a>
-              </Link>
+              <>
+                <div className="gap-6">
+                  <div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
+                    <div
+                      className="bg-primary rounded-full p-2 text-gray-900"
+                      onClick={() => setOpenModal(true)}
+                    >
+                      <MdFavorite className="text-md md:text-2xl font-semibold" />
+                    </div>
+                    <p
+                      className={`text-lg text-gray-900 font-semibold ${
+                        post?.likes?.length >= 10 ? "pl-0" : "pl-1"
+                      }`}
+                    >
+                      {checkNumberValue(post?.likes?.length || 0)}
+                    </p>
+                  </div>
+                </div>
+              </>
             )}
           </div>
-          <Link href={`/detail/${post._id}`}>
-            <a>
-              <div className="flex flex-col justify-center items-center cursor-pointer">
-                {alreadyComment ? (
-                  <div className="bg-primary rounded-full p-2 md:p-2 text-[#F51997]">
-                    <FaRegCommentDots className="text-md md:text-lg font-semibold" />
+          <div className="">
+            {userProfile ? (
+              <Link href={`/detail/${post._id}`}>
+                <a>
+                  <div className="flex flex-col justify-center items-center cursor-pointer">
+                    {alreadyComment ? (
+                      <div className="bg-primary rounded-full p-2 md:p-2 text-[#F51997]">
+                        <FaRegCommentDots className="text-md md:text-2xl font-semibold" />
+                      </div>
+                    ) : (
+                      <div className="bg-primary rounded-full p-2  text-gray-900">
+                        <FaRegCommentDots className="text-md md:text-2xl font-semibold" />
+                      </div>
+                    )}
+                    <p
+                      className={`text-lg text-gray-900 font-semibold ${
+                        comments?.likes?.length >= 10 ? "pl-0" : "pl-1"
+                      }`}
+                    >
+                      {checkNumberValue(comments?.length || 0)}
+                    </p>
                   </div>
-                ) : (
-                  <div className="bg-primary rounded-full p-2  text-gray-900">
-                    <FaRegCommentDots className="text-md md:text-lg" />
+                </a>
+              </Link>
+            ) : (
+              <>
+                <div className="gap-6">
+                  <div className="flex flex-col justify-center items-center cursor-pointer">
+                    <div
+                      className="bg-primary rounded-full p-2  text-gray-900"
+                      onClick={() => setOpenModal(true)}
+                    >
+                      <FaRegCommentDots className="text-md md:text-2xl font-semibold" />
+                    </div>
+                    <p
+                      className={`text-lg text-gray-900 mb-3 font-semibold ${
+                        comments?.likes?.length >= 10 ? "pl-0" : "pl-1"
+                      }`}
+                    >
+                      {checkNumberValue(comments?.length || 0)}
+                    </p>
                   </div>
-                )}
-                <p className="text-lg text-gray-900 font-semibold">
-                  {comments?.length || 0}
-                </p>
-              </div>
-            </a>
-          </Link>
-          <div className="mb-8">
+                </div>
+              </>
+            )}
+          </div>
+          <div className="">
             {userProfile ? (
               <div>
                 <WebCountButton
@@ -67,15 +115,75 @@ const WebIcon = ({ comments, handleLike, handleCount, getUrl, post }: any) => {
                 />
               </div>
             ) : (
-              <Link href="">
-                <a>
-                  <IoArrowRedoOutline />
-                </a>
-              </Link>
+              <>
+                <div className="gap-6">
+                  <div className="flex flex-col justify-center items-center cursor-pointer">
+                    <div
+                      className="bg-primary rounded-full p-2  text-gray-900"
+                      onClick={() => setOpenModal(true)}
+                    >
+                      <IoArrowRedoOutline className="text-md md:text-2xl font-semibold" />
+                    </div>
+                    <p
+                      className={`text-lg text-gray-900 mb-3 font-semibold ${
+                        post?.likes?.length >= 100 ? "pl-1" : "pl-1"
+                      }`}
+                    >
+                      {checkNumberValue(post?.shares?.length || 0)}
+                    </p>
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </div>
       </div>
+      {openModal && (
+        <div
+          className="fixed top-20 mt-20 left-[45%] z-50 bg-gray-50 border border-spacing-2 border-gray-100"
+          style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+        >
+          <div className="relative p-2 w-full h-full md:h-auto">
+            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <button
+                type="button"
+                className="absolute top-0 right-0 text-gray-900 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white "
+                onClick={() => setOpenModal(false)}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
+                </svg>
+                <span className="sr-only " onClickCapture={() => Router.back()}>
+                  Close modal
+                </span>
+              </button>
+            </div>
+            <div className="p-6 text-center mt-4">
+              <p className="text-2xl text-gray-900 font-semibold border-b-2 border-gray-800">
+                Log In To TikTik
+              </p>
+              <div className="pt-5">
+                <div className="flex flex-col justify-center pt-10 items-center mt-15 ">
+                  <BiUser className="mb-3 text-gray-900 text-8xl cursor-pointer" />
+                  <GoogleLogin
+                    onSuccess={(response) => {
+                      createOrGetUser(response, addUser);
+                      setOpenModal(false);
+                    }}
+                    onError={() => console.log("Error")}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

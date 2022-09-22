@@ -92,7 +92,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
         </div>
       </div>
 
-      <div className="lg:ml-20 flex gap-4 ">
+      <div className="lg:ml-20 flex gap-4 relative">
         <div
           className="rounded-3xl"
           onMouseEnter={() => {
@@ -102,18 +102,27 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
             setIsHover(false);
           }}
         >
-          <Link href={`/detail/${posts._id}`}>
+          {userProfile ? <Link href={`/detail/${posts._id}`}>
             <a>
               <video
                 ref={videoRef}
                 controls={isHover}
                 src={posts.video.asset.url}
-                className="lg:w-[600px] text-[35px]h-[270px] md:h-[400px] lg:h-[530px] w-[550px] cursor-pointer rounded-2xl bg-gray-100"
+                className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
               />
             </a>
-          </Link>
+          </Link>: <Link href="">
+            <a>
+              <video
+                ref={videoRef}
+                controls={isHover}
+                src={posts.video.asset.url}
+                className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
+              />
+            </a>
+          </Link>}
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col items-center justify-between">
           <div></div>
           <div className="" onClick={urlParams}>
             <WebIcon
@@ -126,6 +135,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
           </div>
         </div>
       </div>
+      <div></div>
     </div>
   );
 };

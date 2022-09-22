@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { FaRegCommentDots } from "react-icons/fa";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { MdFavorite } from "react-icons/md";
-import { MobileComments, LikeButton, CountButton } from "./index";
+import { MobileComments, MobileLikeButton, CountButton } from "./index";
 import useAuthStore from "../store/authStore";
 import Link from "next/link";
+import { checkNumberValue } from "../utils/numberValidators";
 
 const SideIcon = ({
   getUrl,
@@ -31,42 +32,83 @@ const SideIcon = ({
 
   return (
     <div className="flex flex-col gap-5 aligns-center font-bold">
-      <div className="mt-2 mb-2 text-4xl  text-white hover:text-gray-400">
-        <div className="mb-8">
+      <div className=" mb-2 text-4xl text-white hover:text-gray-400">
+        <div className="mb-2" style={{ zIndex: "3", pointerEvents: "auto" }}>
           {userProfile ? (
-            <LikeButton
+            <MobileLikeButton
               handleLike={() => handleLike(true)}
               handleDislike={() => handleLike(false)}
               likes={post.likes}
             />
           ) : (
-            <Link href="/register">
-              <a>
-                <MdFavorite />
-              </a>
-            </Link>
+            <>
+              <div className="gap-6">
+                <div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
+                  <Link href="/register">
+                    <a>
+                      <div className=" rounded-full  text-gray-200 ">
+                        <MdFavorite className="text-4xl font-[900]" />
+                      </div>
+                      <p className="text-sm text-gray-200 font-[900] pl-4 ">
+                        {checkNumberValue(post?.likes?.length || 0)}
+                      </p>
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </>
           )}
         </div>
-        <div
-          className="mt-4 flex flex-col justify-center items-center cursor-pointer"
-          onClick={() => setShowComment(true)}
-        >
-          {alreadyComment ? (
-            <div className="bg-primary rounded-full p-2 md:p-4 text-[#F51997]">
-              <FaRegCommentDots className="text-lg md:text-2xl font-semibold" />
-            </div>
-          ) : (
-            <div className="bg-primary rounded-full p-2 md:p-4 text-gray-900">
-              <FaRegCommentDots className="text-lg md:text-2xl" />
-            </div>
-          )}
-          <p className="text-lg text-white font-semibold">
-            {comments?.length || 0}
-          </p>
-        </div>
-        <div className="mb-8">
-          {userProfile ? (
+        {userProfile ? (
+          <div
+            className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2"
+            style={{ zIndex: "3", pointerEvents: "auto" }}
+            onClick={() => setShowComment(true)}
+          >
+            {alreadyComment ? (
+              <>
+                <div className=" rounded-full text-[#F51997]">
+                  <FaRegCommentDots className="text-4xl font-[900]" />
+                </div>
+                <p className="text-sm text-white font-[900] pl-0">
+                  {checkNumberValue(comments?.length || 0)}
+                </p>
+              </>
+            ) : (
+              <>
+                <div className=" rounded-full text-gray-200">
+                  <FaRegCommentDots className="text-4xl font-[900]" />
+                </div>
+                <p className="text-sm text-gray-200 font-[900] pl-0">
+                  {checkNumberValue(comments?.length || 0)}
+                </p>
+              </>
+            )}
+          </div>
+        ) : (
+          <>
             <div>
+              <div
+                className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2"
+                style={{ zIndex: "3", pointerEvents: "auto" }}
+              >
+                <Link href="/register">
+                  <a>
+                    <div className="rounded-full text-gray-200">
+                      <FaRegCommentDots className="text-4xl  font-[900]" />
+                    </div>
+                    <p className="text-sm text-gray-200 font-[900] pl-4">
+                      {checkNumberValue(comments?.length || 0)}
+                    </p>
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </>
+        )}
+        <div className="mb-2">
+          {userProfile ? (
+            <div style={{ zIndex: "3", pointerEvents: "auto" }}>
               <CountButton
                 handleCount={() => handleCount(true)}
                 shares={post?.shares}
@@ -74,16 +116,27 @@ const SideIcon = ({
               />
             </div>
           ) : (
-            <Link href="/register">
-              <a>
-                <IoArrowRedoOutline />
-              </a>
-            </Link>
+            <>
+              <div style={{ zIndex: "3", pointerEvents: "auto" }}>
+                <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
+                  <Link href="/register">
+                    <a>
+                      <div className="rounded-full text-gray-200">
+                        <IoArrowRedoOutline className="text-4xl font-[900]" />
+                      </div>
+                      <p className="text-sm text-gray-200 font-[900] pl-3">
+                        {checkNumberValue(post?.shares?.length || 0)}
+                      </p>
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </>
           )}
         </div>
       </div>
 
-      <div className="overflow-y-auto overflow-x-hidden fixed top-5 mt-5 right-0 w-full left-0 z-50 md:inset-0 h-modal">
+      <div className="fixed top-3 mt-20 left-0 w-full z-50">
         {showComment && (
           <MobileComments
             setShowComment={setShowComment}
