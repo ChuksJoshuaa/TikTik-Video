@@ -108,7 +108,7 @@ const SideIcon = ({
         )}
         <div className="mb-2">
           {userProfile ? (
-            <div style={{ zIndex: "3" }}>
+            <div style={{ zIndex: "3", pointerEvents: "auto" }}>
               <CountButton
                 handleCount={() => handleCount(true)}
                 shares={post?.shares}

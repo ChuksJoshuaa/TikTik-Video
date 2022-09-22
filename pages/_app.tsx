@@ -34,7 +34,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               <div className="mt-0 md:mt-9"></div>
             </div>
           </div>
-          <div className="fixed bottom-0 w-full cursor-pointer block md:hidden">
+          <div className="fixed bottom-0 w-full cursor-pointer block md:hidden z-50">
             <div className="h-[3rem]  bg-black border-t-2 border-gray-100 text-gray-200 font-small">
               <MainFooter />
             </div>
