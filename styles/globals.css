@@ -20,6 +20,7 @@ a {
 
 .videos::-webkit-scrollbar {
   width: 0px;
+  scroll-snap-points-y: repeat(3rem);
 }
 
 ::-webkit-scrollbar {

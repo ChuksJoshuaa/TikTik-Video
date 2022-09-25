@@ -46,10 +46,10 @@ const SideIcon = ({
                 <div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
                   <Link href="/register">
                     <a>
-                      <div className=" rounded-full  text-gray-200 ">
+                      <div className=" rounded-full  text-gray-200 bg-contain bg-no-repeat">
                         <MdFavorite className="text-4xl font-[900]" />
                       </div>
-                      <p className="text-sm text-gray-200 font-[900] pl-4 ">
+                      <p className="text-sm text-gray-200 font-[900] pl-4 bg-contain bg-no-repeat">
                         {checkNumberValue(post?.likes?.length || 0)}
                       </p>
                     </a>
@@ -76,10 +76,10 @@ const SideIcon = ({
               </>
             ) : (
               <>
-                <div className=" rounded-full text-gray-200">
+                <div className=" rounded-full text-gray-200 bg-contain bg-no-repeat">
                   <FaRegCommentDots className="text-4xl font-[900]" />
                 </div>
-                <p className="text-sm text-gray-200 font-[900] pl-0">
+                <p className="text-sm text-gray-200 font-[900] pl-0 bg-contain bg-no-repeat">
                   {checkNumberValue(comments?.length || 0)}
                 </p>
               </>
@@ -94,10 +94,10 @@ const SideIcon = ({
               >
                 <Link href="/register">
                   <a>
-                    <div className="rounded-full text-gray-200">
+                    <div className="rounded-full text-gray-200 bg-contain bg-no-repeat">
                       <FaRegCommentDots className="text-4xl  font-[900]" />
                     </div>
-                    <p className="text-sm text-gray-200 font-[900] pl-4">
+                    <p className="text-sm text-gray-200 font-[900] pl-4 bg-contain bg-no-repeat">
                       {checkNumberValue(comments?.length || 0)}
                     </p>
                   </a>
@@ -121,10 +121,10 @@ const SideIcon = ({
                 <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
                   <Link href="/register">
                     <a>
-                      <div className="rounded-full text-gray-200">
+                      <div className="rounded-full text-gray-200 bg-contain bg-no-repeat">
                         <IoArrowRedoOutline className="text-4xl font-[900]" />
                       </div>
-                      <p className="text-sm text-gray-200 font-[900] pl-3">
+                      <p className="text-sm text-gray-200 font-[900] pl-3 bg-contain bg-no-repeat">
                         {checkNumberValue(post?.shares?.length || 0)}
                       </p>
                     </a>
