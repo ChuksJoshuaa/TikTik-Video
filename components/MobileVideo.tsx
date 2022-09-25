@@ -224,12 +224,12 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
             <div className="absolute top-[76%] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
               <div className="z-[5]">
                 <Link href={`/profile/${posts.postedBy?._id}`}>
-                  <a className="text-md text-gray-100 font-semibold lowercase mb-1 cursor-pointer px-3">
+                  <a className="text-md text-gray-100  lowercase mb-1 cursor-pointer px-3">
                     @{posts.postedBy?.userName}
                   </a>
                 </Link>
                 <div className="flex justify-between pr-3 w-[100vw] pt-2">
-                  <p className="text-md text-gray-100 font-semibold lowercase cursor-pointer w-[70%] px-3">
+                  <p className="text-md text-gray-100  lowercase cursor-pointer w-[70%] px-3">
                     {posts.caption}
                   </p>
                   <p className=" w-[30%] border-l-0 border-red-50"></p>
