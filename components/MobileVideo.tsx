@@ -7,26 +7,26 @@ import { MobileSidebar } from "./index";
 import useAuthStore from "../store/authStore";
 import { BASE_URL } from "../utils";
 import axios from "axios";
-import { MainFooter, SideIcon, Loading } from "./index";
+import { SideIcon, Loading } from "./index";
 import Image from "next/image";
 import Link from "next/link";
+import useElementOnScreen from "../utils/useElementOnScreen";
 
 interface IProps {
   post: Video;
+  index: number;
 }
 
 interface IState {
   showMobileSidebar: boolean;
 }
 
-const MobileVideo: NextPage<IProps> = ({ post }) => {
+const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   const { userProfile }: { userProfile: any } = useAuthStore();
   const [playing, setPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = React.useRef() as React.MutableRefObject<HTMLVideoElement>;
 
   const [isHover, setIsHover] = useState(false);
-  const [isDark, setIsDark] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [showMobileSidebar, setShowMobileSidebar] =
     useState<IState["showMobileSidebar"]>(false);
   const [getUrl, setGetUrl] = useState<any | undefined>("");
@@ -68,16 +68,27 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
     }
   };
 
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.3,
+  };
+  const isVisibile = useElementOnScreen(options, videoRef);
+
   const onVideoClick = () => {
     if (playing) {
       videoRef?.current?.pause();
-      // setIsDark(true);
-      setPlaying(false);
+      setPlaying(!playing);
     } else {
       videoRef?.current?.play();
-      setIsDark(false);
-      setPlaying(true);
+      setPlaying(!playing);
     }
+  };
+
+  const onEnded = () => {
+    let answer = videoRef.current.scrollTop;
+    let windowHeight = videoRef.current.getBoundingClientRect().height;
+    answer = answer + windowHeight;
   };
 
   const addComment = async (e: React.FormEvent) => {
@@ -98,104 +109,138 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   };
 
   useEffect(() => {
-    if (videoRef?.current) {
-      videoRef.current.muted = isVideoMuted;
+    if (isVisibile) {
+      if (!playing) {
+        videoRef?.current.play();
+        setPlaying(true);
+      }
+    } else {
+      if (playing) {
+        videoRef?.current.pause();
+        setPlaying(false);
+      }
     }
-  }, [isVideoMuted]);
+  }, [isVisibile]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (index === 0) {
+        videoRef.current.play();
+        setPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setPlaying(false);
+      }
+    }, 500);
+  }, []);
 
   if (!posts) {
     return <Loading />;
   }
 
   return (
-    <div className="flex w-full h-full flex-wrap">
-      <div className="h-full w-[1000px] flex justify-center items-center">
-        <div className="absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
-          <p
-            className="cursor-pointer"
-            onClick={() => setShowMobileSidebar(true)}
-          >
-            <MdViewHeadline className="text-gray-200 hover:text-[#F51997] text-[35px]" />
-          </p>
-        </div>
-        {showMobileSidebar && (
-          <MobileSidebar setShowMobileSidebar={setShowMobileSidebar} />
-        )}
+    <>
+      <div className="flex flex-col left-0 top-0 bottom-0 right-0 bg-black">
         <div
-          className="relative"
-          onMouseEnter={() => {
-            setIsHover(true);
-            setIsDark(true);
-          }}
-          onMouseLeave={() => {
-            setIsHover(false);
-          }}
+          className=" relative flex-1 "
+          style={{ maxHeight: "calc(100% - 49px)" }}
         >
-          <div className={` ${isDark ? "opacity-20" : ""}`}>
-            <video
-              ref={videoRef}
-              src={posts.video.asset.url}
-              className="cursor-pointer object-cover h-[100vh]"
-              key={posts._id}
-              data-prefix={posts._id}
-            />
-          </div>
-          <div className="py-4 mb-5"></div>
-          {isHover && (
-            <div className="absolute top-[28%] left-[40%]">
-              {!playing ? (
-                <button onClick={onVideoClick}>
-                  <BsFillPlayFill className="text-gray-200 text-6xl" />
-                </button>
-              ) : (
-                <button onClick={onVideoClick}>
-                  <BsFillPauseFill className="text-gray-200 text-4xl" />
-                </button>
-              )}
-            </div>
-          )}
-          <div className="absolute top-[70%] left-3 mb-4">
-            <Link href={`/profile/${posts.postedBy?._id}`}>
-              <a className="text-md text-gray-200 font-medium lowercase mb-1">
-                @{posts.postedBy?.userName}
-              </a>
-            </Link>
-            <div className="flex flex-wrap w-50">
-              <p className="text-md text-gray-200 font-medium lowercase">
-                {posts.caption}
+          <div className="flex justify-center h-full w-full items-center bg-blurred-img bg-no-repeat bg-cover bg-center">
+            <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
+              <p
+                className="cursor-pointer"
+                onClick={() => setShowMobileSidebar(true)}
+              >
+                <MdViewHeadline
+                  className="text-gray-200 hover:text-[#F51997] text-[40px]"
+                  style={{ pointerEvents: "auto" }}
+                />
               </p>
             </div>
-          </div>
-          <div className="absolute top-[30%] right-3" onClick={urlParams}>
-            <div className="font-extralight">
-              <Link href={`/profile/${posts.postedBy?._id}`}>
-                <a>
-                  <Image
-                    width={62}
-                    height={62}
-                    className="rounded-full"
-                    src={posts.postedBy?.image}
-                    layout="responsive"
-                    alt="profile photo"
-                  />
-                </a>
-              </Link>
-              <SideIcon
-                getUrl={getUrl}
-                handleLike={handleLike}
-                handleCount={handleCount}
-                post={posts}
-                comment={comment}
-                setComment={setComment}
-                addComment={addComment}
-                isPostingComment={isPostingComment}
-                comments={posts.comments}
-              />
+            {showMobileSidebar && (
+              <MobileSidebar setShowMobileSidebar={setShowMobileSidebar} />
+            )}
+            <div
+              onMouseEnter={() => {
+                setIsHover(true);
+              }}
+              onMouseLeave={() => {
+                setIsHover(false);
+              }}
+            >
+              <div className="h-full w-full snap-start">
+                <video
+                  ref={videoRef}
+                  src={posts.video.asset.url}
+                  className="object-cover h-[100vh] object-contain w-[100vw]"
+                  key={posts._id}
+                  muted={false}
+                  data-prefix={posts._id}
+                  playsInline
+                  onEnded={onEnded}
+                />
+              </div>
+              {isHover && (
+                <div className="absolute top-[38%] left-[40%] cursor-pointer ">
+                  {!playing ? (
+                    <button onClick={onVideoClick}>
+                      <BsFillPlayFill className="text-gray-200 text-8xl font-bold" />
+                    </button>
+                  ) : (
+                    <button onClick={onVideoClick}>
+                      <BsFillPauseFill className="text-gray-200 text-8xl  font-semibold opacity-0" />
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+            <div className="absolute bottom-0 left-0 z-[5]">
+              <div className="">
+                <Link href={`/profile/${posts.postedBy?._id}`}>
+                  <a className="text-md text-gray-200 font-semibold lowercase mb-1 cursor-pointer px-3">
+                    @{posts.postedBy?.userName}
+                  </a>
+                </Link>
+                <div className="flex justify-between pr-3 w-[100vw]">
+                  <p className="text-md text-gray-200 font-semibold lowercase cursor-pointer w-[70%] px-3">
+                    {posts.caption}
+                  </p>
+                  <p className=" w-[30%] border-l-0 border-red-50"></p>
+                </div>
+              </div>
+            </div>
+            <div className="absolute bottom-0 pt-5"></div>
+            <div className="absolute top-[40%] right-3" onClick={urlParams}>
+              <div className="font-extralight overflow-visible relative">
+                <Link href={`/profile/${posts.postedBy?._id}`}>
+                  <a>
+                    <Image
+                      width={62}
+                      height={62}
+                      className="rounded-full"
+                      src={posts.postedBy?.image}
+                      layout="responsive"
+                      alt="profile photo"
+                    />
+                  </a>
+                </Link>
+                <SideIcon
+                  getUrl={getUrl}
+                  handleLike={handleLike}
+                  handleCount={handleCount}
+                  post={posts}
+                  comment={comment}
+                  setComment={setComment}
+                  addComment={addComment}
+                  isPostingComment={isPostingComment}
+                  comments={posts.comments}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

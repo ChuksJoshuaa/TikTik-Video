@@ -53,7 +53,7 @@ const Search = ({ data }: IProps) => {
           </p>
         </div>
       </div>
-      <div className="w-[100vh]">
+      <div className="w-[100vw]">
         {showUserVideos && (
           <SuggestedAccounts showUserVideos={showUserVideos} />
         )}
