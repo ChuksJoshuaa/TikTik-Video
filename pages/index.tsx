@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import axios from "axios";
 import { Video } from "../types";
 import { VideoCard, NoResults, MobileVideo } from "../components";
@@ -30,14 +29,17 @@ const Home = ({ videos }: IProps) => {
   }
   return (
     <>
-      <div className="flex flex-col gap-10 videos md:block hidden">
+      <div className="flex flex-col gap-10 videos md:block hidden  ">
         {videos.map((video: Video) => {
           return <VideoCard post={video} key={video._id} />;
         })}
       </div>
-      <div className="flex flex-col bg-black md:hidden block h-full">
-        {videos.map((video: Video) => {
-          return <MobileVideo post={video} key={video._id} />;
+      <div
+        className="flex flex-col bg-black md:hidden block h-full"
+        id="scroll-window"
+      >
+        {videos.map((video: Video, index: number) => {
+          return <MobileVideo post={video} key={video._id} index={index} />;
         })}
       </div>
     </>

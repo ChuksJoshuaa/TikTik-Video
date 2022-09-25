@@ -10,22 +10,23 @@ import axios from "axios";
 import { SideIcon, Loading } from "./index";
 import Image from "next/image";
 import Link from "next/link";
+import useElementOnScreen from "../utils/useElementOnScreen";
 
 interface IProps {
   post: Video;
+  index: number;
 }
 
 interface IState {
   showMobileSidebar: boolean;
 }
 
-const MobileVideo: NextPage<IProps> = ({ post }) => {
+const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   const { userProfile }: { userProfile: any } = useAuthStore();
   const [playing, setPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = React.useRef() as React.MutableRefObject<HTMLVideoElement>;
 
   const [isHover, setIsHover] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [showMobileSidebar, setShowMobileSidebar] =
     useState<IState["showMobileSidebar"]>(false);
   const [getUrl, setGetUrl] = useState<any | undefined>("");
@@ -67,14 +68,27 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
     }
   };
 
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.3,
+  };
+  const isVisibile = useElementOnScreen(options, videoRef);
+
   const onVideoClick = () => {
     if (playing) {
       videoRef?.current?.pause();
-      setPlaying(false);
+      setPlaying(!playing);
     } else {
       videoRef?.current?.play();
-      setPlaying(true);
+      setPlaying(!playing);
     }
+  };
+
+  const onEnded = () => {
+    let answer = videoRef.current.scrollTop;
+    let windowHeight = videoRef.current.getBoundingClientRect().height;
+    answer = answer + windowHeight;
   };
 
   const addComment = async (e: React.FormEvent) => {
@@ -95,22 +109,40 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
   };
 
   useEffect(() => {
-    if (videoRef?.current) {
-      videoRef.current.muted = isVideoMuted;
+    if (isVisibile) {
+      if (!playing) {
+        videoRef?.current.play();
+        setPlaying(true);
+      }
+    } else {
+      if (playing) {
+        videoRef?.current.pause();
+        setPlaying(false);
+      }
     }
-  }, [isVideoMuted]);
+  }, [isVisibile]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (index === 0) {
+        videoRef.current.play();
+        setPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setPlaying(false);
+      }
+    }, 500);
+  }, []);
 
   if (!posts) {
     return <Loading />;
   }
 
-  // bg-blurred-img bg-no-repeat bg-cover bg-center
-
   return (
     <>
       <div className="flex flex-col left-0 top-0 bottom-0 right-0 bg-black">
         <div
-          className=" relative flex-1"
+          className=" relative flex-1 "
           style={{ maxHeight: "calc(100% - 49px)" }}
         >
           <div className="flex justify-center h-full w-full items-center bg-blurred-img bg-no-repeat bg-cover bg-center">
@@ -129,7 +161,6 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               <MobileSidebar setShowMobileSidebar={setShowMobileSidebar} />
             )}
             <div
-              className=""
               onMouseEnter={() => {
                 setIsHover(true);
               }}
@@ -137,30 +168,33 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
                 setIsHover(false);
               }}
             >
-              <div className="h-full w-full">
+              <div className="h-full w-full snap-start">
                 <video
                   ref={videoRef}
                   src={posts.video.asset.url}
-                  className="object-cover h-[100vh]"
+                  className="object-cover h-[100vh] object-contain w-[100vw]"
                   key={posts._id}
+                  muted={false}
                   data-prefix={posts._id}
+                  playsInline
+                  onEnded={onEnded}
                 />
               </div>
               {isHover && (
                 <div className="absolute top-[38%] left-[40%] cursor-pointer ">
                   {!playing ? (
                     <button onClick={onVideoClick}>
-                      <BsFillPlayFill className="text-gray-200 text-4xl font-semibold" />
+                      <BsFillPlayFill className="text-gray-200 text-8xl font-bold" />
                     </button>
                   ) : (
                     <button onClick={onVideoClick}>
-                      <BsFillPauseFill className="text-gray-200 text-4xl  font-semibold" />
+                      <BsFillPauseFill className="text-gray-200 text-8xl  font-semibold opacity-0" />
                     </button>
                   )}
                 </div>
               )}
             </div>
-            <div className="absolute bottom-0 left-0" style={{ zIndex: "5" }}>
+            <div className="absolute bottom-0 left-0 z-[5]">
               <div className="">
                 <Link href={`/profile/${posts.postedBy?._id}`}>
                   <a className="text-md text-gray-200 font-semibold lowercase mb-1 cursor-pointer px-3">
@@ -204,12 +238,6 @@ const MobileVideo: NextPage<IProps> = ({ post }) => {
               </div>
             </div>
           </div>
-          {/* <div
-            className="h-[52px] py-[12px] px-[12px] absolute bottom-0 w-[100vw] z-[11] items-center font-[600]"
-            style={{ backgroundColor: "rgba(0,0,0,0.75)" }}
-          >
-            Hello Wold
-          </div> */}
         </div>
       </div>
     </>
