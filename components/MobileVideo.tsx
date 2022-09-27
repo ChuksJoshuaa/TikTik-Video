@@ -149,8 +149,8 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
       <div className="flex flex-col left-0 top-0 bottom-0 right-0 bg-black">
         <div className="relative flex-auto">
           <div
-            className="flex justify-center h-[100vh] w-full items-center bg-black bg-no-repeat bg-cover bg-center "
-            // style={{ maxHeight: "calc(100% - 55px)" }}
+            className="flex justify-center h-full w-full items-center bg-black bg-no-repeat bg-cover bg-center "
+            style={{ maxHeight: "calc(100% - 49px)" }}
           >
             <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
               <p
