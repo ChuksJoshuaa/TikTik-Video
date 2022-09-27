@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MdViewHeadline } from "react-icons/md";
 import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
-import { Video } from "../types";
+import { IVideo } from "../services/VideoService";
 import { NextPage } from "next";
 import { MobileSidebar } from "./index";
 import useAuthStore from "../store/authStore";
@@ -13,7 +13,7 @@ import Link from "next/link";
 import useElementOnScreen from "../utils/useElementOnScreen";
 
 interface IProps {
-  post: Video;
+  post: IVideo;
   index: number;
 }
 
@@ -46,25 +46,21 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
 
   const handleCount = async (share: boolean) => {
     if (userProfile) {
-      const { data } = await axios.put(`${BASE_URL}/api/share`, {
-        userId: userProfile._id,
-        postId: posts._id,
-        share,
+      const { data } = await axios.put(`${BASE_URL}/api/v1/videos/${post.id}/share/`, {
+        user_id: userProfile.id,
       });
 
-      setPosts({ ...posts, shares: data.shares });
+      // setPosts({ ...posts, shares: data.shares });
     }
   };
 
   const handleLike = async (like: boolean) => {
     if (userProfile) {
-      const { data } = await axios.put(`${BASE_URL}/api/like`, {
-        userId: userProfile._id,
-        postId: posts._id,
-        like,
+      const { data } = await axios.put(`${BASE_URL}/api/v1/videos/${post.id}/like/`, {
+        user_id: userProfile.id,
       });
 
-      setPosts({ ...posts, likes: data.likes });
+      // setPosts({ ...posts, likes: data.likes });
     }
   };
 
@@ -97,12 +93,12 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
     if (userProfile && comment) {
       setIsPostingComment(true);
 
-      const { data } = await axios.put(`${BASE_URL}/api/post/${posts._id}`, {
-        userId: userProfile._id,
-        comment,
+      const { data } = await axios.put(`${BASE_URL}/api/v1/videos/${posts.id}/comment/`, {
+        user_id: userProfile.id,
+        comment: comment,
       });
 
-      setPosts({ ...posts, comments: data.comments });
+      // setPosts({ ...posts, comments: data.comments });
       setComment("");
       setIsPostingComment(false);
     }
@@ -177,26 +173,26 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
               <div className=" relative h-full w-full snap-start">
                 <video
                   ref={videoRef}
-                  src={posts.video.asset.url}
+                  src={posts.standard}
                   className="object-cover h-[100vh] object-contain w-[100vw]"
-                  key={posts._id}
+                  key={posts.id}
                   loop
                   muted={false}
-                  data-prefix={posts._id}
+                  data-prefix={posts.id}
                   playsInline
                   onEnded={onEnded}
                  
                 />
                 <div className="relative bottom-[149px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
                 <div className="z-[5]">
-                  <Link href={`/profile/${posts.postedBy?._id}`}>
+                  <Link href={`/profile/${posts.owner.id}`}>
                     <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
-                      @{posts.postedBy?.userName}
+                      @{posts.owner.username}
                     </a>
                   </Link>
                   <div className="flex justify-between pr-3 w-[100vw] pt-2 " style={{ height: "fit-content"}}>
                     <p className="text-md text-gray-100 font-[450] lowercase cursor-pointer w-[70%] px-3">
-                      {posts.caption}
+                      {posts.title}
                     </p>
                     <p className=" w-[30%] border-l-0 border-red-50"></p>
                   </div>
@@ -219,13 +215,13 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
             </div>
             <div className="absolute top-[30%] right-3" onClick={urlParams}>
               <div className="font-extralight overflow-visible relative ">
-                <Link href={`/profile/${posts.postedBy?._id}`}>
+                <Link href={`/profile/${posts.owner.id}`}>
                   <a>
                     <Image
                       width={62}
                       height={62}
                       className="rounded-full"
-                      src={posts.postedBy?.image}
+                      src={posts.owner.avatar}
                       layout="responsive"
                       alt="profile photo"
                     />
@@ -240,7 +236,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                   setComment={setComment}
                   addComment={addComment}
                   isPostingComment={isPostingComment}
-                  comments={posts.comments}
+                  // comments={posts.comments}
                 />
               </div>
             </div>

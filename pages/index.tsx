@@ -1,11 +1,11 @@
 import axios from "axios";
-import { Video } from "../types";
+import { IVideo } from "../services/VideoService";
 import { VideoCard, NoResults, MobileVideo } from "../components";
 import { BASE_URL } from "../utils";
 import { useRouter } from "next/router";
 
 interface IProps {
-  videos: Video[];
+  videos: IVideo[];
 }
 
 const Home = ({ videos }: IProps) => {
@@ -30,16 +30,16 @@ const Home = ({ videos }: IProps) => {
   return (
     <>
       <div className="flex flex-col gap-10 videos md:block hidden  ">
-        {videos.map((video: Video) => {
-          return <VideoCard post={video} key={video._id} />;
+        {videos.map((video: IVideo) => {
+          return <VideoCard post={video} key={video.id} />;
         })}
       </div>
       <div
         className="flex flex-col bg-black md:hidden block h-full"
         id="scroll-window"
       >
-        {videos.map((video: Video, index: number) => {
-          return <MobileVideo post={video} key={video._id} index={index} />;
+        {videos.map((video: IVideo, index: number) => {
+          return <MobileVideo post={video} key={video.id} index={index} />;
         })}
       </div>
     </>
@@ -56,9 +56,9 @@ export const getServerSideProps = async ({
 }) => {
   let response = null;
   if (topic) {
-    response = await axios.get(`${BASE_URL}/api/discover/${topic}`);
+    response = await axios.get(`${BASE_URL}/api/v1/videos/${topic}`);
   } else {
-    response = await axios.get(`${BASE_URL}/api/post`);
+    response = await axios.get(`${BASE_URL}/api/v1/videos/`);
   }
 
   if (!response.data) {
@@ -74,5 +74,4 @@ export const getServerSideProps = async ({
   };
 };
 
-// http://localhost:3000/
 export default Home;

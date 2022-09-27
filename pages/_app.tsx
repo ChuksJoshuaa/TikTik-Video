@@ -49,13 +49,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }
 };
 
-{
-  /* <div
-            className="h-[52px] py-[12px] px-[12px] absolute bottom-0 w-[100vw] z-[11] items-center font-[600]"
-            style={{ backgroundColor: "rgba(0,0,0,0.75)" }}
-          >
-            Hello Wold
-          </div> */
-}
-
 export default MyApp;

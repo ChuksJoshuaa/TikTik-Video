@@ -21,6 +21,10 @@ const authStore = (set: any) => ({
 
     set({ allUsers: response.data });
   },
+  discoverAllUsers: async () => {
+    const response = await axios.get(`${BASE_URL}/api/users/discover/`)
+    set({ allUsers: response.data });
+  }
 });
 
 const useAuthStore = create(

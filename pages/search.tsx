@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
-  MainFooter,
   SuggestedAccounts,
   ProfileVideoCard,
   NoResults,
 } from "../components";
-import { Video } from "../types";
+import { IVideo } from "../services/VideoService";
 import { BASE_URL } from "../utils";
 import axios from "axios";
 
@@ -14,14 +13,13 @@ interface IState {
 }
 
 interface IProps {
-  data: Video[];
+  data: IVideo[];
 }
 
 const Search = ({ data }: IProps) => {
-  const [showUserVideos, setShowUserVideos] =
-    useState<IState["showUserVideos"]>(true);
+  const [showUserVideos, setShowUserVideos] = useState<IState["showUserVideos"]>(true);
   const [showAccount, setShowAccount] = useState(false);
-  const [videosList, setVideosList] = useState<Video[]>([]);
+  const [videosList, setVideosList] = useState<IVideo[]>([]);
 
   const videos = showUserVideos ? "border-b-2 border-black" : "text-gray-400";
   const liked = !showUserVideos ? "border-b-2 border-black" : "text-gray-400";
@@ -61,7 +59,7 @@ const Search = ({ data }: IProps) => {
       {!showUserVideos && (
         <div className="flex gap-6 flex-wrap md:justify-center  px-3">
           {videosList.length > 0 ? (
-            videosList.map((post: Video, idx: number) => {
+            videosList.map((post: IVideo, idx: number) => {
               return <ProfileVideoCard post={post} key={idx} />;
             })
           ) : (
