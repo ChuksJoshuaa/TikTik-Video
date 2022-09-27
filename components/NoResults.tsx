@@ -21,15 +21,6 @@ const NoResults = ({ text, showUserVideos }: IProps) => {
         </p>
         <p className="text-2xl text-center">{text}</p>
       </div>
-      <div
-        className={`absolute bottom-0 w-full cursor-pointer sm:block md:hidden ${
-          !showUserVideos ? "" : "hidden"
-        }`}
-      >
-        <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-50">
-          <MainFooter />
-        </div>
-      </div>
     </>
   );
 };

@@ -141,11 +141,11 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   return (
     <>
       <div className="flex flex-col left-0 top-0 bottom-0 right-0 bg-black">
-        <div
-          className=" relative flex-1 "
-          style={{ maxHeight: "calc(100% - 49px)" }}
-        >
-          <div className="flex justify-center h-full w-full items-center bg-blurred-img bg-no-repeat bg-cover bg-center">
+        <div className="relative flex-auto">
+          <div
+            className="flex justify-center h-full w-full items-center bg-blurred-img bg-no-repeat bg-cover bg-center "
+            style={{ maxHeight: "calc(100% - 49px)" }}
+          >
             <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
               <p
                 className="cursor-pointer"
@@ -194,22 +194,6 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 </div>
               )}
             </div>
-            <div className="absolute bottom-0 left-0 z-[5]">
-              <div className="">
-                <Link href={`/profile/${posts.postedBy?._id}`}>
-                  <a className="text-md text-gray-200 font-semibold lowercase mb-1 cursor-pointer px-3">
-                    @{posts.postedBy?.userName}
-                  </a>
-                </Link>
-                <div className="flex justify-between pr-3 w-[100vw]">
-                  <p className="text-md text-gray-200 font-semibold lowercase cursor-pointer w-[70%] px-3">
-                    {posts.caption}
-                  </p>
-                  <p className=" w-[30%] border-l-0 border-red-50"></p>
-                </div>
-              </div>
-            </div>
-            <div className="absolute bottom-0 pt-5"></div>
             <div className="absolute top-[40%] right-3" onClick={urlParams}>
               <div className="font-extralight overflow-visible relative">
                 <Link href={`/profile/${posts.postedBy?._id}`}>
@@ -235,6 +219,21 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                   isPostingComment={isPostingComment}
                   comments={posts.comments}
                 />
+              </div>
+            </div>
+            <div className="absolute top-[76%] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
+              <div className="z-[5]">
+                <Link href={`/profile/${posts.postedBy?._id}`}>
+                  <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
+                    @{posts.postedBy?.userName}
+                  </a>
+                </Link>
+                <div className="flex justify-between pr-3 w-[100vw] pt-2">
+                  <p className="text-md text-gray-100 font-[450] lowercase cursor-pointer w-[70%] px-3">
+                    {posts.caption}
+                  </p>
+                  <p className=" w-[30%] border-l-0 border-red-50"></p>
+                </div>
               </div>
             </div>
           </div>
