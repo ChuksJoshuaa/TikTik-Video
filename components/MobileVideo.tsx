@@ -134,6 +134,12 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
     }, 500);
   }, []);
 
+  useEffect(() => {
+    if (posts && videoRef?.current) {
+      videoRef.current.muted = true
+    }
+  }, [ posts]);
+
   if (!posts) {
     return <Loading />;
   }
@@ -143,8 +149,8 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
       <div className="flex flex-col left-0 top-0 bottom-0 right-0 bg-black">
         <div className="relative flex-auto">
           <div
-            className="flex justify-center h-full w-full items-center bg-blurred-img bg-no-repeat bg-cover bg-center "
-            style={{ maxHeight: "calc(100% - 49px)" }}
+            className="flex justify-center h-[100vh] w-full items-center bg-black bg-no-repeat bg-cover bg-center "
+            // style={{ maxHeight: "calc(100% - 55px)" }}
           >
             <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
               <p
@@ -172,15 +178,16 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 <video
                   ref={videoRef}
                   src={posts.video.asset.url}
-                  className="object-cover h-[90vh] object-contain w-[100vw]"
+                  className="object-cover h-[100vh] object-contain w-[100vw]"
                   key={posts._id}
+                  loop
                   muted={false}
                   data-prefix={posts._id}
                   playsInline
                   onEnded={onEnded}
                  
                 />
-                <div className="relative bottom-[152px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
+                <div className="relative bottom-[95px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
                 <div className="z-[5]">
                   <Link href={`/profile/${posts.postedBy?._id}`}>
                     <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
@@ -197,7 +204,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
               </div>
               </div>
               {isHover && (
-                <div className="absolute top-[28%] left-[40%] cursor-pointer ">
+                <div className="absolute top-[35%] left-[40%] cursor-pointer ">
                   {!playing ? (
                     <button onClick={onVideoClick}>
                       <BsFillPlayFill className="text-gray-200 text-8xl font-bold" />
@@ -210,7 +217,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 </div>
               )}
             </div>
-            <div className="absolute top-[31%] right-3" onClick={urlParams}>
+            <div className="absolute top-[41%] right-3" onClick={urlParams}>
               <div className="font-extralight overflow-visible relative ">
                 <Link href={`/profile/${posts.postedBy?._id}`}>
                   <a>
