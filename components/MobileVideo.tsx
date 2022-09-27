@@ -197,7 +197,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
               </div>
               </div>
               {isHover && (
-                <div className="absolute top-[38%] left-[40%] cursor-pointer ">
+                <div className="absolute top-[28%] left-[40%] cursor-pointer ">
                   {!playing ? (
                     <button onClick={onVideoClick}>
                       <BsFillPlayFill className="text-gray-200 text-8xl font-bold" />
@@ -210,7 +210,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 </div>
               )}
             </div>
-            <div className="absolute top-[40%] right-3" onClick={urlParams}>
+            <div className="absolute top-[31%] right-3" onClick={urlParams}>
               <div className="font-extralight overflow-visible relative ">
                 <Link href={`/profile/${posts.postedBy?._id}`}>
                   <a>
