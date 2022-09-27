@@ -149,8 +149,8 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
       <div className="flex flex-col left-0 top-0 bottom-0 right-0 bg-black">
         <div className="relative flex-auto">
           <div
-            className="flex justify-center h-full w-full items-center bg-black bg-no-repeat bg-cover bg-center "
-            style={{ maxHeight: "calc(100% - 49px)" }}
+            className="flex justify-center h-[100vh] w-full items-center bg-black bg-no-repeat bg-cover bg-center "
+            // style={{ maxHeight: "calc(100% - 100px)" }}
           >
             <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
               <p
@@ -174,7 +174,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 setIsHover(false);
               }}
             >
-              <div className=" relative h-full w-full snap-start">
+              <div className=" relative h-full w-full">
                 <video
                   ref={videoRef}
                   src={posts.video.asset.url}
@@ -187,7 +187,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                   onEnded={onEnded}
                  
                 />
-                <div className="relative bottom-[95px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
+                <div className="relative bottom-[149px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
                 <div className="z-[5]">
                   <Link href={`/profile/${posts.postedBy?._id}`}>
                     <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
