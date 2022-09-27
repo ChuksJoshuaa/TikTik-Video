@@ -34,7 +34,7 @@ const Profile = ({ data }: IProps) => {
     <>
       <div className="w-full">
         <div className="flex gap-6 md:gap-10 mb-4 bg-white w-full">
-          <div className="flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded">
+          <div className="flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded pt-2">
             <div className="w-8 h-16 md:w-32 md:h-32">
               <Image
                 src={user?.image}
