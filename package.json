@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.2.6",
-    "@sanity/client": "^3.3.0",
     "axios": "^0.27.2",
     "gapi-script": "^1.2.0",
     "jwt-decode": "^3.1.2",
@@ -21,6 +20,7 @@
     "react-google-login": "^5.2.2",
     "react-icons": "^4.3.1",
     "sweetalert2": "^11.4.33",
+    "swiper": "^8.4.2",
     "uuidv4": "^6.2.13",
     "zustand": "^4.0.0-rc.1"
   },

@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GoVerified } from "react-icons/go";
-import useAuthStore from "../store/authStore";
-import { IUser } from "../types";
+import userService, {IUserData} from "../services/UserService";
 
 interface IProps {
   showUserVideos: boolean;
 }
 
 const SuggestedAccounts = ({ showUserVideos }: IProps) => {
-  const { fetchAllUsers, allUsers } = useAuthStore();
-
-  useEffect(() => {
-    fetchAllUsers();
-  }, [fetchAllUsers]);
+  var [users] = useState<IUserData[]>([]);
+  const { discoverUsers } = userService;
+  discoverUsers().then((data) => users = data);
 
   return (
     <div
@@ -33,14 +30,14 @@ const SuggestedAccounts = ({ showUserVideos }: IProps) => {
       </p>
 
       <div>
-        {allUsers.slice(0, 6).map((user: IUser) => {
+        {users.map((user: IUserData) => {
           return (
-            <Link href={`/profile/${user._id}`} key={user._id}>
+            <Link href={`/profile/${user.id}`} key={user.id}>
               <a>
                 <div className="flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded">
                   <div className="w-8 h-8">
                     <Image
-                      src={user.image}
+                      src={user.thumbnail}
                       width={34}
                       height={34}
                       className="rounded-full"
@@ -51,11 +48,11 @@ const SuggestedAccounts = ({ showUserVideos }: IProps) => {
 
                   <div className="sm:block md:hidden xl:block">
                     <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
-                      {user.userName.replaceAll(" ", "")}
+                      {user.username.replaceAll(" ", "")}
                       <GoVerified className="text-blue-400" />
                     </p>
                     <p className="capitalize text-gray-400 text-xs">
-                      {user.userName}
+                      {user.username}
                     </p>
                   </div>
                 </div>

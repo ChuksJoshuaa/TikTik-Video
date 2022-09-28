@@ -11,27 +11,21 @@ const Register = () => {
 
   const Router = useRouter();
   return (
-    <div>
-      <div>
-        <p className="text-center text-xl mb-2">Register</p>
-        <p className="border-b-2 border-gray-500"></p>
-
-        <div className="flex flex-col justify-center pt-10 items-center mt-15 ">
-          <BiUser className="mb-3 text-[#F51997] text-8xl cursor-pointer" />
-          <p className="mb-3 text-lg text-gray-900">Sign up for an account</p>
-          <GoogleLogin
-            onSuccess={(response) => {
-              createOrGetUser(response, addUser);
-              Router.back();
-            }}
-            onError={() => console.log("Error")}
-          />
-        </div>
-      </div>
-      <div className="absolute bottom-0 w-full cursor-pointer block md:hidden">
-        <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-400">
-          <MainFooter />
-        </div>
+    <div className="w-full absolute">
+      <div className="flex flex-col justify-center pt-10 items-center mt-15 w-full ">
+        <p className="mb-8 pb-5"></p>
+        <p className="mb-8 "></p>
+        <BiUser className="mb-3 text-gray-900 text-8xl cursor-pointer" />
+        <p className="mb-3 text-lg text-gray-900 font-medium">
+          Sign up for an account
+        </p>
+        <GoogleLogin
+          onSuccess={(response) => {
+            createOrGetUser(response, addUser);
+            Router.back();
+          }}
+          onError={() => console.log("Error")}
+        />
       </div>
     </div>
   );

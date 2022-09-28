@@ -2,9 +2,8 @@ import React, { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GoVerified } from "react-icons/go";
-import useAuthStore from "../store/authStore";
 import { NoResults } from "./index";
-import { IUser } from "../types";
+import { IComment } from "../services/VideoService";
 
 interface IProps {
   isPostingComment: Boolean;
@@ -14,13 +13,6 @@ interface IProps {
   comments: IComment[];
 }
 
-interface IComment {
-  comment?: string;
-  length?: number;
-  _key?: string;
-  postedBy: { _ref: string };
-}
-
 const Comments = ({
   comment,
   setComment,
@@ -28,8 +20,6 @@ const Comments = ({
   comments,
   isPostingComment,
 }: IProps) => {
-  const { userProfile, allUsers } = useAuthStore();
-
   const showUserVideos = false;
 
   return (
@@ -39,42 +29,39 @@ const Comments = ({
           comments.map((item, idx) => {
             return (
               <>
-                {allUsers.map(
-                  (user: IUser) =>
-                    user?._id === item.postedBy?._ref && (
-                      <div className="p-2 items-center" key={idx}>
-                        <Link href={`/profile/${user._id}`} key={user?._id}>
-                          <a>
-                            <div className="flex items-start gap-3">
-                              <div className="w-8 h-8">
-                                <Image
-                                  src={user.image}
-                                  width={34}
-                                  height={34}
-                                  className="rounded-full"
-                                  alt="user profile"
-                                  layout="responsive"
-                                />
-                              </div>
+                {
+                  <div className="p-2 items-center" key={idx}>
+                    <Link href={`/profile/${item.owner.id}`} key={item.owner.id}>
+                      <a>
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8">
+                            <Image
+                              src={item.owner.avatar}
+                              width={34}
+                              height={34}
+                              className="rounded-full"
+                              alt="user profile"
+                              layout="responsive"
+                            />
+                          </div>
 
-                              <div className="hidden xl:block">
-                                <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
-                                  {user.userName.replaceAll(" ", "")}
-                                  <GoVerified className="text-blue-400" />
-                                </p>
-                                <p className="capitalize text-gray-400 text-xs">
-                                  {user.userName}
-                                </p>
-                              </div>
-                            </div>
-                          </a>
-                        </Link>
-                        <div>
-                          <p>- {item.comment}</p>
+                          <div className="hidden xl:block">
+                            <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
+                              {item.owner.username.replaceAll(" ", "")}
+                              <GoVerified className="text-blue-400" />
+                            </p>
+                            <p className="capitalize text-gray-400 text-xs">
+                              {item.owner.username}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    )
-                )}
+                      </a>
+                    </Link>
+                    <div>
+                      <p>- {item.message}</p>
+                    </div>
+                  </div>
+                }
               </>
             );
           })
@@ -82,7 +69,8 @@ const Comments = ({
           <NoResults text="No comments yet" showUserVideos={showUserVideos} />
         )}
       </div>
-      {userProfile && (
+      {/* We need to get global user state */}
+      {/* {userProfile && (
         <div className="absolute bottom-0 left-0 pb-6 px-2 md:px-10">
           <form onSubmit={addComment} className="flex gap-4">
             <input
@@ -99,7 +87,7 @@ const Comments = ({
             </button>
           </form>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
