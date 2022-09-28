@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MdViewHeadline } from "react-icons/md";
-import { BsFillPlayFill, BsFillPauseFill, BsFillVolumeMuteFill } from "react-icons/bs";
+import {
+  BsFillPlayFill,
+  BsFillPauseFill,
+  BsFillVolumeMuteFill,
+} from "react-icons/bs";
 import { Video } from "../types";
 import { NextPage } from "next";
 import { MobileSidebar } from "./index";
@@ -33,8 +37,8 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   const [posts, setPosts] = useState(post);
   const [comment, setComment] = useState("");
   const [isPostingComment, setIsPostingComment] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(true)
-  const [showMute, setShowMute] = useState(false)
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [showMute, setShowMute] = useState(false);
 
   const urlParams: any = () => {
     let vided = videoRef.current?.getAttribute("data-prefix");
@@ -140,18 +144,18 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
 
   useEffect(() => {
     if (posts && videoRef?.current) {
-      videoRef.current.muted = isVideoMuted
-      setShowMute(true)
+      videoRef.current.muted = isVideoMuted;
+      setShowMute(true);
     }
-  }, [ posts]);
+  }, [posts]);
 
   const Unmute = () => {
-    setShowMute(false)
-    if(videoRef?.current.getAttribute("data-prefix")){
-       videoRef.current.muted = !isVideoMuted
-       videoRef.current.play()
+    setShowMute(false);
+    if (videoRef?.current.getAttribute("data-prefix")) {
+      videoRef.current.muted = !isVideoMuted;
+      videoRef.current.play();
     }
-  }
+  };
 
   if (!posts) {
     return <Loading />;
@@ -198,7 +202,6 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                   data-prefix={posts._id}
                   playsInline
                   onEnded={onEnded}
-                 
                 />
                 <div className="relative bottom-[149px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
                   <div className="z-[5]">
@@ -207,7 +210,10 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                         @{posts.postedBy?.userName}
                       </a>
                     </Link>
-                    <div className="flex justify-between pr-3 w-[100vw] pt-2 " style={{ height: "fit-content"}}>
+                    <div
+                      className="flex justify-between pr-3 w-[100vw] pt-2 "
+                      style={{ height: "fit-content" }}
+                    >
                       <p className="text-md text-gray-100 font-[450] lowercase cursor-pointer w-[70%] px-3">
                         {posts.caption}
                       </p>
@@ -215,13 +221,19 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                     </div>
                   </div>
                 </div>
-                {showMute && <div className="absolute top-[200px] left-10" onClick={Unmute}>
-                  <div className="bg-white h-[34px] w-[100px] flex text-center rounded-md gap-1 justify-center items-center">
-                     <BsFillVolumeMuteFill  className="text-gray-900 text-4xl pl-2 font-bold"/>
-                     <p className="text-gray-900 text-sm pr-3 leading-tight font-semibold">Unmute</p>
+                {showMute && (
+                  <div
+                    className="absolute top-[200px] left-10"
+                    onClick={Unmute}
+                  >
+                    <div className="bg-white h-[34px] w-[100px] flex text-center rounded-md gap-1 justify-center items-center">
+                      <BsFillVolumeMuteFill className="text-gray-900 text-4xl pl-2 font-bold" />
+                      <p className="text-gray-900 text-sm pr-3 leading-tight font-semibold">
+                        Unmute
+                      </p>
+                    </div>
                   </div>
-                </div>
-                }
+                )}
               </div>
               {isHover && (
                 <div className="absolute top-[35%] left-[40%] cursor-pointer ">
@@ -264,7 +276,6 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 />
               </div>
             </div>
-           
           </div>
         </div>
       </div>

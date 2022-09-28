@@ -26,10 +26,7 @@ const MobileSidebar = ({ setShowMobileSidebar }: IProps) => {
   const buttonLink =
     " text-white mt-2 hover:bg-[#F51997] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-[#F51997] bg-[#F51997] w-full";
   return (
-    <div
-      className="bg-white w-72 fixed sidebar h-screen dark:bg-secondary-dark-bg fixed top-0 left-0 overflow-auto"
-      style={{ zIndex: "10000000" }}
-    >
+    <div className="bg-white w-72 fixed sidebar h-[95vh] dark:bg-secondary-dark-bg fixed top-0 left-0 z-20 overflow-auto">
       <div className="flex justify-between p-2 mb-1">
         <Link href="/">
           <a>
