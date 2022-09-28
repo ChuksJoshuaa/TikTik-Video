@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MdViewHeadline } from "react-icons/md";
-import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
+import {
+  BsFillPlayFill,
+  BsFillPauseFill,
+  BsFillVolumeMuteFill,
+} from "react-icons/bs";
 import { Video } from "../types";
 import { NextPage } from "next";
 import { MobileSidebar } from "./index";
