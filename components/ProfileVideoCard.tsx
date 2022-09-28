@@ -82,7 +82,7 @@ const ProfileVideoCard: NextPage<IProps> = ({ post }) => {
                 ref={videoRef}
                 loop
                 src={post.video.asset.url}
-                className="lg:w-[600px] h-[270px] md:h-[400px] lg:h-[530px] w-[380px]  cursor-pointer rounded-2xl bg-gray-100"
+                className="lg:w-[600px] h-[270px] md:h-[400px] lg:h-[530px] w-full cursor-pointer rounded-2xl bg-gray-100"
               />
             </a>
           </Link>
