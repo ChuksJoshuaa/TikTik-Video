@@ -134,6 +134,12 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
     }, 500);
   }, []);
 
+  useEffect(() => {
+    if (posts && videoRef?.current) {
+      videoRef.current.muted = true
+    }
+  }, [ posts]);
+
   if (!posts) {
     return <Loading />;
   }
@@ -143,8 +149,8 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
       <div className="flex flex-col left-0 top-0 bottom-0 right-0 bg-black">
         <div className="relative flex-auto">
           <div
-            className="flex justify-center h-full w-full items-center bg-blurred-img bg-no-repeat bg-cover bg-center "
-            style={{ maxHeight: "calc(100% - 49px)" }}
+            className="flex justify-center h-[100vh] w-full items-center bg-black bg-no-repeat bg-cover bg-center "
+            // style={{ maxHeight: "calc(100% - 55px)" }}
           >
             <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
               <p
@@ -168,20 +174,37 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 setIsHover(false);
               }}
             >
-              <div className="h-full w-full snap-start">
+              <div className=" relative h-full w-full snap-start">
                 <video
                   ref={videoRef}
                   src={posts.video.asset.url}
                   className="object-cover h-[100vh] object-contain w-[100vw]"
                   key={posts._id}
+                  loop
                   muted={false}
                   data-prefix={posts._id}
                   playsInline
                   onEnded={onEnded}
+                 
                 />
+                <div className="relative bottom-[149px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
+                <div className="z-[5]">
+                  <Link href={`/profile/${posts.postedBy?._id}`}>
+                    <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
+                      @{posts.postedBy?.userName}
+                    </a>
+                  </Link>
+                  <div className="flex justify-between pr-3 w-[100vw] pt-2 " style={{ height: "fit-content"}}>
+                    <p className="text-md text-gray-100 font-[450] lowercase cursor-pointer w-[70%] px-3">
+                      {posts.caption}
+                    </p>
+                    <p className=" w-[30%] border-l-0 border-red-50"></p>
+                  </div>
+                </div>
+              </div>
               </div>
               {isHover && (
-                <div className="absolute top-[38%] left-[40%] cursor-pointer ">
+                <div className="absolute top-[28%] left-[40%] cursor-pointer ">
                   {!playing ? (
                     <button onClick={onVideoClick}>
                       <BsFillPlayFill className="text-gray-200 text-8xl font-bold" />
@@ -194,8 +217,8 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 </div>
               )}
             </div>
-            <div className="absolute top-[40%] right-3" onClick={urlParams}>
-              <div className="font-extralight overflow-visible relative">
+            <div className="absolute top-[30%] right-3" onClick={urlParams}>
+              <div className="font-extralight overflow-visible relative ">
                 <Link href={`/profile/${posts.postedBy?._id}`}>
                   <a>
                     <Image
@@ -221,21 +244,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 />
               </div>
             </div>
-            <div className="absolute top-[76%] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
-              <div className="z-[5]">
-                <Link href={`/profile/${posts.postedBy?._id}`}>
-                  <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
-                    @{posts.postedBy?.userName}
-                  </a>
-                </Link>
-                <div className="flex justify-between pr-3 w-[100vw] pt-2">
-                  <p className="text-md text-gray-100 font-[450] lowercase cursor-pointer w-[70%] px-3">
-                    {posts.caption}
-                  </p>
-                  <p className=" w-[30%] border-l-0 border-red-50"></p>
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>
