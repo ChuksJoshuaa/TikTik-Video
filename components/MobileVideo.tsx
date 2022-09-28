@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MdViewHeadline } from "react-icons/md";
-import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
+import {
+  BsFillPlayFill,
+  BsFillPauseFill,
+  BsFillVolumeMuteFill,
+} from "react-icons/bs";
 import { Video } from "../types";
 import { NextPage } from "next";
 import { MobileSidebar } from "./index";
@@ -33,6 +37,8 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   const [posts, setPosts] = useState(post);
   const [comment, setComment] = useState("");
   const [isPostingComment, setIsPostingComment] = useState(false);
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [showMute, setShowMute] = useState(false);
 
   const urlParams: any = () => {
     let vided = videoRef.current?.getAttribute("data-prefix");
@@ -111,6 +117,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   useEffect(() => {
     if (isVisibile) {
       if (!playing) {
+        // setShowMute(true)
         videoRef?.current.play();
         setPlaying(true);
       }
@@ -125,6 +132,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   useEffect(() => {
     setTimeout(() => {
       if (index === 0) {
+        // setShowMute(true)
         videoRef.current.play();
         setPlaying(true);
       } else {
@@ -134,17 +142,28 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
     }, 500);
   }, []);
 
-  if (!posts) {
-    return <Loading />;
-  }
+  useEffect(() => {
+    if (posts && videoRef?.current) {
+      videoRef.current.muted = isVideoMuted;
+      setShowMute(true);
+    }
+  }, [posts]);
+
+  const Unmute = () => {
+    setShowMute(false);
+    if (videoRef?.current.getAttribute("data-prefix")) {
+      videoRef.current.muted = !isVideoMuted;
+      videoRef.current.play();
+    }
+  };
 
   return (
     <>
       <div className="flex flex-col left-0 top-0 bottom-0 right-0 bg-black">
         <div className="relative flex-auto">
           <div
-            className="flex justify-center h-full w-full items-center bg-blurred-img bg-no-repeat bg-cover bg-center "
-            style={{ maxHeight: "calc(100% - 49px)" }}
+            className="flex justify-center h-[100vh] w-full items-center bg-black bg-no-repeat bg-cover bg-center "
+            // style={{ maxHeight: "calc(100% - 55px)" }}
           >
             <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
               <p
@@ -172,29 +191,43 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 <video
                   ref={videoRef}
                   src={posts.video.asset.url}
-                  className="object-cover h-[90vh] object-contain w-[100vw]"
+                  className="object-cover h-[100vh] object-contain w-[100vw]"
                   key={posts._id}
+                  loop
                   muted={false}
                   data-prefix={posts._id}
                   playsInline
                   onEnded={onEnded}
                  
                 />
-                <div className="relative bottom-[152px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
-                <div className="z-[5]">
-                  <Link href={`/profile/${posts.postedBy?._id}`}>
-                    <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
-                      @{posts.postedBy?.userName}
-                    </a>
-                  </Link>
-                  <div className="flex justify-between pr-3 w-[100vw] pt-2 " style={{ height: "fit-content"}}>
-                    <p className="text-md text-gray-100 font-[450] lowercase cursor-pointer w-[70%] px-3">
-                      {posts.caption}
-                    </p>
-                    <p className=" w-[30%] border-l-0 border-red-50"></p>
+                 <div className="relative bottom-[149px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
+                    <div className="z-[5]">
+                      <Link href={`/profile/${posts.postedBy?._id}`}>
+                        <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
+                          @{posts.postedBy?.userName}
+                        </a>
+                      </Link>
+                      <div className="flex justify-between pr-3 w-[100vw] pt-2 " style={{ height: "fit-content"}}>
+                        <p className="text-md text-gray-100 font-[450] lowercase cursor-pointer w-[70%] px-3">
+                          {posts.caption}
+                        </p>
+                        <p className=" w-[30%] border-l-0 border-red-50"></p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                  {showMute && (
+                    <div
+                      className="absolute top-[180px] left-10"
+                      onClick={Unmute}
+                    >
+                      <div className="bg-white h-[34px] w-[100px] flex text-center rounded-md gap-1 justify-center items-center">
+                        <BsFillVolumeMuteFill className="text-gray-900 text-4xl pl-2 font-bold" />
+                        <p className="text-gray-900 text-sm pr-3 leading-tight font-semibold">
+                          Unmute
+                        </p>
+                      </div>
+                    </div>
+                  )}
               </div>
               {isHover && (
                 <div className="absolute top-[28%] left-[40%] cursor-pointer ">
@@ -210,7 +243,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 </div>
               )}
             </div>
-            <div className="absolute top-[31%] right-3" onClick={urlParams}>
+            <div className="absolute top-[30%] right-3" onClick={urlParams}>
               <div className="font-extralight overflow-visible relative ">
                 <Link href={`/profile/${posts.postedBy?._id}`}>
                   <a>
