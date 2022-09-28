@@ -33,7 +33,7 @@ const SideIcon = ({
   return (
     <div className="flex flex-col gap-5 aligns-center font-bold">
       <div className=" mb-2 text-4xl text-white hover:text-gray-400">
-        <div className="mb-2">
+        <div className="mb-2" style={{ zIndex: "3", pointerEvents: "auto" }}>
           {userProfile ? (
             <MobileLikeButton
               handleLike={() => handleLike(true)}
@@ -46,10 +46,10 @@ const SideIcon = ({
                 <div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
                   <Link href="/register">
                     <a>
-                      <div className=" rounded-full  text-gray-200 ">
+                      <div className=" rounded-full  text-gray-200 bg-contain bg-no-repeat">
                         <MdFavorite className="text-4xl font-[900]" />
                       </div>
-                      <p className="text-sm text-gray-200 font-[900] pl-4 ">
+                      <p className="text-sm text-gray-200 font-[900] pl-4 bg-contain bg-no-repeat">
                         {checkNumberValue(post?.likes?.length || 0)}
                       </p>
                     </a>
@@ -62,6 +62,7 @@ const SideIcon = ({
         {userProfile ? (
           <div
             className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2"
+            style={{ zIndex: "3", pointerEvents: "auto" }}
             onClick={() => setShowComment(true)}
           >
             {alreadyComment ? (
@@ -75,10 +76,10 @@ const SideIcon = ({
               </>
             ) : (
               <>
-                <div className=" rounded-full text-gray-200">
+                <div className=" rounded-full text-gray-200 bg-contain bg-no-repeat">
                   <FaRegCommentDots className="text-4xl font-[900]" />
                 </div>
-                <p className="text-sm text-gray-200 font-[900] pl-0">
+                <p className="text-sm text-gray-200 font-[900] pl-0 bg-contain bg-no-repeat">
                   {checkNumberValue(comments?.length || 0)}
                 </p>
               </>
@@ -87,13 +88,16 @@ const SideIcon = ({
         ) : (
           <>
             <div>
-              <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
+              <div
+                className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2"
+                style={{ zIndex: "3", pointerEvents: "auto" }}
+              >
                 <Link href="/register">
                   <a>
-                    <div className="rounded-full text-gray-200">
+                    <div className="rounded-full text-gray-200 bg-contain bg-no-repeat">
                       <FaRegCommentDots className="text-4xl  font-[900]" />
                     </div>
-                    <p className="text-sm text-gray-200 font-[900] pl-4">
+                    <p className="text-sm text-gray-200 font-[900] pl-4 bg-contain bg-no-repeat">
                       {checkNumberValue(comments?.length || 0)}
                     </p>
                   </a>
@@ -104,7 +108,7 @@ const SideIcon = ({
         )}
         <div className="mb-2">
           {userProfile ? (
-            <div>
+            <div style={{ zIndex: "3", pointerEvents: "auto" }}>
               <CountButton
                 handleCount={() => handleCount(true)}
                 shares={post?.shares}
@@ -113,14 +117,14 @@ const SideIcon = ({
             </div>
           ) : (
             <>
-              <div>
+              <div style={{ zIndex: "3", pointerEvents: "auto" }}>
                 <div className="mt-4 flex flex-col justify-center items-center cursor-pointer mb-2">
                   <Link href="/register">
                     <a>
-                      <div className="rounded-full text-gray-200">
+                      <div className="rounded-full text-gray-200 bg-contain bg-no-repeat">
                         <IoArrowRedoOutline className="text-4xl font-[900]" />
                       </div>
-                      <p className="text-sm text-gray-200 font-[900] pl-3">
+                      <p className="text-sm text-gray-200 font-[900] pl-3 bg-contain bg-no-repeat">
                         {checkNumberValue(post?.shares?.length || 0)}
                       </p>
                     </a>

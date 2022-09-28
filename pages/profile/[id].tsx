@@ -34,7 +34,7 @@ const Profile = ({ data }: IProps) => {
     <>
       <div className="w-full">
         <div className="flex gap-6 md:gap-10 mb-4 bg-white w-full">
-          <div className="flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded">
+          <div className="flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded pt-2">
             <div className="w-8 h-16 md:w-32 md:h-32">
               <Image
                 src={user?.image}
@@ -61,7 +61,7 @@ const Profile = ({ data }: IProps) => {
           </div>
         </div>
 
-        <div>
+        <div className="w-[100vw]">
           <div className="flex gap-10 mb-10 mt-10 border-b-2 border-gray-200 bg-white w-full ">
             <p
               className={`text-xl font-semibold cursor-pointer mt-2 ml-4 md:ml-0 ${videos}`}
@@ -89,11 +89,6 @@ const Profile = ({ data }: IProps) => {
               />
             )}
           </div>
-        </div>
-      </div>
-      <div className="absolute bottom-0 w-full cursor-pointer md:hidden block">
-        <div className="h-[3rem]  bg-black border-t-2 border-gray-900 text-gray-400">
-          <MainFooter />
         </div>
       </div>
     </>
