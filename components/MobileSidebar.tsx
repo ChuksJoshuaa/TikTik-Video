@@ -27,7 +27,7 @@ const MobileSidebar = ({ setShowMobileSidebar }: IProps) => {
     " text-white mt-2 hover:bg-[#F51997] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-[#F51997] bg-[#F51997] w-full";
   return (
     <div
-      className="bg-white w-72 fixed sidebar h-[95vh] dark:bg-secondary-dark-bg z-19 fixed top-0 left-0 overflow-auto"
+      className="bg-white w-72 fixed sidebar h-[95vh] dark:bg-secondary-dark-bg z-50 fixed top-0 left-0 overflow-auto"
       
     >
       <div className="flex justify-between p-2 mb-1">
