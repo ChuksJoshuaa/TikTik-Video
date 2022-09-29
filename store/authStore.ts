@@ -6,6 +6,7 @@ import { BASE_URL } from "../utils";
 const authStore = (set: any) => ({
   userProfile: null,
   allUsers: [],
+  topics: [],
 
   //Note user is coming from utils/index.ts folder that was created
 
@@ -17,14 +18,24 @@ const authStore = (set: any) => ({
 
   //To fetch all Users
   fetchAllUsers: async () => {
-    const response = await axios.get(`${BASE_URL}/api/users`);
+    const response = await axios.get(`https://api.teammato.com/api/v1/users/`);
 
     set({ allUsers: response.data });
   },
+
+  // to fetch all tags
+  fetchAllTags: async () => {
+    const response = await axios.get(`https://api.teammato.com/api/v1/tags/`);
+
+    set({ topics: response.data });
+  },
+
   discoverAllUsers: async () => {
-    const response = await axios.get(`${BASE_URL}/api/users/discover/`)
+    const response = await axios.get(
+      `https://api.teammato.com/api/users/discover/`
+    );
     set({ allUsers: response.data });
-  }
+  },
 });
 
 const useAuthStore = create(

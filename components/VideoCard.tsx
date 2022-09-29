@@ -7,6 +7,7 @@ import Link from "next/link";
 import { GoVerified } from "react-icons/go";
 import { WebIcon } from "./index";
 import { BASE_URL } from "../utils";
+import image1 from "../utils/images.png";
 import useAuthStore from "../store/authStore";
 import axios from "axios";
 
@@ -35,9 +36,12 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 
   const handleCount = async (share: boolean) => {
     if (userProfile) {
-      const { data } = await axios.post(`${BASE_URL}/api/v1/videos/${posts.id}/share/`, {
-        user_id: userProfile._id,
-      });
+      const { data } = await axios.post(
+        `${BASE_URL}/api/v1/videos/${posts.id}/share/`,
+        {
+          user_id: userProfile._id,
+        }
+      );
 
       // setPosts({ ...posts, shares: data.shares });
     }
@@ -45,7 +49,9 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 
   const handleLike = async (like: boolean) => {
     if (userProfile) {
-      const { data } = await axios.put(`${BASE_URL}/api/v1/videos/${posts.id}/like/`);
+      const { data } = await axios.put(
+        `${BASE_URL}/api/v1/videos/${posts.id}/like/`
+      );
 
       // setPosts({ ...posts, likes: data.likes });
     }
@@ -62,7 +68,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                   width={62}
                   height={62}
                   className="rounded-full"
-                  src={posts.owner.avatar}
+                  src={posts.owner.avatar || image1}
                   layout="responsive"
                   alt="profile photo"
                 />
@@ -96,25 +102,29 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
             setIsHover(false);
           }}
         >
-          {userProfile ? <Link href={`/detail/${posts.id}`}>
-            <a>
-              <video
-                ref={videoRef}
-                controls={isHover}
-                src={posts.standard}
-                className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
-              />
-            </a>
-          </Link>: <Link href="">
-            <a>
-              <video
-                ref={videoRef}
-                controls={isHover}
-                src={posts.standard}
-                className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
-              />
-            </a>
-          </Link>}
+          {userProfile ? (
+            <Link href={`/detail/${posts.id}`}>
+              <a>
+                <video
+                  ref={videoRef}
+                  controls={isHover}
+                  src={posts.standard}
+                  className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
+                />
+              </a>
+            </Link>
+          ) : (
+            <Link href="">
+              <a>
+                <video
+                  ref={videoRef}
+                  controls={isHover}
+                  src={posts.standard}
+                  className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
+                />
+              </a>
+            </Link>
+          )}
         </div>
         <div className="flex flex-col items-center justify-between">
           <div></div>

@@ -3,6 +3,7 @@ import { IVideo } from "../services/VideoService";
 import { VideoCard, NoResults, MobileVideo } from "../components";
 import { BASE_URL } from "../utils";
 import { useRouter } from "next/router";
+import { AiTwotonePicture } from "react-icons/ai";
 
 interface IProps {
   videos: IVideo[];
@@ -34,44 +35,38 @@ const Home = ({ videos }: IProps) => {
           return <VideoCard post={video} key={video.id} />;
         })}
       </div>
-      <div
+      {/* <div
         className="flex flex-col bg-black md:hidden block h-full"
         id="scroll-window"
       >
         {videos.map((video: IVideo, index: number) => {
           return <MobileVideo post={video} key={video.id} index={index} />;
         })}
-      </div>
+      </div> */}
     </>
   );
 };
 
-//we are making a request to this url http://localhost:3000/api/post since the backend is in api/post in our project folder.
-
-//We use getServerSideProps to fetch data in next.js backend. in this case we are trying to fetch the videos from sanity once the page loads
-export const getServerSideProps = async ({
+export async function getServerSideProps({
   query: { topic },
 }: {
   query: { topic: string };
-}) => {
+}) {
+  // Fetch data from external API
+
   let response = null;
+  let data;
+
   if (topic) {
-    response = await axios.get(`${BASE_URL}/api/v1/videos/${topic}`);
+    response = await fetch(`https://api.teammato.com/api/v1/videos/${topic}`);
+    data = await response.json();
   } else {
-    response = await axios.get(`${BASE_URL}/api/v1/videos/`);
+    let response = await fetch(`https://api.teammato.com/api/v1/videos/`);
+    data = await response.json();
   }
 
-  if (!response.data) {
-    return {
-      msg: "Data not fetched",
-    };
-  }
-
-  return {
-    props: {
-      videos: response.data,
-    },
-  };
-};
+  // Pass data to the page via props
+  return { props: { videos: data } };
+}
 
 export default Home;

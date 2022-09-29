@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { topics } from "../utils/constants";
+
+import useAuthStore from "../store/authStore";
 
 const Discover = () => {
   const router = useRouter();
+  const { fetchAllTags, topics } = useAuthStore();
+
+  useEffect(() => {
+    fetchAllTags();
+  }, [fetchAllTags]);
 
   //To specify the topic that was clicked
   const { topic } = router.query;
@@ -22,7 +28,7 @@ const Discover = () => {
         Popular Topics
       </p>
       <div className="flex gap-3 flex-wrap">
-        {topics.map((item) => {
+        {topics.map((item: any) => {
           return (
             <Link href={`/?topic=${item.name}`} key={item.name}>
               <a>
@@ -31,9 +37,6 @@ const Discover = () => {
                     topic === item.name ? activeTopicStyle : topicStyle
                   }
                 >
-                  <span className="font-bold text-2xl xl-text-md">
-                    {item.icon}
-                  </span>
                   <span className="font-medium text-md sm:block md:hidden xl:block capitalize">
                     {item.name}
                   </span>

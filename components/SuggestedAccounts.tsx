@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GoVerified } from "react-icons/go";
-import userService, {IUserData} from "../services/UserService";
+import { IUserData } from "../services/UserService";
+import image2 from "../utils/images.png";
+import useAuthStore from "../store/authStore";
 
 interface IProps {
   showUserVideos: boolean;
 }
 
 const SuggestedAccounts = ({ showUserVideos }: IProps) => {
-  var [users] = useState<IUserData[]>([]);
-  const { discoverUsers } = userService;
-  discoverUsers().then((data) => users = data);
+  const { fetchAllUsers, allUsers } = useAuthStore();
+
+  useEffect(() => {
+    fetchAllUsers();
+  }, [fetchAllUsers]);
 
   return (
     <div
@@ -30,14 +34,14 @@ const SuggestedAccounts = ({ showUserVideos }: IProps) => {
       </p>
 
       <div>
-        {users.map((user: IUserData) => {
+        {allUsers.map((user: IUserData) => {
           return (
             <Link href={`/profile/${user.id}`} key={user.id}>
               <a>
                 <div className="flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded">
                   <div className="w-8 h-8">
                     <Image
-                      src={user.thumbnail}
+                      src={user.thumbnail || image2}
                       width={34}
                       height={34}
                       className="rounded-full"
@@ -47,7 +51,7 @@ const SuggestedAccounts = ({ showUserVideos }: IProps) => {
                   </div>
 
                   <div className="sm:block md:hidden xl:block">
-                    <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
+                    <p className="flex gap-1 items-center text-md font-bold text-primary capitalize">
                       {user.username.replaceAll(" ", "")}
                       <GoVerified className="text-blue-400" />
                     </p>
