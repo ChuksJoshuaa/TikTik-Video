@@ -118,11 +118,13 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
     if (isVisibile) {
       if (!playing) {
         // setShowMute(true)
+        videoRef.current.load();
         videoRef?.current.play();
         setPlaying(true);
       }
     } else {
       if (playing) {
+        // videoRef.current.load();
         videoRef?.current.pause();
         setPlaying(false);
       }
@@ -134,6 +136,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
       if (index === 0) {
         // setShowMute(true)
         videoRef.current.play();
+        videoRef.current.load();
         setPlaying(true);
       } else {
         videoRef.current.pause();
