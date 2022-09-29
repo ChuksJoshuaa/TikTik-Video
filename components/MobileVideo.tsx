@@ -154,12 +154,10 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
     if (videoRef?.current.getAttribute("data-prefix")) {
       videoRef.current.muted = !isVideoMuted;
       videoRef.current.play();
+      setIsHover(false);
+      setPlaying(true);
     }
   };
-
-  if (!posts) {
-    return <Loading />;
-  }
 
   return (
     <>
@@ -167,7 +165,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
         <div className="relative flex-auto">
           <div
             className="flex justify-center h-[100vh] w-full items-center bg-black bg-no-repeat bg-cover bg-center "
-            // style={{ maxHeight: "calc(100% - 100px)" }}
+            // style={{ maxHeight: "calc(100% - 55px)" }}
           >
             <div className="fixed top-6 left-2 lg:left-6 flex gap-6 z-50">
               <p
@@ -202,8 +200,9 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                   data-prefix={posts._id}
                   playsInline
                   onEnded={onEnded}
+                  preload="none"
                 />
-                <div className="relative bottom-[149px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
+                <div className="relative bottom-[153px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
                   <div className="z-[5]">
                     <Link href={`/profile/${posts.postedBy?._id}`}>
                       <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
@@ -223,7 +222,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 </div>
                 {showMute && (
                   <div
-                    className="absolute top-[200px] left-10"
+                    className="absolute top-[140px] left-10"
                     onClick={Unmute}
                   >
                     <div className="bg-white h-[34px] w-[100px] flex text-center rounded-md gap-1 justify-center items-center">
@@ -236,7 +235,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 )}
               </div>
               {isHover && (
-                <div className="absolute top-[35%] left-[40%] cursor-pointer ">
+                <div className="absolute top-[34%] left-[40%] cursor-pointer ">
                   {!playing ? (
                     <button onClick={onVideoClick}>
                       <BsFillPlayFill className="text-gray-200 text-8xl font-bold" />
@@ -249,7 +248,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 </div>
               )}
             </div>
-            <div className="absolute top-[41%] right-3" onClick={urlParams}>
+            <div className="absolute top-[28%] right-3" onClick={urlParams}>
               <div className="font-extralight overflow-visible relative ">
                 <Link href={`/profile/${posts.postedBy?._id}`}>
                   <a>
