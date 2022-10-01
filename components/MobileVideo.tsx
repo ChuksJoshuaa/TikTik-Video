@@ -245,7 +245,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                     </button>
                   ) : (
                     <button onClick={onVideoClick}>
-                      <BsFillPauseFill className="text-gray-200 text-8xl  font-semibold opacity-0" />
+                      <BsFillPauseFill className="text-gray-200 text-9xl  font-semibold opacity-0" />
                     </button>
                   )}
                 </div>
