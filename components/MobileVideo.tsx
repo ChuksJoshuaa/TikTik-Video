@@ -37,8 +37,8 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   const [posts, setPosts] = useState(post);
   const [comment, setComment] = useState("");
   const [isPostingComment, setIsPostingComment] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
-  const [showMute, setShowMute] = useState(false);
+  // const [isVideoMuted, setIsVideoMuted] = useState(true);
+  // const [showMute, setShowMute] = useState(false);
 
   const urlParams: any = () => {
     let vided = videoRef.current?.getAttribute("data-prefix");
@@ -118,11 +118,13 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
     if (isVisibile) {
       if (!playing) {
         // setShowMute(true)
+        videoRef.current.load();
         videoRef?.current.play();
         setPlaying(true);
       }
     } else {
       if (playing) {
+        // videoRef.current.load();
         videoRef?.current.pause();
         setPlaying(false);
       }
@@ -134,6 +136,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
       if (index === 0) {
         // setShowMute(true)
         videoRef.current.play();
+        videoRef.current.load();
         setPlaying(true);
       } else {
         videoRef.current.pause();
@@ -142,22 +145,22 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
     }, 500);
   }, []);
 
-  useEffect(() => {
-    if (posts && videoRef?.current) {
-      videoRef.current.muted = isVideoMuted;
-      setShowMute(true);
-    }
-  }, [posts]);
+  // useEffect(() => {
+  //   if (posts && videoRef?.current) {
+  //     videoRef.current.muted = isVideoMuted;
+  //     setShowMute(true);
+  //   }
+  // }, [posts]);
 
-  const Unmute = () => {
-    setShowMute(false);
-    if (videoRef?.current.getAttribute("data-prefix")) {
-      videoRef.current.muted = !isVideoMuted;
-      videoRef.current.play();
-      setIsHover(false);
-      setPlaying(true);
-    }
-  };
+  // const Unmute = () => {
+  //   setShowMute(false);
+  //   if (videoRef?.current.getAttribute("data-prefix")) {
+  //     videoRef.current.muted = !isVideoMuted;
+  //     videoRef.current.play();
+  //     setIsHover(false);
+  //     setPlaying(true);
+  //   }
+  // };
 
   return (
     <>
@@ -220,7 +223,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                     </div>
                   </div>
                 </div>
-                {showMute && (
+                {/* {showMute && (
                   <div
                     className="absolute top-[140px] left-10"
                     onClick={Unmute}
@@ -232,7 +235,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                       </p>
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
               {isHover && (
                 <div className="absolute top-[34%] left-[40%] cursor-pointer ">
