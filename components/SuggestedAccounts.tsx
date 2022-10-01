@@ -24,16 +24,21 @@ const SuggestedAccounts = ({ showUserVideos }: IProps) => {
           : "border-b-2 md:border-b-0 xl:border-b-2 border-gray-200"
       }`}
     >
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap"
+        rel="stylesheet"
+      ></link>
       <p
-        className={`text-gray-500 font-semibold m-3 block md:hidden lg:block ${
+        className={`text-gray-700 font-semibold m-3 block md:hidden text-lg leading-3 lg:block ${
           showUserVideos ? "hidden" : "block mt-4"
         }`}
+        style={{ fontFamily: "Lobster Two" }}
       >
         Suggested Accounts
       </p>
 
       <div>
-        {allUsers.slice(0, 6).map((user: IUser) => {
+        {allUsers.slice(0, 5).map((user: IUser) => {
           return (
             <Link href={`/profile/${user._id}`} key={user._id}>
               <a>

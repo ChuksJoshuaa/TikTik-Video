@@ -24,14 +24,23 @@ const Sidebar = () => {
       </div>
       {showSidebar && (
         <div className="xl:w-400 w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3">
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap"
+            rel="stylesheet"
+          ></link>
           <div className="xl:border-b-2 border-gray-200 xl:pb-4">
             <Link href="/">
               <a>
                 <div className={normalLink}>
-                  <p className="text-2xl">
+                  <p className="text-2xl text-gray-700">
                     <AiFillHome />
                   </p>
-                  <span className="text-xl hidden xl:block">For you</span>
+                  <span
+                    className="text-xl hidden xl:block text-gray-700"
+                    style={{ fontFamily: "Lobster Two" }}
+                  >
+                    For you
+                  </span>
                 </div>
               </a>
             </Link>

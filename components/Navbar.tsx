@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AiOutlineLogout } from "react-icons/ai";
+import { HiOutlineLogout } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import { IoMdAdd } from "react-icons/io";
-import logo from "../utils/tiktik-logo.png";
+import logo from "../utils/logos.jpeg";
 import { googleLogout, GoogleLogin } from "@react-oauth/google";
 import { createOrGetUser } from "../utils";
 import useAuthStore from "../store/authStore";
@@ -30,16 +31,28 @@ const Navbar = () => {
 
   return (
     <div className="w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4">
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap"
+        rel="stylesheet"
+      ></link>
       <Link href="/">
         <a>
-          <div className="w-[100px] md:w-[130px]">
-            <Image
-              className="cursor-pointer"
-              src={logo}
-              alt="tiktik"
-              layout="responsive"
-              onClick={() => setSearchTerm("")}
-            />
+          <div className="flex justify-between items-start">
+            <div className="w-[60px] md:w-[90px]">
+              <Image
+                className="cursor-pointer rounded-lg"
+                src={logo}
+                alt="tiktik"
+                layout="responsive"
+                onClick={() => setSearchTerm("")}
+              />
+            </div>
+            <div
+              className="text-gray-900 text-md md:text-5xl px-2 mt-1 leading-[240px]"
+              style={{ fontFamily: "Lobster Two" }}
+            >
+              Macs
+            </div>
           </div>
         </a>
       </Link>
@@ -76,7 +89,12 @@ const Navbar = () => {
                 <button className="border-2 px-2 mt-2 md:px-4 text-md font-semibold flex items-center gap-2">
                   <IoMdAdd className="text-xl" />
                   {` `}
-                  <span className="hidden md:block">upload</span>
+                  <span
+                    className="hidden md:block"
+                    style={{ fontFamily: "Lobster Two" }}
+                  >
+                    upload
+                  </span>
                 </button>
               </a>
             </Link>
@@ -101,7 +119,7 @@ const Navbar = () => {
                 removeUser();
               }}
             >
-              <AiOutlineLogout color="red" fontSize={21} />
+              <HiOutlineLogout color="black" fontSize={21} />
             </button>
           </div>
         ) : (
