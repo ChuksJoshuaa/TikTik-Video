@@ -63,14 +63,14 @@ export const footerList1 = [
   "Store",
   "Contact",
   "Carrers",
-  "ByteDance",
+  "Showbiz",
   "Creator Directory",
 ];
 export const footerList2 = [
   "Advertise",
   "Developers",
   "Transparency",
-  "Macs Rewards",
+  "Top Rated",
 ];
 export const footerList3 = [
   "Help",
