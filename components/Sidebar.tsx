@@ -39,7 +39,7 @@ const Sidebar = () => {
                     className="text-xl hidden xl:block text-gray-700"
                     style={{ fontFamily: "Lobster Two" }}
                   >
-                    For you
+                    Home
                   </span>
                 </div>
               </a>

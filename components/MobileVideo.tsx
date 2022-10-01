@@ -176,7 +176,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 onClick={() => setShowMobileSidebar(true)}
               >
                 <MdViewHeadline
-                  className="text-gray-200 hover:text-[#F51997] text-[40px]"
+                  className="text-gray-200 hover:text-gray-900 text-[40px]"
                   style={{ pointerEvents: "auto" }}
                 />
               </p>

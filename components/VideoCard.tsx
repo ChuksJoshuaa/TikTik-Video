@@ -9,6 +9,7 @@ import { WebIcon } from "./index";
 import { BASE_URL } from "../utils";
 import useAuthStore from "../store/authStore";
 import axios from "axios";
+import useElementOnScreen from "../utils/useElementOnScreen";
 
 interface IProps {
   post: Video;
@@ -102,25 +103,29 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
             setIsHover(false);
           }}
         >
-          {userProfile ? <Link href={`/detail/${posts._id}`}>
-            <a>
-              <video
-                ref={videoRef}
-                controls={isHover}
-                src={posts.video.asset.url}
-                className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
-              />
-            </a>
-          </Link>: <Link href="">
-            <a>
-              <video
-                ref={videoRef}
-                controls={isHover}
-                src={posts.video.asset.url}
-                className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
-              />
-            </a>
-          </Link>}
+          {userProfile ? (
+            <Link href={`/detail/${posts._id}`}>
+              <a>
+                <video
+                  ref={videoRef}
+                  controls={isHover}
+                  src={posts.video.asset.url}
+                  className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
+                />
+              </a>
+            </Link>
+          ) : (
+            <Link href="">
+              <a>
+                <video
+                  ref={videoRef}
+                  controls={isHover}
+                  src={posts.video.asset.url}
+                  className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
+                />
+              </a>
+            </Link>
+          )}
         </div>
         <div className="flex flex-col items-center justify-between">
           <div></div>
