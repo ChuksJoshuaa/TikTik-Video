@@ -21,6 +21,7 @@ import Loading from "./Loading";
 import WebIcon from "./WebIcon";
 import WebCountButton from "./WebCountButton";
 import WebShareFile from "./WebShareFile";
+import FollowButton from "./FollowButton";
 
 export {
   SuggestedAccounts,
@@ -46,4 +47,5 @@ export {
   WebCountButton,
   WebShareFile,
   MobileLikeButton,
+  FollowButton,
 };

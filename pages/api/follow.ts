@@ -8,11 +8,11 @@ export default async function handler(
 ) {
   try {
     if (req.method === "PUT") {
-      const { userId, postId, follow } = req.body;
+      const { userId, accountId, follow } = req.body;
 
       const data = follow
         ? await client
-            .patch(postId)
+            .patch(accountId)
             .setIfMissing({ follows: [] })
             .insert("after", "follows[-1]", [
               {
@@ -22,7 +22,7 @@ export default async function handler(
             ])
             .commit()
         : await client
-            .patch(postId)
+            .patch(accountId)
             .unset([`follows[_ref=="${userId}"]`])
             .commit();
 
