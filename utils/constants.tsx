@@ -1,5 +1,5 @@
 import { BsCode, BsEmojiSunglasses } from "react-icons/bs";
-import { GiCakeSlice, GiGalaxy, GiLipstick } from "react-icons/gi";
+import { GiCakeSlice, GiLipstick } from "react-icons/gi";
 import { MdCastForEducation } from "react-icons/md";
 
 import {
@@ -8,12 +8,17 @@ import {
   FaGamepad,
   FaMusic,
   FaCreativeCommonsNcEu,
+  FaFilm,
 } from "react-icons/fa";
 
 export const topics = [
   {
     name: "coding",
     icon: <BsCode />,
+  },
+  {
+    name: "film",
+    icon: <FaFilm />,
   },
   {
     name: "Trading",
@@ -35,10 +40,7 @@ export const topics = [
     name: "food",
     icon: <GiCakeSlice />,
   },
-  {
-    name: "dance",
-    icon: <GiGalaxy />,
-  },
+
   {
     name: "Music Video",
     icon: <FaMusic />,

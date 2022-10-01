@@ -34,7 +34,7 @@ const FollowButton: NextPage<IFollow> = ({
 
   return (
     <div>
-      {userProfile._id !== posterId ? (
+      {userProfile?._id !== posterId ? (
         alreadyFollowed ? (
           <div
             className="border-2 border-gray-400 px-5 tracking-widest"

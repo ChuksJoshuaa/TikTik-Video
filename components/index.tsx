@@ -22,6 +22,7 @@ import WebIcon from "./WebIcon";
 import WebCountButton from "./WebCountButton";
 import WebShareFile from "./WebShareFile";
 import FollowButton from "./FollowButton";
+import ModalLogin from "./ModalLogin";
 
 export {
   SuggestedAccounts,
@@ -48,4 +49,5 @@ export {
   WebShareFile,
   MobileLikeButton,
   FollowButton,
+  ModalLogin,
 };
