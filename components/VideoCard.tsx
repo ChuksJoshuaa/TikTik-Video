@@ -5,11 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { GoVerified } from "react-icons/go";
-import { WebIcon } from "./index";
+import { WebIcon, FollowButton } from "./index";
 import { BASE_URL } from "../utils";
 import useAuthStore from "../store/authStore";
 import axios from "axios";
-import useElementOnScreen from "../utils/useElementOnScreen";
 
 interface IProps {
   post: Video;
@@ -106,11 +105,12 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
               </a>
             </Link>
             <div className="px-5"></div>
-            <div
-              className="border-2 border-gray-400 px-5 tracking-widest"
-              style={{ fontFamily: "Lobster Two" }}
-            >
-              Follow
+            <div>
+              <FollowButton
+                handleFollow={() => handleFollow(true)}
+                handleUnFollow={() => handleFollow(false)}
+                follows={posts.follows}
+              />
             </div>
           </div>
         </div>
