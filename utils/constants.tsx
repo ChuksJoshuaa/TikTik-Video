@@ -46,7 +46,7 @@ export const topics = [
     icon: <FaMusic />,
   },
   {
-    name: "beauty",
+    name: "Fashion",
     icon: <GiLipstick />,
   },
   {
