@@ -38,7 +38,7 @@ const Navbar = () => {
       <Link href="/">
         <a>
           <div className="flex justify-between items-start">
-            <div className="w-[60px] md:w-[90px]">
+            <div className="w-[60px] lg:w-[90px]">
               <Image
                 className="cursor-pointer rounded-lg"
                 src={logo}
@@ -48,7 +48,7 @@ const Navbar = () => {
               />
             </div>
             <div
-              className="text-gray-900 text-md md:text-5xl px-2 mt-1 leading-[240px]"
+              className="text-gray-900 text-md md:text-2xl lg:text-5xl px-2 mt-1 leading-[240px]"
               style={{ fontFamily: "Lobster Two" }}
             >
               S-cam

@@ -7,18 +7,22 @@ interface IFollow {
   handleFollow: () => void;
   handleUnFollow: () => void;
   follows: any[];
+  posterId: string | number;
 }
 
 const FollowButton: NextPage<IFollow> = ({
   handleFollow,
   handleUnFollow,
   follows,
+  posterId,
 }) => {
   const [alreadyFollowed, setAlreadyFollowed] = useState(false);
   const { userProfile }: { userProfile: any } = useAuthStore();
   const filterFollows = follows?.filter(
     (item) => item._ref === userProfile._id
   );
+
+  console.log(filterFollows, posterId);
 
   useEffect(() => {
     if (filterFollows?.length > 0) {
@@ -30,20 +34,26 @@ const FollowButton: NextPage<IFollow> = ({
 
   return (
     <div>
-      {alreadyFollowed ? (
-        <div
-          className="border-2 border-gray-400 px-5 tracking-widest"
-          style={{ fontFamily: "Lobster Two" }}
-        >
-          Following
-        </div>
+      {userProfile._id !== posterId ? (
+        alreadyFollowed ? (
+          <div
+            className="border-2 border-gray-400 px-5 tracking-widest"
+            style={{ fontFamily: "Lobster Two" }}
+            onClick={handleUnFollow}
+          >
+            Following
+          </div>
+        ) : (
+          <div
+            className="border-2 border-red-500 px-5 tracking-widest text-red-500"
+            style={{ fontFamily: "Lobster Two" }}
+            onClick={handleFollow}
+          >
+            Follow
+          </div>
+        )
       ) : (
-        <div
-          className="border-2 border-red-500 px-5 tracking-widest text-red-500"
-          style={{ fontFamily: "Lobster Two" }}
-        >
-          Follow
-        </div>
+        ""
       )}
     </div>
   );
