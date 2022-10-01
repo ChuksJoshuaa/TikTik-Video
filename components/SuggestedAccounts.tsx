@@ -25,7 +25,7 @@ const SuggestedAccounts = ({ showUserVideos }: IProps) => {
       }`}
     >
       <p
-        className={`text-gray-500 font-semibold m-3  ${
+        className={`text-gray-500 font-semibold m-3 block md:hidden lg:block ${
           showUserVideos ? "hidden" : "block mt-4"
         }`}
       >
