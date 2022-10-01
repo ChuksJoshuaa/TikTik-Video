@@ -11,8 +11,8 @@ interface IProps {
 const NoResults = ({ text, showUserVideos }: IProps) => {
   return (
     <>
-      <div className="flex flex-col justify-center items-center h-full w-full">
-        <p className="text-8xl mt-8 md:mt-0 pt-7 md:pt-0">
+      <div className="flex flex-col justify-center items-center h-full w-full lg:pl-5 lg:mt-9  ">
+        <p className="text-8xl mt-8 md:mt-0 pt-7 md:pt-0 ">
           {text === "No comments yet" ? (
             <BiCommentX />
           ) : (
