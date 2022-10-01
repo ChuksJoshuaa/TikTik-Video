@@ -205,7 +205,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                   onEnded={onEnded}
                   preload="none"
                 />
-                <div className="relative bottom-[153px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
+                <div className="relative bottom-[155px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
                   <div className="z-[5]">
                     <Link href={`/profile/${posts.postedBy?._id}`}>
                       <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
