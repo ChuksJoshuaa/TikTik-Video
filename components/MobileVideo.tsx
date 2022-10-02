@@ -37,8 +37,8 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   const [posts, setPosts] = useState(post);
   const [comment, setComment] = useState("");
   const [isPostingComment, setIsPostingComment] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
-  const [showMute, setShowMute] = useState(false);
+  // const [isVideoMuted, setIsVideoMuted] = useState(true);
+  // const [showMute, setShowMute] = useState(false);
 
   const urlParams: any = () => {
     let vided = videoRef.current?.getAttribute("data-prefix");
@@ -145,22 +145,22 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
     }, 500);
   }, []);
 
-  useEffect(() => {
-    if (posts && videoRef?.current) {
-      videoRef.current.muted = isVideoMuted;
-      setShowMute(true);
-    }
-  }, [posts]);
+  // useEffect(() => {
+  //   if (posts && videoRef?.current) {
+  //     videoRef.current.muted = isVideoMuted;
+  //     setShowMute(true);
+  //   }
+  // }, [posts]);
 
-  const Unmute = () => {
-    setShowMute(false);
-    if (videoRef?.current.getAttribute("data-prefix")) {
-      videoRef.current.muted = !isVideoMuted;
-      videoRef.current.play();
-      setIsHover(false);
-      setPlaying(true);
-    }
-  };
+  // const Unmute = () => {
+  //   setShowMute(false);
+  //   if (videoRef?.current.getAttribute("data-prefix")) {
+  //     videoRef.current.muted = !isVideoMuted;
+  //     videoRef.current.play();
+  //     setIsHover(false);
+  //     setPlaying(true);
+  //   }
+  // };
 
   return (
     <>
@@ -176,7 +176,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                 onClick={() => setShowMobileSidebar(true)}
               >
                 <MdViewHeadline
-                  className="text-gray-200 hover:text-[#F51997] text-[40px]"
+                  className="text-gray-200 hover:text-gray-900 text-[40px]"
                   style={{ pointerEvents: "auto" }}
                 />
               </p>
@@ -205,7 +205,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                   onEnded={onEnded}
                   preload="none"
                 />
-                <div className="relative bottom-[153px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
+                <div className="relative bottom-[155px] left-0 z-[5] leading-4 pb-3 mix-blend-difference">
                   <div className="z-[5]">
                     <Link href={`/profile/${posts.postedBy?._id}`}>
                       <a className="text-md text-gray-100 font-[450] lowercase mb-1 cursor-pointer px-3">
@@ -223,7 +223,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                     </div>
                   </div>
                 </div>
-                {showMute && (
+                {/* {showMute && (
                   <div
                     className="absolute top-[140px] left-10"
                     onClick={Unmute}
@@ -235,7 +235,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                       </p>
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
               {isHover && (
                 <div className="absolute top-[34%] left-[40%] cursor-pointer ">
@@ -245,7 +245,7 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                     </button>
                   ) : (
                     <button onClick={onVideoClick}>
-                      <BsFillPauseFill className="text-gray-200 text-8xl  font-semibold opacity-0" />
+                      <BsFillPauseFill className="text-gray-200 text-9xl  font-semibold opacity-0" />
                     </button>
                   )}
                 </div>

@@ -28,6 +28,13 @@ export interface Video {
       image: string;
     };
   }[];
+  follows: {
+    postedBy: {
+      _id: string;
+      userName: string;
+      image: string;
+    };
+  }[];
   comments: {
     comment: string;
     _key: string;

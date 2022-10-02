@@ -18,7 +18,14 @@ const Discover = () => {
 
   return (
     <div className="border-b-2 md:border-b-0 xl:border-b-2 pb-6">
-      <p className="text-gray-500 font-semibold m-3 mt-4 sm:block md:hidden xl:block">
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap"
+        rel="stylesheet"
+      ></link>
+      <p
+        className="text-gray-700 leading-3 font-semibold text-lg m-3 mt-4 sm:block md:hidden xl:block pb-2"
+        style={{ fontFamily: "Lobster Two" }}
+      >
         Popular Topics
       </p>
       <div className="flex gap-3 flex-wrap">
@@ -34,7 +41,10 @@ const Discover = () => {
                   <span className="font-bold text-2xl xl-text-md">
                     {item.icon}
                   </span>
-                  <span className="font-medium text-md sm:block md:hidden xl:block capitalize">
+                  <span
+                    className="font-medium text-md sm:block md:hidden xl:block capitalize"
+                    style={{ fontFamily: "Lobster Two" }}
+                  >
                     {item.name}
                   </span>
                 </div>
