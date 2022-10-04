@@ -101,7 +101,12 @@ const Upload = () => {
         <div className="bg-white rounded-lg xl:h-[80vh] justify-between flex gap-6 flex-wrap justify-center items-center p-14 pt-2 md:pt-6">
           <div>
             <div>
-              <p className="text-2xl font-bold">Upload Video</p>
+              <p
+                className="text-2xl font-bold"
+                style={{ fontFamily: "Lobster Two" }}
+              >
+                Upload Video
+              </p>
               <p className="text-md text-gray-400 mt-1">
                 Post a video to your account
               </p>
@@ -134,7 +139,12 @@ const Upload = () => {
                           <p className="font-bold text-3xl">
                             <FaCloudUploadAlt className="text-gray-300 text-6xl" />
                           </p>
-                          <p className="text-xl font-semibold">Upload video</p>
+                          <p
+                            className="text-xl font-semibold"
+                            style={{ fontFamily: "Lobster Two" }}
+                          >
+                            Upload video
+                          </p>
                         </div>
                         <p className="text-gray-400 text-center mt-10 text-sm leading-10">
                           MP4 or WebM or ogg <br />
@@ -142,7 +152,7 @@ const Upload = () => {
                           Up to 10 minutes <br />
                           Less than 2GB
                         </p>
-                        <p className="bg-[#F51997] text-center lg:mt-6 mt-10 lg:mb-2 rounded text-white text-md font-medium p-2 w-52 outline-none">
+                        <p className="bg-gray-900 text-center lg:mt-6 mt-10 lg:mb-2 rounded text-white text-md font-medium p-2 w-52 outline-none">
                           Select file
                         </p>
                         <input
@@ -199,7 +209,7 @@ const Upload = () => {
               <button
                 onClick={handlePost}
                 type="button"
-                className="border-gray-300 border-2 hover:border-0 hover:bg-[#F51997] hover:text-gray-100  text-md capitalize font-medium p-2 rounded w-28 lg:w-44 outline-none"
+                className="border-gray-300 border-2 hover:border-0 hover:bg-gray-900 hover:text-gray-100  text-md capitalize font-medium p-2 rounded w-28 lg:w-44 outline-none"
               >
                 {savingPost ? "Posting..." : "Post"}
               </button>

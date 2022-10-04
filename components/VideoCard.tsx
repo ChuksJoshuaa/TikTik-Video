@@ -21,8 +21,6 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
   const [posts, setPosts] = useState(post);
   const { userProfile }: { userProfile: any } = useAuthStore();
 
-  console.log(posts.postedBy?._id);
-
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const urlParams: any = () => {
@@ -109,12 +107,12 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
             <div className="px-5"></div>
             {userProfile?._id && (
               <div>
-                <FollowButton
+                {/* <FollowButton
                   handleFollow={() => handleFollow(true)}
                   handleUnFollow={() => handleFollow(false)}
                   follows={posts.follows}
                   posterId={posts.postedBy?._id}
-                />
+                /> */}
               </div>
             )}
           </div>

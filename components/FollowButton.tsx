@@ -22,8 +22,6 @@ const FollowButton: NextPage<IFollow> = ({
     (item) => item._ref === userProfile._id
   );
 
-  console.log(filterFollows, posterId);
-
   useEffect(() => {
     if (filterFollows?.length > 0) {
       setAlreadyFollowed(true);

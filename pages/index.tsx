@@ -1,6 +1,11 @@
 import axios from "axios";
 import { Video } from "../types";
-import { VideoCard, NoResults, MobileVideo } from "../components";
+import {
+  VideoCard,
+  NoResults,
+  MobileVideo,
+  MobileNoResults,
+} from "../components";
 import { BASE_URL } from "../utils";
 import { useRouter } from "next/router";
 
@@ -16,15 +21,32 @@ const Home = ({ videos }: IProps) => {
 
   if (!videos.length && topic) {
     return (
-      <NoResults
-        text={`No video associated with ${topic}`}
-        showUserVideos={showUserVideos}
-      />
+      <>
+        <div className="hidden md:block">
+          <NoResults
+            text={`No video associated with ${topic}`}
+            showUserVideos={showUserVideos}
+          />
+        </div>
+        <div className="block md:hidden absolute top-[20%] left-[10%] px-4">
+          <MobileNoResults text={`No video associated with ${topic}`} />
+        </div>
+      </>
     );
   }
   if (!videos.length && !topic) {
     return (
-      <NoResults text={`No video posted yet`} showUserVideos={showUserVideos} />
+      <>
+        <div className="hidden md:block">
+          <NoResults
+            text={`No video posted yet`}
+            showUserVideos={showUserVideos}
+          />
+        </div>
+        <div className="block md:hidden">
+          <MobileNoResults text={`No video associated with ${topic}`} />
+        </div>
+      </>
     );
   }
   return (
