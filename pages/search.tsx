@@ -37,8 +37,16 @@ const Search = ({ data }: IProps) => {
   return (
     <div className="sm:block md:hidden">
       <div className="w-full">
-        <p className="text-center text-xl pt-3">Discover</p>
-        <div className="flex gap-5 justify-between mb-2 mt-2 border-b-2 border-gray-200">
+        <p
+          className="text-center text-xl pt-3"
+          style={{ fontFamily: "Lobster Two" }}
+        >
+          Discover
+        </p>
+        <div
+          className="flex gap-5 justify-between mb-2 mt-2 border-b-2 border-gray-200"
+          style={{ fontFamily: "Lobster Two" }}
+        >
           <p
             className={`text-lg font-semibold cursor-pointer mt-2 ml-4 md:ml-0 ${videos}`}
             onClick={() => setShowUserVideos(true)}
