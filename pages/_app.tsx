@@ -35,10 +35,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             </div>
           </div>
           <div className="fixed bottom-0 w-full cursor-pointer block md:hidden z-50">
-            {/* <div
-              className="h-[51px] py-[12px] px-[12px] absolute bottom-[100%] w-[100vw] z-[11] pointer-events-auto"
-              // style={{ backgroundColor: "rgba(0,0,0,0.75)" }}
-            ></div> */}
             <div className="h-[3rem]  bg-black border-t-2 border-gray-100 text-gray-200 font-small">
               <MainFooter />
             </div>
@@ -50,12 +46,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 };
 
 {
-  /* <div
-            className="h-[52px] py-[12px] px-[12px] absolute bottom-0 w-[100vw] z-[11] items-center font-[600]"
-            style={{ backgroundColor: "rgba(0,0,0,0.75)" }}
-          >
-            Hello Wold
-          </div> */
 }
 
 export default MyApp;
