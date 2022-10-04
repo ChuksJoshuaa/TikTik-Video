@@ -22,7 +22,7 @@ const Home = ({ videos }: IProps) => {
   if (!videos.length && topic) {
     return (
       <>
-        <div className="hidden md:block">
+        <div className="hidden md:block px-[8em] pt-[5em]">
           <NoResults
             text={`No video associated with ${topic}`}
             showUserVideos={showUserVideos}
@@ -44,7 +44,7 @@ const Home = ({ videos }: IProps) => {
           />
         </div>
         <div className="block md:hidden">
-          <MobileNoResults text={`No video associated with ${topic}`} />
+          <MobileNoResults text={`No video posted yet`} />
         </div>
       </>
     );
