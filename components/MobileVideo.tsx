@@ -165,6 +165,10 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
   return (
     <>
       <div className="flex flex-col left-0 top-0 bottom-0 right-0 bg-black">
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap"
+          rel="stylesheet"
+        ></link>
         <div className="relative flex-auto">
           <div
             className="flex justify-center h-[100vh] w-full items-center bg-black bg-no-repeat bg-cover bg-center "
@@ -228,7 +232,13 @@ const MobileVideo: NextPage<IProps> = ({ post, index }) => {
                     className="absolute top-[140px] left-10"
                     onClick={Unmute}
                   >
-                    <div className="bg-white h-[34px] w-[100px] flex text-center rounded-md gap-1 justify-center items-center">
+                    <div
+                      className="bg-white h-[34px] w-[100px] flex text-center rounded-md gap-1 justify-center items-center"
+                      style={{
+                        boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+                        fontFamily: "Lobster Two",
+                      }}
+                    >
                       <BsFillVolumeMuteFill className="text-gray-900 text-4xl pl-2 font-bold" />
                       <p className="text-gray-900 text-sm pr-3 leading-tight font-semibold">
                         Unmute
