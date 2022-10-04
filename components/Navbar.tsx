@@ -51,7 +51,7 @@ const Navbar = () => {
               className="text-gray-900 text-md md:text-2xl lg:text-5xl px-2 mt-1 leading-[240px]"
               style={{ fontFamily: "Lobster Two" }}
             >
-              S-cam
+              TikTik
             </div>
           </div>
         </a>

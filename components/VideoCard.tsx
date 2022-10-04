@@ -107,7 +107,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
               </a>
             </Link>
             <div className="px-5"></div>
-<!--             {userProfile?._id && (
+            {userProfile?._id && (
               <div>
                 <FollowButton
                   handleFollow={() => handleFollow(true)}
@@ -116,7 +116,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                   posterId={posts.postedBy?._id}
                 />
               </div>
-            )} -->
+            )}
           </div>
         </div>
       </div>

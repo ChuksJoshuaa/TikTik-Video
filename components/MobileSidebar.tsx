@@ -43,7 +43,7 @@ const MobileSidebar = ({ setShowMobileSidebar }: IProps) => {
                 className="text-gray-900 text-3xl  px-2 mt-4 leading-3"
                 style={{ fontFamily: "Lobster Two" }}
               >
-                S-cam
+                TikTik
               </div>
             </div>
           </a>
