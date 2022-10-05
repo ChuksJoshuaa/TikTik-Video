@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GoVerified } from "react-icons/go";
 import axios from "axios";
-import { ProfileVideoCard, NoResults, MainFooter } from "../../components";
+import { ProfileVideoCard, NoResults, MainFooter, VideoCard } from "../../components";
 import { IUser, Video } from "../../types";
 import { BASE_URL } from "../../utils";
 
@@ -61,7 +61,7 @@ const Profile = ({ data }: IProps) => {
           </div>
         </div>
 
-        <div className="w-[100vw]">
+        <div className="">
           <div className="flex gap-10 mb-10 mt-10 border-b-2 border-gray-200 bg-white w-full ">
             <p
               className={`text-xl font-semibold cursor-pointer mt-2 ml-4 md:ml-0 ${videos}`}
@@ -77,7 +77,7 @@ const Profile = ({ data }: IProps) => {
             </p>
           </div>
 
-          <div className="flex gap-6 flex-wrap md:justify-center  px-3">
+          <div className="flex gap-6 flex-wrap md:justify-center flex-col px-3 md:px-0">
             {videosList.length > 0 ? (
               videosList.map((post: Video, idx: number) => {
                 return <ProfileVideoCard post={post} key={idx} />;
