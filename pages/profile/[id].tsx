@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GoVerified } from "react-icons/go";
 import axios from "axios";
-import { ProfileVideoCard, NoResults, MainFooter, VideoCard } from "../../components";
+import { ProfileVideoCard, NoResults, MainFooter } from "../../components";
 import { IUser, Video } from "../../types";
 import { BASE_URL } from "../../utils";
 
