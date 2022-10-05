@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  MainFooter,
   SuggestedAccounts,
   ProfileVideoCard,
   NoResults,

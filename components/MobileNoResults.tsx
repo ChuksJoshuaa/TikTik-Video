@@ -9,7 +9,7 @@ interface IProps {
 const MobileNoResults = ({ text }: IProps) => {
   return (
     <>
-      <div className="flex flex-col justify-center items-center h-full pt-9 mt-5">
+      <div className="flex flex-col justify-center items-center h-full pt-9 mt-5 ">
         <p className="text-8xl">
           {text === "No comments yet" ? (
             <BiCommentX />
