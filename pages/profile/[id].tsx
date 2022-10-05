@@ -83,10 +83,12 @@ const Profile = ({ data }: IProps) => {
                 return <ProfileVideoCard post={post} key={idx} />;
               })
             ) : (
-              <NoResults
-                text={`No ${showUserVideos ? "" : "Liked"} Videos Yet `}
-                showUserVideos={showUserVideos}
-              />
+              <div className="w-[100vw] md:w-[70vw] lg:w-[40vw]">
+                <NoResults
+                  text={`No ${showUserVideos ? "" : "Liked"} Videos Yet `}
+                  showUserVideos={showUserVideos}
+                />
+              </div>
             )}
           </div>
         </div>
