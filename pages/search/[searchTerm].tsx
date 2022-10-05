@@ -48,7 +48,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
               searchAccounts.map((user: IUser) => (
                 <Link href={`/profile/${user._id}`} key={user?._id}>
                   <a>
-                    <div className="flex p-2 cursor-pointer font-semibold rounded border-b-2 border-gray-200 gap-3">
+                    <div className="flex p-2 cursor-pointer font-semibold rounded  gap-3 w-[100vw] md:w-[70vw] lg:w-[40vw]">
                       <div>
                         <Image
                           src={user?.image}
@@ -59,7 +59,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
                         />
                       </div>
 
-                      <div className="hidden xl:block mb-4">
+                      <div className="mb-4">
                         <p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
                           {user.userName.replaceAll(" ", "")}
                           <GoVerified className="text-blue-400" />
@@ -73,28 +73,29 @@ const Search = ({ videos }: { videos: Video[] }) => {
                 </Link>
               ))
             ) : (
-              <NoResults
-                text={`No account associated with ${searchTerm}`}
-                showUserVideos={showUserVideos}
-              />
+              <div className="w-[100vw] md:w-[70vw] lg:w-[40vw]">
+                 <NoResults
+                    text={`No account associated with ${searchTerm}`}
+                    showUserVideos={showUserVideos}
+                  />
+              </div>
             )}
           </div>
         ) : (
-          <div className="md:mt-16 flex flex-wrap gap-6 md:justify-start">
+          <div className="md:mt-16 flex flex-wrap gap-6 md:justify-start flex-col">
             {videos.length ? (
               videos.map((video: Video, idx) => (
-                <div key={idx}>
-                  <h1 className="text-center text-gray-500 lg:text-2xl text-lg font-semibold mb-5">
-                    Search Video Result for {searchTerm}{" "}
-                  </h1>
+                <div key={idx} className="w-[100vw] md:w-[70vw] lg:w-[40vw]">
                   <VideoCard post={video} key={idx} />
                 </div>
               ))
             ) : (
-              <NoResults
-                text={`No video results for ${searchTerm}`}
-                showUserVideos={showUserVideos}
-              />
+              <div className="w-[100vw] md:w-[70vw] lg:w-[40vw]">
+                 <NoResults
+                    text={`No video results for ${searchTerm}`}
+                    showUserVideos={showUserVideos}
+                  />
+              </div>
             )}
           </div>
         )}
