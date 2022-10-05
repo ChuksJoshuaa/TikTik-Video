@@ -136,7 +136,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                   ref={videoRef}
                   controls={isHover}
                   src={posts.video.asset.url}
-                  className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
+                  className="lg:w-[500px] object-fill text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
                 />
               </a>
             </Link>
@@ -147,7 +147,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                   ref={videoRef}
                   controls={isHover}
                   src={posts.video.asset.url}
-                  className="lg:w-[500px] text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
+                  className="lg:w-[500px]  object-fill text-[35px] h-[500px] lg:h-[650px] w-[450px] cursor-pointer rounded-2xl bg-gray-100"
                 />
               </a>
             </Link>
