@@ -14,7 +14,6 @@ interface IProps {
 //Another way of using typescript.
 const ProfileVideoCard: NextPage<IProps> = ({ post }) => {
   const [isHover, setIsHover] = useState(false);
-
   const videoRef = useRef<HTMLVideoElement>(null);
 
 
