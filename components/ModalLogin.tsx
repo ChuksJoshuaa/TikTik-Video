@@ -47,7 +47,7 @@ const ModalLogin = ({ setOpenModal }: IModal) => {
             className="text-2xl text-gray-900 font-semibold border-b-2 border-gray-800"
             style={{ fontFamily: "Lobster Two" }}
           >
-            Log In To S-cam
+            Log In To TikTik
           </p>
           <div className="pt-5">
             <div className="flex flex-col justify-center pt-10 items-center mt-15 ">
