@@ -2,7 +2,7 @@
 
 # TIK-TIK PROJECT
 
-<img src="https://res.cloudinary.com/chuksmbanaso/image/upload/v1664978942/media/Screenshot_36_agc7jj.png" title="icon" alt="icon">
+<img src="https://res.cloudinary.com/chuksmbanaso/image/upload/v1664978942/media/Screenshot_36_agc7jj.png" title="icon" alt="icon">.
 
 First, run the development server:
 
